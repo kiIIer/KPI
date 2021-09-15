@@ -1,10 +1,10 @@
 
 public class FirstFuncParam {
 
-    double a = Double.NaN;
-    double b = Double.NaN;
-    double c = Double.NaN;
-    double d = Double.NaN;
+    double a;
+    double b;
+    double c;
+    double d;
 
     public FirstFuncParam(String[] args) {
         a = Double.parseDouble(args[0]);
