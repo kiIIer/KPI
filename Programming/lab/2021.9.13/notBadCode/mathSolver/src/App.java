@@ -1,3 +1,4 @@
+
 public class App {
     public static void main(String[] args) {
         var chatter = new ResponsePack();
@@ -11,7 +12,7 @@ public class App {
             return;
         }
 
-        int funcNum = 0;
+        int funcNum;
 
         try {
             funcNum = Integer.parseInt(args[4]);
@@ -34,6 +35,7 @@ public class App {
             var calc = new FirstFuncCalc();
             var result = calc.calculate(param);
             System.out.println(result);
+            return;
         }
 
         if (funcNum == 2) {
@@ -50,6 +52,7 @@ public class App {
             var calc = new SecondFuncCalc();
             var result = calc.calculate(param);
             System.out.println(result);
+            return;
         }
 
         if (funcNum == 3) {
@@ -66,6 +69,7 @@ public class App {
             var calc = new ThirdFuncCalc();
             var result = calc.calculate(param);
             System.out.println(result);
+            return;
         }
 
     }
