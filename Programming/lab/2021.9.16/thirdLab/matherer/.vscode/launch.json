@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "F1",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "matherer_ff7171f4",
+            "args": "F1 15 15"
+        },
+        {
+            "type": "java",
+            "name": "F2",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "matherer_ff7171f4",
+            "args": "F2 -1 -1"
+        },
+        {
+            "type": "java",
+            "name": "F3",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "matherer_ff7171f4",
+            "args": "F3 0.00000000001"
+        }
+    ]
+}
