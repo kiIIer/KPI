@@ -7,7 +7,7 @@ public class App {
         supportedFormulas.put("f1", new Tupples(new F1ParameterFactory(), new F1Calculator()));
         supportedFormulas.put("f2", new Tupples(new F2ParameterFactory(), new F2Calculator()));
         supportedFormulas.put("f3", new Tupples(new F3ParameterFactory(), new F3Calculator()));
-
+      
         try {
             if (args.length == 0) {
                 throw new IllegalArgumentException("Please provide arguments!");
