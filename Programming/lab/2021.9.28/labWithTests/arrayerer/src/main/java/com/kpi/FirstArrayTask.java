@@ -5,7 +5,6 @@ public class FirstArrayTask {
         if (array == null) {
             throw new IllegalArgumentException("Cannot work with null array!");
         }
-
         double res = 0;
 
         for (int i = 0; i < array.length; i++) {

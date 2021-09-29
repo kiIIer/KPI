@@ -6,20 +6,21 @@ public class SecondArrayTask {
             throw new IllegalArgumentException("Cannot work with null array!");
         }
 
-        double element = Double.POSITIVE_INFINITY;
-        double place = -1;
+        int notFound = -1;
+        int index = notFound;
 
         for (int i = 0; i < array.length; i++) {
-            if (array[i] > 0 && array[i] < element) {
-                element = array[i];
-                place = i;
+            double value = array[i];
+            if (value <= 0) {
+                continue;
             }
+            index = (index == notFound) ? i : ((value < array[index]) ? i : index);
         }
 
-        if (place == -1) {
+        if (index == notFound) {
             return Double.NaN;
         }
 
-        return element + place;
+        return array[index] + index;
     }
 }
