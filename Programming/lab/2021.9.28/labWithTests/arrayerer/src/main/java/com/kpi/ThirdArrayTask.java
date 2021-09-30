@@ -11,12 +11,13 @@ public class ThirdArrayTask {
         for (int i = 0; i < result.length; i++) {
             if (arr1[i] > 0 && arr2[i] > 0) {
                 result[i] = arr1[i] + arr2[i];
-            } else if (arr1[i] < 0 && arr2[i] < 0) {
+                continue;
+            }
+            if (arr1[i] < 0 && arr2[i] < 0) {
                 result[i] = arr1[i] * arr2[i];
-            } else {
-                result[i] = 0;
             }
         }
+
         return result;
     }
 }
