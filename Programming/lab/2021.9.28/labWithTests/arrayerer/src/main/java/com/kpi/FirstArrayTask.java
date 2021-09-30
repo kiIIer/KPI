@@ -5,13 +5,13 @@ public class FirstArrayTask {
         if (array == null) {
             throw new IllegalArgumentException("Cannot work with null array!");
         }
-        double res = 0;
+        double result = 0;
 
         for (int i = 0; i < array.length; i++) {
             if (array[i] > 0) {
-                res++;
+                result++;
             }
         }
-        return res;
+        return result;
     }
 }
