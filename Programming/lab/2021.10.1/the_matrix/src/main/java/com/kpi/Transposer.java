@@ -1,13 +1,29 @@
 package com.kpi;
 
-public class Transposer {
-    public double[][] transpose(double[][] matrex){
-        double[][] transMatrex = new double[matrex[0].length][matrex.length];
-        for(int i = 0; i < matrex.length; i++){
-            for(int j = 0; j < matrex[0].length; j++){
-                transMatrex[j][i] = matrex[i][j];
+import com.google.inject.Inject;
+
+public class Transposer implements IMatrixProcessor {
+    private IMatrixWriter writer;
+
+    @Inject
+    public Transposer(IMatrixWriter writer) {
+        this.writer = writer;
+    }
+
+    public void process(double[][] matrix) {
+        writer.write(transpose(matrix));
+    }
+
+    private double[][] transpose(double[][] matrix) {
+        double[][] transMatrix = new double[matrix[0].length][matrix.length];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                transMatrix[j][i] = matrix[i][j];
             }
         }
-        return transMatrex;
+
+        return transMatrix;
     }
+
 }

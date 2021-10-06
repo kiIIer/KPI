@@ -9,15 +9,19 @@ import com.google.inject.name.Names;
 public class App {
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new HiModule());
-        // HelloWorlder1 instance = injector.getInstance(Key.get(HelloWorlder1.class, Names.named("Hi1")));
+        // HelloWorlder1 instance = injector.getInstance(HelloWorler1.class);
         // instance.sayHi();
-        String param = "notJa";
+        String param = "En";
+
         Binding<IHi> binding = injector.getExistingBinding(Key.get(IHi.class, Names.named(param)));
+
         if(binding == null){
-            System.out.println("Hey, that's illegal!");
+            System.out.println("Wait. That's illegal.");
             return;
         }
+
         IHi instance = binding.getProvider().get();
+
         instance.sayHi();
     }
 }

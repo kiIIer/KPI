@@ -11,7 +11,9 @@ public class HiModule extends AbstractModule {
         // bind(HelloWorlder2.class);
         // // .to(HelloWorlder2.class);
         // bind(IHelloWorlder3.class).to(HelloWorlder3.class);
+
         bind(IHi.class).annotatedWith(Names.named("En")).to(HiEn.class);
+
         bind(IHi.class).annotatedWith(Names.named("Ja")).to(HiJa.class);
     }
 }

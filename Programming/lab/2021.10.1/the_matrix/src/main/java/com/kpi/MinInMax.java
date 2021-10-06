@@ -3,8 +3,12 @@ package com.kpi;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinInMax {
-    public double getMin(double[][] matrix) {
+public class MinInMax implements IMatrixProcessor {
+    public void process(double[][] matrix) {
+        System.out.println(getMin(matrix));
+    }
+
+    private double getMin(double[][] matrix) {
         double[] sumsOfColumns = getModulesSums(matrix);
 
         List<Integer> columns = getMaxColumnIndexes(sumsOfColumns);
@@ -60,7 +64,8 @@ public class MinInMax {
                 }
             }
         }
-        
+
         return min;
     }
+
 }
