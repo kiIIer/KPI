@@ -10,5 +10,6 @@ public class MatrixModule extends AbstractModule {
         bind(IMatrixProcessor.class).annotatedWith(Names.named("T1")).to(MinInMax.class);
         bind(IMatrixProcessor.class).annotatedWith(Names.named("T2")).to(Swapper.class);
         bind(IMatrixProcessor.class).annotatedWith(Names.named("T7")).to(Transposer.class);
+        bind(IMatrixProcessor.class).annotatedWith(Names.named("T9")).to(FootballFlawless.class);
     }
 }

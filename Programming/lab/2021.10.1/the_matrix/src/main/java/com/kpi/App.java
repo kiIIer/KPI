@@ -13,6 +13,7 @@ public class App {
   public static void main(String[] args) {
     if(args.length != 2){
       System.out.println("I need 2 arguments to work. Which formula and name of file!");
+      return;
     }
     String actionName = args[0];
     String filename = args[1];
