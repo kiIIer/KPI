@@ -15,11 +15,12 @@ public class Transposer implements IMatrixProcessor {
     }
 
     private double[][] transpose(double[][] matrix) {
-        double[][] transMatrix = new double[matrix[0].length][matrix.length];
+        int columnCount = matrix[0].length;
+        double[][] transMatrix = new double[columnCount][matrix.length];
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                transMatrix[j][i] = matrix[i][j];
+        for (int rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                transMatrix[columnIndex][rowIndex] = matrix[rowIndex][columnIndex];
             }
         }
 

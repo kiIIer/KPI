@@ -16,7 +16,23 @@
             "request": "launch",
             "mainClass": "com.kpi.App",
             "projectName": "the_matrix",
-            "args": "T1 /home/killer/proj/KPI/Programming/lab/2021.10.1/the_matrix/src/main/java/com/kpi/matrix.csv"
+            "args": "T1 /home/killer/proj/KPI/Programming/lab/2021.10.1/the_matrix/matrixes/easy123M.csv"
+        },
+        {
+            "type": "java",
+            "name": "Seventh task",
+            "request": "launch",
+            "mainClass": "com.kpi.App",
+            "projectName": "the_matrix",
+            "args": "T7 /home/killer/proj/KPI/Programming/lab/2021.10.1/the_matrix/matrixes/easy123M.csv"
+        },
+        {
+            "type": "java",
+            "name": "Nineth task",
+            "request": "launch",
+            "mainClass": "com.kpi.App",
+            "projectName": "the_matrix",
+            "args": "T9 /home/killer/proj/KPI/Programming/lab/2021.10.1/the_matrix/matrixes/validFootbalM.csv"
         }
     ]
 }

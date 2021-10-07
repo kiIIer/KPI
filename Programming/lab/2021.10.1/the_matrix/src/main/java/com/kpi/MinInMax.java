@@ -4,44 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MinInMax implements IMatrixProcessor {
-    public void  process(double[][] matrix) {
+    public void process(double[][] matrix) {
         System.out.println(getMin(matrix));
     }
 
-    private double getMin(double[][] rawMatrix) {
-        int longestRowLength = longestRowLength(rawMatrix);
-
-        double[][] matrix = makeRectMatrix(longestRowLength, rawMatrix);
-
+    private double getMin(double[][] matrix) {
         double[] sumsOfColumns = getModulesSums(matrix);
 
         List<Integer> columns = getMaxColumnIndexes(sumsOfColumns);
 
-        return getMin(matrix, columns);
-    }
-
-    private int longestRowLength(double[][] matrix){
-        int maxLength = -1;
-        for (int i = 0; i<matrix.length; i++){
-            
-            int length = matrix[i].length;
-            maxLength = (length > maxLength) ? length : maxLength;
-        }
-        return maxLength;
-    }
-
-    private double[][] makeRectMatrix(int longestRowLength, double[][] rawMatrix){
-        double[][] matrix = new double[rawMatrix.length][longestRowLength];
-
-        for(int i = 0; i < rawMatrix.length; i++){
-
-            for(int j = 0; j<rawMatrix[i].length; j++){
-                matrix[i][j] = rawMatrix[i][j];
-            }
-
-        }
-
-        return matrix;
+        return getMinFromColumns(matrix, columns);
     }
 
     private double[] getModulesSums(double[][] matrix) {
@@ -80,7 +52,7 @@ public class MinInMax implements IMatrixProcessor {
         return list;
     }
 
-    private double getMin(double[][] matrix, List<Integer> columnIndexes) {
+    private double getMinFromColumns(double[][] matrix, List<Integer> columnIndexes) {
         double min = matrix[0][columnIndexes.get(0)];
 
         for (int columnIndex : columnIndexes) {
