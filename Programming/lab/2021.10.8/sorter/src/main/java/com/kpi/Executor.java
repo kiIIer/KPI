@@ -1,6 +1,5 @@
 package com.kpi;
 
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 import com.google.inject.Inject;
@@ -11,38 +10,33 @@ import picocli.CommandLine.ParameterException;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Spec;
 
-@Command(name = "sorter", version = "sorter 0.1", description = "Sorts provided array of doubles using chosen algorithm: "
-        + SupportedAlgorithms.list)
+@Command(name = "sorter", version = "sorter 0.1", description = "Sorts provided array of doubles using chosen algorithm")
 public class Executor implements Callable<Integer>, IExecutor {
 
     @Spec
     private CommandSpec spec;
 
-    @Inject
     private IGenerator generator;
-
-    @Inject
     private IWriter writer;
-
-    @Inject
     private IAlgorithmProvider provider;
 
     private String algorithm;
 
+    @Inject
+    public Executor(IGenerator generator, IWriter writer, IAlgorithmProvider provider) {
+        this.generator = generator;
+        this.writer = writer;
+        this.provider = provider;
+    }
+
     @Parameters(index = "0", description = "Algorithm to be used while sorting")
     public void setAlgorithm(String value) {
-        String[] supported = SupportedAlgorithms.algorithms;
-        boolean found = false;
-
-        for (String x : supported) {
-            if (x.equals(value)) {
-                found = true;
-            }
-        }
+        boolean found = provider.getSupportedAlgorithms().contains(value);
 
         if (!found) {
             throw new ParameterException(spec.commandLine(), String.format("Unsupported algorithm '%s'", value));
         }
+
         this.algorithm = value;
     }
 
@@ -52,9 +46,7 @@ public class Executor implements Callable<Integer>, IExecutor {
 
         writer.write(array);
 
-        Map<String, ISorter> algorithms = provider.getAlgorithms();
-
-        ISorter sorter = algorithms.get(algorithm);
+        ISorter sorter = provider.getAlgorithm(algorithm);
 
         sorter.sort(array);
 

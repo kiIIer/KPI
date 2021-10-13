@@ -13,10 +13,10 @@
         },
         {
             "type": "java",
-            "name": "Launch App",
+            "name": "Not found",
             "request": "launch",
-            "mainClass": "com.kpi.App",
-            "projectName": "sorter"
+            "mainClass": "${file}",
+            "args": "c"
         }
     ]
 }

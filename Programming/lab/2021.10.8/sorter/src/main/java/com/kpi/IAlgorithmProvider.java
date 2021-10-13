@@ -1,7 +1,9 @@
 package com.kpi;
 
-import java.util.Map;
+import java.util.Set;
 
 public interface IAlgorithmProvider {
-    public Map<String, ISorter> getAlgorithms();
+    public ISorter getAlgorithm(String name);
+
+    public Set<String> getSupportedAlgorithms();
 }

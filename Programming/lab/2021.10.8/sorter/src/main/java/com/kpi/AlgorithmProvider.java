@@ -2,15 +2,12 @@ package com.kpi;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import com.google.inject.Inject;
 
 public class AlgorithmProvider implements IAlgorithmProvider {
     private final Map<String, ISorter> algorithms;
-
-    public Map<String, ISorter> getAlgorithms() {
-        return algorithms;
-    }
 
     @Inject
     public AlgorithmProvider(IBubbleSorter bubble, IInsertionSorter insertion, IQuickSorter quick,
@@ -22,5 +19,13 @@ public class AlgorithmProvider implements IAlgorithmProvider {
         map.put("selection", selection);
 
         this.algorithms = map;
+    }
+
+    public ISorter getAlgorithm(String name) {
+        return algorithms.get(name);
+    }
+
+    public Set<String> getSupportedAlgorithms() {
+        return algorithms.keySet();
     }
 }
