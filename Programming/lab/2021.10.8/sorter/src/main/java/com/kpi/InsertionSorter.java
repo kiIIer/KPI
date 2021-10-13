@@ -1,6 +1,6 @@
 package com.kpi;
 
-public class InsertionSorter implements ISorter {
+public class InsertionSorter implements IInsertionSorter {
 
     public void sort(double[] array) {
         int len = array.length;

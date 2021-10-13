@@ -1,8 +1,8 @@
 package com.kpi;
 
-public class QuickSorter implements ISorter {
-    public void sort(double[] array){
-        quickSort(array, 0, array.length-1);
+public class QuickSorter implements IQuickSorter {
+    public void sort(double[] array) {
+        quickSort(array, 0, array.length - 1);
     }
 
     private void quickSort(double[] array, int start, int end) {
@@ -25,10 +25,10 @@ public class QuickSorter implements ISorter {
             if (array[index] >= conqueror) {
                 continue;
             }
-                greaterArrayStart++;
+            greaterArrayStart++;
 
-                swap(array, greaterArrayStart - 1, index);
-            
+            swap(array, greaterArrayStart - 1, index);
+
         }
 
         swap(array, greaterArrayStart, end);

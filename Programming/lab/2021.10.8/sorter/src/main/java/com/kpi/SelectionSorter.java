@@ -1,7 +1,7 @@
 package com.kpi;
 
-public class SelectionSorter implements ISorter {
-	
+public class SelectionSorter implements ISelectionSorter {
+
 	public void sort(double[] array) {
 		int len = array.length;
 

@@ -1,6 +1,6 @@
 package com.kpi;
 
-public class ArrayGenerator {
+public class ArrayGenerator implements IGenerator{
     public double[] genetateArray(int length) {
         double[] array = new double[length];
 
