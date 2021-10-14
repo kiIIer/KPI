@@ -51,7 +51,7 @@ public class SorterCommand implements ISorterCommand {
 
         this.writer.write(array);
         if (parent.isTime) {
-            System.out.println("Time of execution: " + watch.getTime());
+            System.out.println("Time of execution: " + watch.getNanoTime() + " nanoseconds");
         }
         return 0;
     }
