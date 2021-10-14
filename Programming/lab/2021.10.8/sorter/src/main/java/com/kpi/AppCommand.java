@@ -10,7 +10,7 @@ import picocli.CommandLine.Model.CommandSpec;
 import picocli.CommandLine.ParameterException;
 import picocli.CommandLine.Spec;
 
-@Command(name = "sorter", version = "sorter 1", description = "Sorts provided array of doubles using chosen algorithm. Hand input > file input > random input")
+@Command(name = "sorter", version = "sorter 1", description = "Sorts provided array of doubles using chosen algorithm.")
 public class AppCommand implements Callable<Integer>, IAppCommand {
 
     public final IGenerator generator;
@@ -33,22 +33,33 @@ public class AppCommand implements Callable<Integer>, IAppCommand {
     }
 
     @Option(names = {
-            "-min" }, description = "Minimum randomly generated array can contain. Default is 0", defaultValue = "0")
+            "-min" }, description = "The minimum randomly generated array can contain. Default is 0", defaultValue = "0")
     public int min;
 
     @Option(names = {
-            "-max" }, description = "Maximum value randomly generated array can contain. Default is 100", defaultValue = "100")
+            "-max" }, description = "The maximum value randomly generated array can contain. Default is 9", defaultValue = "9")
     public int max;
 
-    @Option(names = { "--file", "-f" }, description = "CSV file, from which array will be sorted")
-    public String filename;
-
-    @Option(names = { "-s", "--show" }, description = "Shows the input array. Default false", defaultValue = "true")
+    @Option(names = { "-s", "--show" }, description = "Shows the input array. Default is true", defaultValue = "true")
     public boolean show;
 
     @Option(names = { "-d",
-            "--descend" }, description = "Array will be descending. Default false", defaultValue = "false")
+            "--descend" }, description = "Descending sort order. Default is false", defaultValue = "false")
     public boolean descending;
+
+    @Option(names = { "--file",
+            "-f" }, description = "A name of CSV file containing input array", defaultValue = "/dev/stdin")
+    public String filename;
+    @Option(names = { "-a",
+            "--array" }, split = ",", description = "You can manually provide an array using this flag. Enter array separating values with ',' like this 3,2,1 ")
+    public double[] array;
+
+    @Option(names = { "-r",
+            "--random" }, description = "Generates random input array. Default is false", defaultValue = "false")
+    public boolean isRandom;
+
+    @Option(names = { "-t", "--time" }, description = "Show time of execution", defaultValue = "false")
+    public boolean isTime;
 
     @Inject
     public AppCommand(ISorterCommand command, IGenerator generator, IWriter writer) {
