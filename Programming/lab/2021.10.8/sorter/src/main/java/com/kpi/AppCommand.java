@@ -40,7 +40,7 @@ public class AppCommand implements Callable<Integer>, IAppCommand {
             "-max" }, description = "The maximum value randomly generated array can contain. Default is 9", defaultValue = "9")
     public int max;
 
-    @Option(names = { "-s", "--show" }, description = "Shows the input array. Default is true", defaultValue = "true")
+    @Option(names = { "-i", "--input" }, description = "Prints the input array. Default is true", defaultValue = "true")
     public boolean show;
 
     @Option(names = { "-d",
@@ -58,7 +58,7 @@ public class AppCommand implements Callable<Integer>, IAppCommand {
             "--random" }, description = "Generates random input array. Default is false", defaultValue = "false")
     public boolean isRandom;
 
-    @Option(names = { "-t", "--time" }, description = "Show time of execution", defaultValue = "false")
+    @Option(names = { "-t", "--time" }, description = "Prints time of execution", defaultValue = "false")
     public boolean isTime;
 
     @Inject
