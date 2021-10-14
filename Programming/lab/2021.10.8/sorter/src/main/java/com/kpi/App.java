@@ -8,7 +8,12 @@ import picocli.CommandLine;
 public class App {
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new AppModule());
-        int exitCode = new CommandLine(injector.getInstance(IExecutor.class)).execute(args);
+
+        ICLIInitializer initializer = injector.getInstance(ICLIInitializer.class);
+
+        CommandLine commandLine = initializer.initialize();
+
+        int exitCode = commandLine.execute(args);
         System.exit(exitCode);
     }
 }
