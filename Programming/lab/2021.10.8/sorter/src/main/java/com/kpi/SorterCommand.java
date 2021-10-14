@@ -6,17 +6,30 @@ public class SorterCommand implements ISorterCommand {
 
     private final IWriter writer;
     private final IGenerator generator;
+    private final IMyFileReader myFileReader;
 
     @Inject
-    public SorterCommand(IGenerator generator, IWriter writer) {
+    public SorterCommand(IGenerator generator, IWriter writer, IMyFileReader myFileReader) {
         this.generator = generator;
         this.writer = writer;
+        this.myFileReader = myFileReader;
     }
 
-    public Integer call(ISorter sorter, int length) throws Exception {
-        double[] array = this.generator.genetateArray(length);
+    public Integer call(ISorter sorter, AppCommand parent) throws Exception {
 
-        this.writer.write(array);
+        double[] array;
+        if (parent.filename != null) {
+            array = myFileReader.read(parent.filename);
+        } else {
+            if (parent.min > parent.max) {
+                throw new IllegalArgumentException("Min is greater than max. WTF???");
+            }
+            array = this.generator.genetateArray(parent.length, parent.min, parent.max);
+        }
+
+        if (parent.show) {
+            this.writer.write(array);
+        }
 
         sorter.sort(array);
 

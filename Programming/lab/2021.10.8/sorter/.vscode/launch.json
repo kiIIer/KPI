@@ -17,6 +17,20 @@
             "request": "launch",
             "mainClass": "${file}",
             "args": "c"
+        },
+        {
+            "type": "java",
+            "name": "Show help",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "-h"
+        },
+        {
+            "type": "java",
+            "name": "Read from file",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "-f /home/killer/proj/KPI/Programming/lab/2021.10.8/sorter/array.csv quick"
         }
     ]
 }
