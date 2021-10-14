@@ -15,5 +15,6 @@ public class AppModule extends AbstractModule {
         bind(ISelectionSorter.class).to(SelectionSorter.class);
         bind(IInsertionSorter.class).to(InsertionSorter.class);
         bind(IMyFileReader.class).to(MyFileReader.class);
+        bind(IDescender.class).to(Descender.class);
     }
 }

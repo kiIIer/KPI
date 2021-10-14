@@ -7,12 +7,14 @@ public class SorterCommand implements ISorterCommand {
     private final IWriter writer;
     private final IGenerator generator;
     private final IMyFileReader myFileReader;
+    private final IDescender descender;
 
     @Inject
-    public SorterCommand(IGenerator generator, IWriter writer, IMyFileReader myFileReader) {
+    public SorterCommand(IGenerator generator, IWriter writer, IMyFileReader myFileReader, IDescender descender) {
         this.generator = generator;
         this.writer = writer;
         this.myFileReader = myFileReader;
+        this.descender = descender;
     }
 
     public Integer call(ISorter sorter, AppCommand parent) throws Exception {
@@ -32,6 +34,10 @@ public class SorterCommand implements ISorterCommand {
         }
 
         sorter.sort(array);
+
+        if (parent.descending) {
+            descender.descend(array);
+        }
 
         this.writer.write(array);
         return 0;

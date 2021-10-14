@@ -43,8 +43,12 @@ public class AppCommand implements Callable<Integer>, IAppCommand {
     @Option(names = { "--file", "-f" }, description = "CSV file, from which array will be sorted")
     public String filename;
 
-    @Option(names = { "-s", "--show" }, description = "Shows the input array.", defaultValue = "true")
+    @Option(names = { "-s", "--show" }, description = "Shows the input array. Default false", defaultValue = "true")
     public boolean show;
+
+    @Option(names = { "-d",
+            "--descend" }, description = "Array will be descending. Default false", defaultValue = "false")
+    public boolean descending;
 
     @Inject
     public AppCommand(ISorterCommand command, IGenerator generator, IWriter writer) {
