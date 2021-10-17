@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch quick sort",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "quick"
+        },
+        {
+            "type": "java",
+            "name": "Not found",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "c"
+        },
+        {
+            "type": "java",
+            "name": "Show help",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "-h"
+        },
+        {
+            "type": "java",
+            "name": "Read from file",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "-f /home/killer/proj/KPI/Programming/lab/2021.10.8/sorter/array.csv quick"
+        }
+    ]
+}

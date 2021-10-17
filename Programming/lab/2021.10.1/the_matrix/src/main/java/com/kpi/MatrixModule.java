@@ -8,9 +8,9 @@ public class MatrixModule extends AbstractModule {
     protected void configure() {
         bind(IMatrixReader.class).to(MatrixReader.class);
         bind(IMatrixWriter.class).to(MatrixWriter.class);
-        bind(IMatrixProcessor.class).annotatedWith(Names.named("T1")).to(MinInMax.class);
-        bind(IMatrixProcessor.class).annotatedWith(Names.named("T2")).to(Swapper.class);
-        bind(IMatrixProcessor.class).annotatedWith(Names.named("T7")).to(Transposer.class);
-        bind(IMatrixProcessor.class).annotatedWith(Names.named("T9")).to(FootballFlawless.class);
+        bind(IMatrixProcessor.class).annotatedWith(Names.named("T0")).to(MinInMaxProcessor.class);
+        bind(IMatrixProcessor.class).annotatedWith(Names.named("T1")).to(SwapProcessor.class);
+        bind(IMatrixProcessor.class).annotatedWith(Names.named("T6")).to(TransposeProcessor.class);
+        bind(IMatrixProcessor.class).annotatedWith(Names.named("T8")).to(FootballFlawlessProcessor.class);
     }
 }
