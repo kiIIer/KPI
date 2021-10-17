@@ -5,7 +5,10 @@ public class SecondArrayTask {
         if (array == null) {
             throw new IllegalArgumentException("Cannot work with null array!");
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> DiskMat
         int notFound = -1;
         int index = notFound;
 
@@ -14,6 +17,16 @@ public class SecondArrayTask {
             if (value <= 0) {
                 continue;
             }
+<<<<<<< HEAD
+=======
+            // if(index == notFound){
+            // index = i;
+            // } else if(value < array[index]){
+            // index = i;
+            // } else{
+            // index = index;
+            // }
+>>>>>>> DiskMat
             index = (index == notFound) ? i : ((value < array[index]) ? i : index);
         }
 
