@@ -1,3 +1,13 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.project.sourcePaths": [
+        "Programming/lab/2021.9.3",
+        "Programming/lab/2021.9.8"
+    ],
+    "markdown.styles": [
+        "myFav.css"
+    ],
+    "markdown-pdf.stylesRelativePathFile": true,
+    "markdown-pdf.styles": [
+        "myFav.css"
+    ]
 }

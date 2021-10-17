@@ -5,6 +5,16 @@ public class FirstArrayTask {
         if (array == null) {
             throw new IllegalArgumentException("Cannot work with null array!");
         }
+<<<<<<< HEAD
+        double res = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > 0) {
+                res++;
+            }
+        }
+        return res;
+=======
         double result = 0;
 
         for (int i = 0; i < array.length; i++) {
@@ -13,5 +23,6 @@ public class FirstArrayTask {
             }
         }
         return result;
+>>>>>>> DiskMat
     }
 }
