@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "First task",
+            "request": "launch",
+            "mainClass": "com.kpi.App",
+            "projectName": "the_matrix",
+            "args": "T1 /home/killer/proj/KPI/Programming/lab/2021.10.1/the_matrix/matrixes/easy123M.csv"
+        },
+        {
+            "type": "java",
+            "name": "Seventh task",
+            "request": "launch",
+            "mainClass": "com.kpi.App",
+            "projectName": "the_matrix",
+            "args": "T7 /home/killer/proj/KPI/Programming/lab/2021.10.1/the_matrix/matrixes/easy123M.csv"
+        },
+        {
+            "type": "java",
+            "name": "Nineth task",
+            "request": "launch",
+            "mainClass": "com.kpi.App",
+            "projectName": "the_matrix",
+            "args": "T9 /home/killer/proj/KPI/Programming/lab/2021.10.1/the_matrix/matrixes/validFootbalM.csv"
+        }
+    ]
+}
