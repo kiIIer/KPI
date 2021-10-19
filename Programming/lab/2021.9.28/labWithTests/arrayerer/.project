@@ -6,17 +6,37 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
+<<<<<<< HEAD
+=======
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+>>>>>>> c128a6c965dd8ef65b38437b8ebfb57b71f8c9c5
 			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
+<<<<<<< HEAD
+=======
+		<nature>org.eclipse.jdt.core.javanature</nature>
+>>>>>>> c128a6c965dd8ef65b38437b8ebfb57b71f8c9c5
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
+<<<<<<< HEAD
 			<id>1632839168342</id>
+=======
+<<<<<<< HEAD
+			<id>1632839168342</id>
+=======
+			<id>1633015616141</id>
+>>>>>>> DiskMat
+>>>>>>> c128a6c965dd8ef65b38437b8ebfb57b71f8c9c5
 			<name></name>
 			<type>30</type>
 			<matcher>
