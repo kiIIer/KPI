@@ -23,6 +23,7 @@ public class BitShowCommand implements Callable<Integer>
     {
         System.out.println(bitTranslator.toBit(parent.set1));
         System.out.println(bitTranslator.toBit(parent.set2));
+        System.out.println(bitTranslator.bitToBitString(bitTranslator.toBit(parent.set2)));
         return 0;
     }
 }
