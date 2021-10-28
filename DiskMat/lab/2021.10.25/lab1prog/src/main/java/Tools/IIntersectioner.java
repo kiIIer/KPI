@@ -2,5 +2,5 @@ package Tools;
 
 public interface IIntersectioner
 {
-    public int calculate(int set1, int set2);
+    public Set calculate(Set set1, Set set2);
 }

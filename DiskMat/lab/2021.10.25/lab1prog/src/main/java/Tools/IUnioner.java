@@ -2,5 +2,5 @@ package Tools;
 
 public interface IUnioner
 {
-    public int calculate(int set1, int set2);
+    public Set calculate(Set set1, Set set2);
 }

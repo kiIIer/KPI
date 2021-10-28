@@ -2,8 +2,8 @@ package Tools;
 
 public class Unioner implements IUnioner
 {
-    public int calculate(int set1, int set2)
+    public Set calculate(Set set1, Set set2)
     {
-        return set1 | set2;
+        return new Set(set1.binary | set2.binary);
     }
 }
