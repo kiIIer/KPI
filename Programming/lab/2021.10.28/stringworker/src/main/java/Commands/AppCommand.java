@@ -11,6 +11,7 @@ public class AppCommand implements Callable<Integer>
     public Integer call() throws Exception
     {
         System.out.println("Hello, I am a program. Run 'help' command to see help. Mr. Evgeniy please don't judge me too hard °^°");
+
         return 0;
     }
 }
