@@ -8,9 +8,5 @@ public class Main
         Injector injector = Guice.createInjector(new ProgramModule());
         IProgram program = injector.getInstance(IProgram.class);
         program.execute(args);
-
-        var a = new Human();
-        var b = new Human();
-        a.equals(b)
     }
 }
