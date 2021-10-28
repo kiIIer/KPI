@@ -7,7 +7,8 @@ public class Program implements IProgram
     private final ICLIInitializer cliInitializer;
 
     @Inject
-    public Program(ICLIInitializer cliInitializer){
+    public Program(ICLIInitializer cliInitializer)
+    {
         this.cliInitializer = cliInitializer;
     }
 
