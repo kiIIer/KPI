@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>sorter</name>
+	<name>stringworker</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1633706665690</id>
+			<id>1635450041588</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
