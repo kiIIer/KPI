@@ -13,7 +13,7 @@ public class FirstArrayTask {
                 result++;
             }
         }
-        return result;
 
+        return result;
     }
 }
