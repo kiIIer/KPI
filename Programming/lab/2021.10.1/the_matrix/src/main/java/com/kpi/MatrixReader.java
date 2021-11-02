@@ -25,7 +25,6 @@ public class MatrixReader implements IMatrixReader {
 
             matrix[rowIndex] = row;
         }
-
         return matrix;
     }
 }
