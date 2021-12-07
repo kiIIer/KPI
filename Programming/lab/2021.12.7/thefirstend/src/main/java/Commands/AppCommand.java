@@ -2,7 +2,7 @@ package Commands;
 
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "", description = "This program allows you to perform different actions on Institute structure provided as yaml file. Or just have fun with files")
+@CommandLine.Command(name = "ender", description = "This program allows you to perform different actions on Institute structure provided as yaml file. Or just have fun with files")
 public class AppCommand implements IAppCommand
 {
 
