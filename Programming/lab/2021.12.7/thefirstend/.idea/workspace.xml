@@ -10,9 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2111ae48-21db-4f47-a8a3-e5e28a1ec5dc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/ICheckSummerCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/thefirstend_jar/thefirstend.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/thefirstend_jar/thefirstend.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/BaseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/BaseCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/FindCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/FindCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/RemoveDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/RemoveDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/RemoveStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/RemoveStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ShowDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ShowDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ShowInstituteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ShowInstituteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ShowStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ShowStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/StudentsCounterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/StudentsCounterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/StudentsFilterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/StudentsFilterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main/ProgramModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/ProgramModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Hash/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Hash/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Set/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Set/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yamls/first.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/yamls/first.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +72,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -68,22 +84,33 @@
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="Commands" />
+      <recent name="Main.Tools" />
+      <recent name="Main.Tools.Printers" />
+      <recent name="MyClasses.Set" />
+      <recent name="MyClasses.List" />
+      <recent name="MyClasses.Hash" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.ShowInstitute">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main.Main" />
       <module name="thefirstend" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
+    <configuration name="ShowInstitute" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main.Main" />
+      <module name="thefirstend" />
+      <option name="PROGRAM_PARAMETERS" value="show institute -f $PROJECT_DIR$/yamls/first.yaml -h" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ShowInstitute" />
+      <item itemvalue="Application.Main" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -93,8 +120,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1638845173822</updated>
+      <workItem from="1638877933989" duration="57000" />
+      <workItem from="1638878010887" duration="172000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

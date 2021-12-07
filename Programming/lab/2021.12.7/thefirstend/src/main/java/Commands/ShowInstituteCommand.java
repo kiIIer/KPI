@@ -1,42 +1,52 @@
 package Commands;
 
+import Main.Tools.IValidator;
 import Main.Tools.IYamlReader;
+import Main.Tools.InvalidDataStructureException;
+import Main.Tools.Printers.IExceptionPrinter;
 import Main.Tools.Printers.IInstitutePrinter;
+import Main.Tools.Validator;
 import MyClasses.Abstract.IInstitute;
 import com.google.inject.Inject;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 
 @CommandLine.Command(name = "institute", description = "Shows the string representation of selected institute.")
 public class ShowInstituteCommand extends BaseCommand implements IShowInstituteCommand
 {
-
-    private final IYamlReader yamlReader;
+    private final IValidator validator;
+    private final IExceptionPrinter exceptionPrinter;
     private final IInstitutePrinter institutePrinter;
 
     @Inject
     public ShowInstituteCommand(
             IYamlReader yamlReader,
+            IValidator validator,
+            IExceptionPrinter exceptionPrinter,
             IInstitutePrinter institutePrinter
     )
     {
-        this.yamlReader = yamlReader;
+        super(yamlReader);
+        this.validator = validator;
+        this.exceptionPrinter = exceptionPrinter;
         this.institutePrinter = institutePrinter;
     }
 
     @Override
     public Integer call() throws Exception
     {
-        IInstitute institute;
+        IInstitute institute = super.readInstitute();
+
         try
         {
-            institute = yamlReader.read(new File(filename), dataType);
-        } catch (IOException e)
+            validator.validate(institute);
+        } catch (InvalidDataStructureException e)
         {
-            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+            StringWriter stringWriter = new StringWriter();
+            exceptionPrinter.print(e, stringWriter);
+            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
         }
 
         PrintWriter writer = new PrintWriter(System.out);

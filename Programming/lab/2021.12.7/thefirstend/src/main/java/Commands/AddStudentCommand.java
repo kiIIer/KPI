@@ -1,9 +1,7 @@
 package Commands;
 
-import Main.Tools.IDepartmentFinder;
-import Main.Tools.IStudentCreator;
-import Main.Tools.IYamlReader;
-import Main.Tools.IYamlWriter;
+import Main.Tools.*;
+import Main.Tools.Printers.IExceptionPrinter;
 import MyClasses.Abstract.IDepartment;
 import MyClasses.Abstract.IInstitute;
 import MyClasses.Abstract.IStudent;
@@ -11,12 +9,13 @@ import com.google.inject.Inject;
 import picocli.CommandLine;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.StringWriter;
 
 @CommandLine.Command(name = "student", description = "Adds provided student to the institute.")
 public class AddStudentCommand extends BaseCommand implements IAddStudentCommand
 {
-    private final IYamlReader yamlReader;
+    private final IValidator validator;
+    private final IExceptionPrinter exceptionPrinter;
     private final IDepartmentFinder departmentFinder;
     private final IStudentCreator studentCreator;
     private final IYamlWriter yamlWriter;
@@ -38,12 +37,16 @@ public class AddStudentCommand extends BaseCommand implements IAddStudentCommand
     @Inject
     public AddStudentCommand(
             IYamlReader yamlReader,
+            IValidator validator,
+            IExceptionPrinter exceptionPrinter,
             IDepartmentFinder departmentFinder,
             IStudentCreator studentCreator,
             IYamlWriter yamlWriter
     )
     {
-        this.yamlReader = yamlReader;
+        super(yamlReader);
+        this.validator = validator;
+        this.exceptionPrinter = exceptionPrinter;
         this.departmentFinder = departmentFinder;
         this.studentCreator = studentCreator;
         this.yamlWriter = yamlWriter;
@@ -52,14 +55,16 @@ public class AddStudentCommand extends BaseCommand implements IAddStudentCommand
     @Override
     public Integer call() throws Exception
     {
-        IInstitute institute;
-        File file = new File(filename);
+        IInstitute institute = super.readInstitute();
+
         try
         {
-            institute = yamlReader.read(file, dataType);
-        } catch (IOException e)
+            validator.validate(institute);
+        } catch (InvalidDataStructureException e)
         {
-            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+            StringWriter stringWriter = new StringWriter();
+            exceptionPrinter.print(e, stringWriter);
+            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
         }
 
         IDepartment department = departmentFinder.find(departmentName, institute.getDepartments());
@@ -73,6 +78,7 @@ public class AddStudentCommand extends BaseCommand implements IAddStudentCommand
 
         department.addStudent(student);
 
+        File file = new File(filename);
         yamlWriter.write(file, institute);
 
         return 0;

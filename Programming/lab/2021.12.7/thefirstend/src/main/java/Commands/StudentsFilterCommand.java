@@ -1,10 +1,9 @@
 package Commands;
 
 import Main.StudentFilter.IFilterStrategy;
-import Main.Tools.FilterSettings;
-import Main.Tools.IYamlReader;
+import Main.Tools.*;
+import Main.Tools.Printers.IExceptionPrinter;
 import Main.Tools.Printers.IStudentPrinter;
-import Main.Tools.SearchType;
 import MyClasses.Abstract.IInstitute;
 import MyClasses.Abstract.IStudent;
 import com.google.inject.Inject;
@@ -13,12 +12,14 @@ import picocli.CommandLine;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Collection;
 
 @CommandLine.Command(name = "filter", description = "Filters students as instructed.")
 public class StudentsFilterCommand extends BaseCommand implements IStudentsFilterCommand
 {
-    private final IYamlReader yamlReader;
+    private final IValidator validator;
+    private final IExceptionPrinter exceptionPrinter;
     private final IFilterStrategy filterStrategy;
     private final IStudentPrinter studentPrinter;
     @CommandLine.Option(names = {"-g", "--grade"}, required = true, description = "Grade to compare to.")
@@ -65,11 +66,15 @@ public class StudentsFilterCommand extends BaseCommand implements IStudentsFilte
     @Inject
     public StudentsFilterCommand(
             IYamlReader yamlReader,
+            IValidator validator,
+            IExceptionPrinter exceptionPrinter,
             IFilterStrategy filterStrategy,
             IStudentPrinter studentPrinter
     )
     {
-        this.yamlReader = yamlReader;
+        super(yamlReader);
+        this.validator = validator;
+        this.exceptionPrinter = exceptionPrinter;
         this.filterStrategy = filterStrategy;
         this.studentPrinter = studentPrinter;
     }
@@ -77,13 +82,16 @@ public class StudentsFilterCommand extends BaseCommand implements IStudentsFilte
     @Override
     public Integer call() throws Exception
     {
-        IInstitute institute;
+        IInstitute institute = super.readInstitute();
+
         try
         {
-            institute = yamlReader.read(new File(filename), dataType);
-        } catch (IOException e)
+            validator.validate(institute);
+        } catch (InvalidDataStructureException e)
         {
-            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+            StringWriter stringWriter = new StringWriter();
+            exceptionPrinter.print(e, stringWriter);
+            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
         }
 
         FilterSettings settings = new FilterSettings(searchType, grade);

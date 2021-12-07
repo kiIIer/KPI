@@ -12,10 +12,7 @@ import Main.Tools.*;
 import Main.Tools.Printers.*;
 import MyClasses.Hash.IMyAdvancedComparator;
 import MyClasses.Hash.MyAdvancedComparator;
-import MyClasses.Set.GradeComparator;
-import MyClasses.Set.IGradeComparator;
-import MyClasses.Set.IStudentsNumberComparator;
-import MyClasses.Set.StudentsNumberComparator;
+import MyClasses.Set.*;
 import com.google.inject.AbstractModule;
 
 public class ProgramModule extends AbstractModule
@@ -72,5 +69,7 @@ public class ProgramModule extends AbstractModule
         bind(MyClasses.Hash.IGradeComparator.class).to(MyClasses.Hash.GradeComparator.class);
         bind(ICheckSummer.class).to(CheckSummer.class);
         bind(IFirstLongestStringFinder.class).to(FirstLongestStringFinder.class);
+        bind(IValidator.class).to(Validator.class);
+        bind(IExceptionPrinter.class).to(ExceptionPrinter.class);
     }
 }

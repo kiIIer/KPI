@@ -4,7 +4,7 @@ departments:
   students:
   - name: "Vasya"
     surname: "Pupkin"
-    gradeBookId: "4"
+    gradeBookId: "3"
     grade: 10
   - name: "Ivan"
     surname: "Ivanov"
@@ -26,10 +26,10 @@ departments:
     grade: 7
   - name: "Ivan"
     surname: "Hlukhov"
-    gradeBookId: "3"
+    gradeBookId: "2"
     grade: 70
   - name: "Alina"
     surname: "Purtova"
-    gradeBookId: "2"
+    gradeBookId: "3"
     grade: 85
 studentsIterator: {}

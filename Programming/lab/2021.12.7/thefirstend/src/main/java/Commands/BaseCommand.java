@@ -1,12 +1,18 @@
 package Commands;
 
 import Main.Tools.DataType;
+import Main.Tools.IYamlReader;
+import MyClasses.Abstract.IInstitute;
+import com.google.inject.Inject;
 import picocli.CommandLine;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Callable;
 
 public abstract class BaseCommand implements Callable<Integer>
 {
+    private final IYamlReader yamlReader;
     @CommandLine.ArgGroup(exclusive = true, multiplicity = "1")
     CheckType checkType;
 
@@ -36,6 +42,25 @@ public abstract class BaseCommand implements Callable<Integer>
         public void hashChecked(boolean b)
         {
             dataType = (b) ? DataType.HASHSET : dataType;
+        }
+    }
+
+    public BaseCommand(
+            IYamlReader yamlReader
+    )
+    {
+        this.yamlReader = yamlReader;
+    }
+
+    protected IInstitute readInstitute()
+    {
+        try
+        {
+            File file = new File(filename);
+            return yamlReader.read(file, dataType);
+        } catch (IOException e)
+        {
+            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
         }
     }
 }

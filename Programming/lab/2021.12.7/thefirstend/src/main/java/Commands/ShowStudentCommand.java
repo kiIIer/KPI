@@ -1,8 +1,7 @@
 package Commands;
 
-import Main.Tools.IDepartmentFinder;
-import Main.Tools.IStudentFinder;
-import Main.Tools.IYamlReader;
+import Main.Tools.*;
+import Main.Tools.Printers.IExceptionPrinter;
 import Main.Tools.Printers.IStudentPrinter;
 import MyClasses.Abstract.IDepartment;
 import MyClasses.Abstract.IInstitute;
@@ -13,11 +12,13 @@ import picocli.CommandLine;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 
 @CommandLine.Command(name = "student", description = "Shows the string representation of selected student.")
 public class ShowStudentCommand extends BaseCommand implements IShowStudentCommand
 {
-    private final IYamlReader yamlReader;
+    private final IValidator validator;
+    private final IExceptionPrinter exceptionPrinter;
     private final IDepartmentFinder departmentFinder;
     private final IStudentFinder studentFinder;
     private final IStudentPrinter studentPrinter;
@@ -30,12 +31,16 @@ public class ShowStudentCommand extends BaseCommand implements IShowStudentComma
     @Inject
     public ShowStudentCommand(
             IYamlReader yamlReader,
+            IValidator validator,
+            IExceptionPrinter exceptionPrinter,
             IDepartmentFinder departmentFinder,
             IStudentFinder studentFinder,
             IStudentPrinter studentPrinter
     )
     {
-        this.yamlReader = yamlReader;
+        super(yamlReader);
+        this.validator = validator;
+        this.exceptionPrinter = exceptionPrinter;
         this.departmentFinder = departmentFinder;
         this.studentFinder = studentFinder;
         this.studentPrinter = studentPrinter;
@@ -45,13 +50,16 @@ public class ShowStudentCommand extends BaseCommand implements IShowStudentComma
     @Override
     public Integer call() throws Exception
     {
-        IInstitute institute;
+        IInstitute institute = super.readInstitute();
+
         try
         {
-            institute = yamlReader.read(new File(filename), dataType);
-        } catch (IOException e)
+            validator.validate(institute);
+        } catch (InvalidDataStructureException e)
         {
-            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+            StringWriter stringWriter = new StringWriter();
+            exceptionPrinter.print(e, stringWriter);
+            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
         }
         IDepartment department = departmentFinder.find(departmentName, institute.getDepartments());
 

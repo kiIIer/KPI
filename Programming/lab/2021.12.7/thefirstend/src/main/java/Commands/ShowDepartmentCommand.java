@@ -1,22 +1,21 @@
 package Commands;
 
-import Main.Tools.IDepartmentFinder;
-import Main.Tools.IYamlReader;
+import Main.Tools.*;
 import Main.Tools.Printers.IDepartmentPrinter;
+import Main.Tools.Printers.IExceptionPrinter;
 import MyClasses.Abstract.IDepartment;
 import MyClasses.Abstract.IInstitute;
 import com.google.inject.Inject;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 
 @CommandLine.Command(name = "department", description = "Shows the string representation of selected student.")
 public class ShowDepartmentCommand extends BaseCommand implements IShowDepartmentCommand
 {
-
-    private final IYamlReader yamlReader;
+    private final IValidator validator;
+    private final IExceptionPrinter exceptionPrinter;
     private final IDepartmentFinder departmentFinder;
     private final IDepartmentPrinter departmentPrinter;
 
@@ -26,11 +25,15 @@ public class ShowDepartmentCommand extends BaseCommand implements IShowDepartmen
     @Inject
     public ShowDepartmentCommand(
             IYamlReader yamlReader,
+            IValidator validator,
+            IExceptionPrinter exceptionPrinter,
             IDepartmentFinder departmentFinder,
             IDepartmentPrinter departmentPrinter
     )
     {
-        this.yamlReader = yamlReader;
+        super(yamlReader);
+        this.validator = validator;
+        this.exceptionPrinter = exceptionPrinter;
         this.departmentFinder = departmentFinder;
         this.departmentPrinter = departmentPrinter;
     }
@@ -38,13 +41,16 @@ public class ShowDepartmentCommand extends BaseCommand implements IShowDepartmen
     @Override
     public Integer call() throws Exception
     {
-        IInstitute institute;
+        IInstitute institute = super.readInstitute();
+
         try
         {
-            institute = yamlReader.read(new File(filename), dataType);
-        } catch (IOException e)
+            validator.validate(institute);
+        } catch (InvalidDataStructureException e)
         {
-            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+            StringWriter stringWriter = new StringWriter();
+            exceptionPrinter.print(e, stringWriter);
+            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
         }
         IDepartment department = departmentFinder.find(departmentName, institute.getDepartments());
 

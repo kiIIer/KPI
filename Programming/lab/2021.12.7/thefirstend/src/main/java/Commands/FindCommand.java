@@ -4,17 +4,16 @@ import Main.Finder.IFinder;
 import Main.Finder.IFinderHash;
 import Main.Finder.IFinderList;
 import Main.Finder.IFinderSet;
-import Main.Tools.DataType;
-import Main.Tools.IYamlReader;
+import Main.Tools.*;
 import Main.Tools.Printers.IDepartmentPrinter;
+import Main.Tools.Printers.IExceptionPrinter;
 import MyClasses.Abstract.IDepartment;
 import MyClasses.Abstract.IInstitute;
 import com.google.inject.Inject;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,20 +21,25 @@ import java.util.Map;
 public class FindCommand extends BaseCommand implements IFindCommand
 {
 
-    private final IYamlReader yamlReader;
+    private final IValidator validator;
+    private final IExceptionPrinter exceptionPrinter;
     private final IDepartmentPrinter departmentPrinter;
     private final Map<DataType, IFinder> finders;
 
     @Inject
     public FindCommand(
             IYamlReader yamlReader,
+            IValidator validator,
+            IExceptionPrinter exceptionPrinter,
             IFinderList finderList,
             IFinderSet finderSet,
             IFinderHash finderHash,
             IDepartmentPrinter departmentPrinter
     )
     {
-        this.yamlReader = yamlReader;
+        super(yamlReader);
+        this.validator = validator;
+        this.exceptionPrinter = exceptionPrinter;
         this.departmentPrinter = departmentPrinter;
 
         finders = new HashMap<>();
@@ -48,14 +52,16 @@ public class FindCommand extends BaseCommand implements IFindCommand
     @Override
     public Integer call() throws Exception
     {
-        IInstitute institute;
-        File file = new File(filename);
+        IInstitute institute = super.readInstitute();
+
         try
         {
-            institute = yamlReader.read(file, dataType);
-        } catch (IOException e)
+            validator.validate(institute);
+        } catch (InvalidDataStructureException e)
         {
-            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+            StringWriter stringWriter = new StringWriter();
+            exceptionPrinter.print(e, stringWriter);
+            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
         }
 
         IFinder finder = finders.get(dataType);
