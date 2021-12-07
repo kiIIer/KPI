@@ -20,6 +20,8 @@ public class CLIBuilder implements ICLIBuilder
     private final IFindCommand findCommand;
     private final IStudentsCounterCommand studentsCounterCommand;
     private final IStudentsFilterCommand studentsFilterCommand;
+    private final IFirstLongestCommand firstLongestCommand;
+    private final ICheckSummerCommand checkSummerCommand;
 
     @Inject
     public CLIBuilder(
@@ -36,7 +38,9 @@ public class CLIBuilder implements ICLIBuilder
             IRemoveDepartmentCommand removeDepartmentCommand,
             IFindCommand findCommand,
             IStudentsCounterCommand studentsCounterCommand,
-            IStudentsFilterCommand studentsFilterCommand
+            IStudentsFilterCommand studentsFilterCommand,
+            IFirstLongestCommand firstLongestCommand,
+            ICheckSummerCommand checkSummerCommand
     )
     {
         this.appCommand = appCommand;
@@ -53,6 +57,8 @@ public class CLIBuilder implements ICLIBuilder
         this.findCommand = findCommand;
         this.studentsCounterCommand = studentsCounterCommand;
         this.studentsFilterCommand = studentsFilterCommand;
+        this.firstLongestCommand = firstLongestCommand;
+        this.checkSummerCommand = checkSummerCommand;
     }
 
     @Override
@@ -80,6 +86,8 @@ public class CLIBuilder implements ICLIBuilder
         commandLine.addSubcommand(findCommand);
         commandLine.addSubcommand(studentsCounterCommand);
         commandLine.addSubcommand(studentsFilterCommand);
+        commandLine.addSubcommand(checkSummerCommand);
+        commandLine.addSubcommand(firstLongestCommand);
 
         return commandLine;
     }

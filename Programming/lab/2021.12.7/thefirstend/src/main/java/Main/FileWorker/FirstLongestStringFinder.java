@@ -30,6 +30,7 @@ public class FirstLongestStringFinder implements IFirstLongestStringFinder
                 longestString = s;
             }
         }
+        reader.close();
         return longestString;
     }
 }

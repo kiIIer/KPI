@@ -10,14 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2111ae48-21db-4f47-a8a3-e5e28a1ec5dc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/thefirstend_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/thefirstend_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_guava.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/thefirstend_jar/thefirstend.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/thefirstend_jar/thefirstend.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AppCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AppCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yamls/first.yaml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/ICheckSummerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/ProgramModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/ProgramModule.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -46,7 +42,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="21wHL2qgC0qcI8b8uskxBDq4ELM" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -64,6 +62,14 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="Commands" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

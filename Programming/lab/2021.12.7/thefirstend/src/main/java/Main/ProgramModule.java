@@ -1,6 +1,10 @@
 package Main;
 
 import Commands.*;
+import Main.FileWorker.CheckSummer;
+import Main.FileWorker.FirstLongestStringFinder;
+import Main.FileWorker.ICheckSummer;
+import Main.FileWorker.IFirstLongestStringFinder;
 import Main.Finder.*;
 import Main.StudentFilter.*;
 import Main.StudentsCounter.*;
@@ -37,6 +41,8 @@ public class ProgramModule extends AbstractModule
         bind(IFindCommand.class).to(FindCommand.class);
         bind(IStudentsCounterCommand.class).to(StudentsCounterCommand.class);
         bind(IStudentsFilterCommand.class).to(StudentsFilterCommand.class);
+        bind(ICheckSummerCommand.class).to(CheckSummerCommand.class);
+        bind(IFirstLongestCommand.class).to(FirstLongestCommand.class);
 
         bind(IYamlReader.class).to(YamlReader.class);
         bind(IDepartmentFinder.class).to(DepartmentFinder.class);
@@ -64,5 +70,7 @@ public class ProgramModule extends AbstractModule
         bind(IMyAdvancedComparator.class).to(MyAdvancedComparator.class);
         bind(IGradeComparator.class).to(GradeComparator.class);
         bind(MyClasses.Hash.IGradeComparator.class).to(MyClasses.Hash.GradeComparator.class);
+        bind(ICheckSummer.class).to(CheckSummer.class);
+        bind(IFirstLongestStringFinder.class).to(FirstLongestStringFinder.class);
     }
 }
