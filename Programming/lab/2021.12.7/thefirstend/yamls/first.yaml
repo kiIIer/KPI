@@ -1,0 +1,35 @@
+name: "KPI"
+departments:
+- name: "IPSA"
+  students:
+  - name: "Vasya"
+    surname: "Pupkin"
+    gradeBookId: "4"
+    grade: 10
+  - name: "Ivan"
+    surname: "Ivanov"
+    gradeBookId: "5"
+    grade: 11
+  - name: "Albert"
+    surname: "Einstein"
+    gradeBookId: "6"
+    grade: 100
+- name: "FIOT"
+  students:
+  - name: "Mike"
+    surname: "Molchanov"
+    gradeBookId: "1"
+    grade: 100
+  - name: "Test"
+    surname: "Testy"
+    gradeBookId: "test"
+    grade: 7
+  - name: "Ivan"
+    surname: "Hlukhov"
+    gradeBookId: "3"
+    grade: 70
+  - name: "Alina"
+    surname: "Purtova"
+    gradeBookId: "2"
+    grade: 85
+studentsIterator: {}
