@@ -58,4 +58,21 @@ public class Student implements IStudent, Comparable<IStudent>
     {
         return Double.compare(this.grade, student.getGrade());
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+
+        Student student = (Student) o;
+
+        return gradeBookId != null ? gradeBookId.equals(student.gradeBookId) : student.gradeBookId == null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return gradeBookId != null ? gradeBookId.hashCode() : 0;
+    }
 }

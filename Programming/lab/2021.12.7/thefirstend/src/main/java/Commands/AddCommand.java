@@ -6,9 +6,9 @@ import picocli.CommandLine;
 public class AddCommand implements IAddCommand
 {
     @Override
-    public Integer call() throws Exception
+    public Integer call()
     {
         System.out.println("I'm just a group command.");
-        return 0;
+        return CommandLine.ExitCode.OK;
     }
 }

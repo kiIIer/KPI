@@ -9,6 +9,6 @@ public class ShowCommand implements IShowCommand
     public Integer call()
     {
         System.out.println("Plz get some help, I'm just a group command ^^'");
-        return 0;
+        return CommandLine.ExitCode.OK;
     }
 }

@@ -1,17 +1,22 @@
 package Main;
 
 import Commands.*;
+import Main.FileWorker.CheckSummer;
+import Main.FileWorker.FirstLongestStringFinder;
+import Main.FileWorker.ICheckSummer;
+import Main.FileWorker.IFirstLongestStringFinder;
 import Main.Finder.*;
 import Main.StudentFilter.*;
 import Main.StudentsCounter.*;
-import Main.Tools.*;
+import Main.Tools.MyClasses.*;
 import Main.Tools.Printers.*;
+import Main.Tools.Yaml.IYamlReader;
+import Main.Tools.Yaml.IYamlWriter;
+import Main.Tools.Yaml.YamlReader;
+import Main.Tools.Yaml.YamlWriter;
 import MyClasses.Hash.IMyAdvancedComparator;
 import MyClasses.Hash.MyAdvancedComparator;
-import MyClasses.Set.GradeComparator;
-import MyClasses.Set.IGradeComparator;
-import MyClasses.Set.IStudentsNumberComparator;
-import MyClasses.Set.StudentsNumberComparator;
+import MyClasses.Set.*;
 import com.google.inject.AbstractModule;
 
 public class ProgramModule extends AbstractModule
@@ -37,6 +42,8 @@ public class ProgramModule extends AbstractModule
         bind(IFindCommand.class).to(FindCommand.class);
         bind(IStudentsCounterCommand.class).to(StudentsCounterCommand.class);
         bind(IStudentsFilterCommand.class).to(StudentsFilterCommand.class);
+        bind(ICheckSummerCommand.class).to(CheckSummerCommand.class);
+        bind(IFirstLongestCommand.class).to(FirstLongestCommand.class);
 
         bind(IYamlReader.class).to(YamlReader.class);
         bind(IDepartmentFinder.class).to(DepartmentFinder.class);
@@ -64,5 +71,9 @@ public class ProgramModule extends AbstractModule
         bind(IMyAdvancedComparator.class).to(MyAdvancedComparator.class);
         bind(IGradeComparator.class).to(GradeComparator.class);
         bind(MyClasses.Hash.IGradeComparator.class).to(MyClasses.Hash.GradeComparator.class);
+        bind(ICheckSummer.class).to(CheckSummer.class);
+        bind(IFirstLongestStringFinder.class).to(FirstLongestStringFinder.class);
+        bind(IValidator.class).to(Validator.class);
+        bind(IExceptionPrinter.class).to(ExceptionPrinter.class);
     }
 }

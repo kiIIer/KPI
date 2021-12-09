@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="thefirstend:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2111ae48-21db-4f47-a8a3-e5e28a1ec5dc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/thefirstend_jar/thefirstend.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/thefirstend_jar/thefirstend.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AppCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AppCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/BaseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/BaseCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/CheckSummerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/CheckSummerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/FindCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/FindCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/FirstLongestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/FirstLongestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IAddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IAddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IAddDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IAddDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IAddStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IAddStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IAppCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IAppCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ICheckSummerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ICheckSummerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IFindCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IFindCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IFirstLongestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IFirstLongestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IRemoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IRemoveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IRemoveDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IRemoveDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IRemoveStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IRemoveStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IShowCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IShowDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IShowDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IShowInstituteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IShowInstituteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IShowStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IShowStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IStudentsCounterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IStudentsCounterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/IStudentsFilterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/IStudentsFilterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/RemoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/RemoveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/RemoveDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/RemoveDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/RemoveStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/RemoveStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ShowCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ShowDepartmentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ShowDepartmentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ShowInstituteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ShowInstituteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ShowStudentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ShowStudentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/StudentsCounterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/StudentsCounterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/StudentsFilterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/StudentsFilterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/CLIBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/CLIBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/FileWorker/FirstLongestStringFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/FileWorker/FirstLongestStringFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/FileWorker/ICheckSummer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/FileWorker/ICheckSummer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/FileWorker/IFirstLongestStringFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/FileWorker/IFirstLongestStringFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Finder/IFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Finder/IFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Finder/IFinderHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Finder/IFinderHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Finder/IFinderList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Finder/IFinderList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Finder/IFinderSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Finder/IFinderSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/ICLIBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/ICLIBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/IProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/IProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/ProgramModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/ProgramModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/FilterHashLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/FilterHashLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/FilterListLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/FilterListLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/FilterStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/FilterStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/FilterTreeLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/FilterTreeLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterHashLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterHashLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterListLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterListLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterTreeLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IFilterTreeLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IStudentsFilterHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IStudentsFilterHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IStudentsFilterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IStudentsFilterList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IStudentsFilterSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentFilter/IStudentsFilterSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentsCounter/IStudentsCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentsCounter/IStudentsCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentsCounter/IStudentsCounterHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentsCounter/IStudentsCounterHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentsCounter/IStudentsCounterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentsCounter/IStudentsCounterList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/StudentsCounter/IStudentsCounterSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/StudentsCounter/IStudentsCounterSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/Compare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/Compare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/CollectionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/DepartmentCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/DepartmentCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/DepartmentFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/DepartmentFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/FilterSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/FilterSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/IDepartmentCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/IDepartmentCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/IDepartmentFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/IDepartmentFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/IStudentCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/IStudentCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/IStudentFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/IStudentFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/IValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/IValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/IYamlReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/Yaml/IYamlReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/IYamlWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/Yaml/IYamlWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/InvalidDataStructureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/InvalidDataStructureException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/Printers/ExceptionPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/Printers/ExceptionPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/Printers/IExceptionPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/Printers/IExceptionPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/SearchType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/ComparisonType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/StudentCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/StudentCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/StudentFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/StudentFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/TwoIntegers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/TwoIntegers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/MyClasses/Validator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/YamlReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/Yaml/YamlReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Tools/YamlWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Tools/Yaml/YamlWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Abstract/IDepartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Abstract/IDepartment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Abstract/IInstitute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Abstract/IInstitute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Abstract/IStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Abstract/IStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Hash/IGradeComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Hash/IGradeComparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Hash/IMyAdvancedComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Hash/IMyAdvancedComparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Hash/IStudentsNumberComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Hash/IStudentsNumberComparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Set/IGradeComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Set/IGradeComparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Set/IMyComparator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyClasses/Set/IStudentsNumberComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyClasses/Set/IStudentsNumberComparator.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="package-info" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="21wHL2qgC0qcI8b8uskxBDq4ELM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="Main.Tools" />
+      <recent name="Main.Tools.Printers" />
+      <recent name="MyClasses.Set" />
+      <recent name="MyClasses.List" />
+      <recent name="MyClasses.Hash" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Errors">
+    <configuration name="Errors" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main.Main" />
+      <module name="thefirstend" />
+      <option name="PROGRAM_PARAMETERS" value="show institute -f $PROJECT_DIR$/yamls/first.yaml -h" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main.Main" />
+      <module name="thefirstend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShowInstitute" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main.Main" />
+      <module name="thefirstend" />
+      <option name="PROGRAM_PARAMETERS" value="show institute -f $PROJECT_DIR$/yamls/first.yaml -h" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ShowInstitute" />
+      <item itemvalue="Application.Errors" />
+      <item itemvalue="Application.Main" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2111ae48-21db-4f47-a8a3-e5e28a1ec5dc" name="Changes" comment="" />
+      <created>1638845173822</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638845173822</updated>
+      <workItem from="1638877933989" duration="57000" />
+      <workItem from="1638878010887" duration="172000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

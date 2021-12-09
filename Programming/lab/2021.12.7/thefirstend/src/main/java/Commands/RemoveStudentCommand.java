@@ -1,26 +1,25 @@
 package Commands;
 
-import Main.Tools.IDepartmentFinder;
-import Main.Tools.IStudentCreator;
-import Main.Tools.IYamlReader;
-import Main.Tools.IYamlWriter;
+import Main.Tools.MyClasses.IDepartmentFinder;
+import Main.Tools.MyClasses.IStudentCreator;
+import Main.Tools.MyClasses.IValidator;
+import Main.Tools.MyClasses.InvalidDataStructureException;
+import Main.Tools.Printers.IExceptionPrinter;
+import Main.Tools.Yaml.IYamlReader;
+import Main.Tools.Yaml.IYamlWriter;
 import MyClasses.Abstract.IDepartment;
 import MyClasses.Abstract.IInstitute;
 import MyClasses.Abstract.IStudent;
 import com.google.inject.Inject;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 @CommandLine.Command(name = "student", description = "Removes specified student from institute")
 public class RemoveStudentCommand extends BaseCommand implements IRemoveStudentCommand
 {
-
-    private final IYamlReader yamlReader;
     private final IDepartmentFinder departmentFinder;
     private final IStudentCreator studentCreator;
-    private final IYamlWriter yamlWriter;
 
     @CommandLine.Option(names = {"-d", "--department"}, required = true, description = "Department name of department from which student will be removed.")
     String departmentName;
@@ -28,32 +27,27 @@ public class RemoveStudentCommand extends BaseCommand implements IRemoveStudentC
     @CommandLine.Option(names = {"--gradeBookId"}, required = true, description = "GradeBookId of student to be removed")
     String studentGradeBookId;
 
+    @CommandLine.Option(names = {"-c", "--console"}, description = "Outputs resulting institute in console, rewriting file is omitted.", defaultValue = "false")
+    boolean console;
+
     @Inject
     public RemoveStudentCommand(
             IYamlReader yamlReader,
+            IValidator validator,
             IDepartmentFinder departmentFinder,
             IStudentCreator studentCreator,
             IYamlWriter yamlWriter
     )
     {
-        this.yamlReader = yamlReader;
+        super(yamlReader, validator, yamlWriter);
         this.departmentFinder = departmentFinder;
         this.studentCreator = studentCreator;
-        this.yamlWriter = yamlWriter;
     }
 
     @Override
-    public Integer call() throws Exception
+    public Integer call() throws CommandLine.ParameterException
     {
-        IInstitute institute;
-        File file = new File(filename);
-        try
-        {
-            institute = yamlReader.read(file, dataType);
-        } catch (IOException e)
-        {
-            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
-        }
+        IInstitute institute = super.readInstitute();
 
         IDepartment department = departmentFinder.find(departmentName, institute.getDepartments());
 
@@ -62,12 +56,30 @@ public class RemoveStudentCommand extends BaseCommand implements IRemoveStudentC
             throw new CommandLine.ParameterException(spec.commandLine(), "There is no such department!");
         }
 
-        IStudent student = studentCreator.create(null, null, studentGradeBookId, 0, dataType);
+        IStudent student = studentCreator.create(null, null, studentGradeBookId, 0, collectionType);
 
         department.removeStudent(student);
 
-        yamlWriter.write(file, institute);
+        OutputStream stream;
 
-        return 0;
+        try
+        {
+            if (console)
+            {
+                stream = System.out;
+            } else
+            {
+                stream = new FileOutputStream(filename);
+            }
+
+            yamlWriter.write(stream, institute);
+
+            stream.close();
+        } catch (IOException e)
+        {
+            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+        }
+
+        return CommandLine.ExitCode.OK;
     }
 }

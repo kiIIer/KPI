@@ -1,7 +1,7 @@
 package Main.StudentFilter;
 
 import Main.Tools.FilterSettings;
-import Main.Tools.SearchType;
+import Main.Tools.ComparisonType;
 import MyClasses.Abstract.IInstitute;
 import MyClasses.Abstract.IStudent;
 import MyClasses.Hash.ComparatorConfiguration;
@@ -13,17 +13,17 @@ import java.util.Map;
 
 public class FilterHashLauncher implements IFilterHashLauncher
 {
-    private final static Map<SearchType, ComparatorConfiguration> searchType;
+    private final static Map<ComparisonType, ComparatorConfiguration> searchType;
 
     static
     {
         searchType = new HashMap<>();
 
-        searchType.put(SearchType.EQUAL, new ComparatorConfiguration(0, 0));
-        searchType.put(SearchType.LESS, new ComparatorConfiguration(-1, 0));
-        searchType.put(SearchType.LESSEQUAL, new ComparatorConfiguration(1, -1));
-        searchType.put(SearchType.GREATER, new ComparatorConfiguration(1, 0));
-        searchType.put(SearchType.GREATEREQUAL, new ComparatorConfiguration(-1, 1));
+        searchType.put(ComparisonType.EQUAL, new ComparatorConfiguration(0, 0));
+        searchType.put(ComparisonType.LESS, new ComparatorConfiguration(-1, 0));
+        searchType.put(ComparisonType.LESSEQUAL, new ComparatorConfiguration(1, -1));
+        searchType.put(ComparisonType.GREATER, new ComparatorConfiguration(1, 0));
+        searchType.put(ComparisonType.GREATEREQUAL, new ComparatorConfiguration(-1, 1));
     }
 
     private final IStudentsFilterHash studentsFilter;

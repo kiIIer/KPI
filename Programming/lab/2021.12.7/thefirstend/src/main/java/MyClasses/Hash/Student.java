@@ -62,15 +62,12 @@ public class Student implements IStudent
 
         Student student = (Student) o;
 
-        if (this.grade != student.grade) return false;
-        if (this.name != null ? !name.equals(student.name) : student.name != null) return false;
-        if (this.surname != null ? !surname.equals(student.surname) : student.surname != null) return false;
-        return this.gradeBookId != null ? gradeBookId.equals(student.gradeBookId) : student.gradeBookId == null;
+        return gradeBookId != null ? gradeBookId.equals(student.gradeBookId) : student.gradeBookId == null;
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hashCode(this.name, this.surname, this.gradeBookId, this.grade);
+        return gradeBookId != null ? gradeBookId.hashCode() : 0;
     }
 }
