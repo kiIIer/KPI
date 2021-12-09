@@ -12,6 +12,7 @@ import java.util.concurrent.Callable;
 public class CheckSummerCommand implements ICheckSummerCommand
 {
     private final ICheckSummer checkSummer;
+
     @CommandLine.Spec
     CommandLine.Model.CommandSpec spec;
 
@@ -27,7 +28,7 @@ public class CheckSummerCommand implements ICheckSummerCommand
     }
 
     @Override
-    public Integer call() throws Exception
+    public Integer call() throws CommandLine.ParameterException
     {
         try
         {
@@ -37,6 +38,6 @@ public class CheckSummerCommand implements ICheckSummerCommand
             throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
         }
 
-        return 0;
+        return CommandLine.ExitCode.OK;
     }
 }

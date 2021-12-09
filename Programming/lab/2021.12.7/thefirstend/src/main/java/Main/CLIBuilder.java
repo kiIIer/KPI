@@ -67,15 +67,18 @@ public class CLIBuilder implements ICLIBuilder
         CommandLine commandLine = new CommandLine(appCommand);
 
         CommandLine show = new CommandLine(showCommand);
+        show.addSubcommand(CommandLine.HelpCommand.class);
         show.addSubcommand(showStudentCommand);
         show.addSubcommand(showDepartmentCommand);
         show.addSubcommand(showInstituteCommand);
 
         CommandLine add = new CommandLine(addCommand);
+        add.addSubcommand(CommandLine.HelpCommand.class);
         add.addSubcommand(addStudentCommand);
         add.addSubcommand(addDepartmentCommand);
 
         CommandLine remove = new CommandLine(removeCommand);
+        remove.addSubcommand(CommandLine.HelpCommand.class);
         remove.addSubcommand(removeStudentCommand);
         remove.addSubcommand(removeDepartmentCommand);
 

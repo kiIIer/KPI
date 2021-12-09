@@ -1,6 +1,6 @@
 package Main.Tools.Printers;
 
-import Main.Tools.InvalidDataStructureException;
+import Main.Tools.MyClasses.InvalidDataStructureException;
 
 import java.io.IOException;
 import java.io.Writer;

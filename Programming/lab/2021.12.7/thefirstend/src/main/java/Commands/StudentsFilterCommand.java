@@ -2,64 +2,60 @@ package Commands;
 
 import Main.StudentFilter.IFilterStrategy;
 import Main.Tools.*;
-import Main.Tools.Printers.IExceptionPrinter;
-import Main.Tools.Printers.IStudentPrinter;
+import Main.Tools.MyClasses.IValidator;
+import Main.Tools.Yaml.IYamlReader;
+import Main.Tools.Yaml.IYamlWriter;
 import MyClasses.Abstract.IInstitute;
 import MyClasses.Abstract.IStudent;
 import com.google.inject.Inject;
 import picocli.CommandLine;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Collection;
 
 @CommandLine.Command(name = "filter", description = "Filters students as instructed.")
 public class StudentsFilterCommand extends BaseCommand implements IStudentsFilterCommand
 {
-    private final IValidator validator;
-    private final IExceptionPrinter exceptionPrinter;
     private final IFilterStrategy filterStrategy;
-    private final IStudentPrinter studentPrinter;
+
     @CommandLine.Option(names = {"-g", "--grade"}, required = true, description = "Grade to compare to.")
     int grade;
 
     @CommandLine.ArgGroup(exclusive = true, multiplicity = "1")
     ChosenSort chosenSort;
 
-    private static SearchType searchType;
+    private static ComparisonType comparisonType;
 
     static class ChosenSort
     {
         @CommandLine.Option(names = "-eq", required = true, description = "Equal to grade entered.")
         public void equal(boolean b)
         {
-            searchType = (b) ? SearchType.EQUAL : searchType;
+            comparisonType = (b) ? ComparisonType.EQUAL : comparisonType;
         }
 
-        @CommandLine.Option(names = "-gr", required = true, description = "Greater than grade entered.")
+        @CommandLine.Option(names = "-gt", required = true, description = "Greater than grade entered.")
         public void greater(boolean b)
         {
-            searchType = (b) ? SearchType.GREATER : searchType;
+            comparisonType = (b) ? ComparisonType.GREATER : comparisonType;
         }
 
         @CommandLine.Option(names = "-ge", required = true, description = "Greater or equal to grade entered.")
         public void greaterEqual(boolean b)
         {
-            searchType = (b) ? SearchType.GREATEREQUAL : searchType;
+            comparisonType = (b) ? ComparisonType.GREATEREQUAL : comparisonType;
         }
 
-        @CommandLine.Option(names = "-ls", required = true, description = "Less than grade entered.")
+        @CommandLine.Option(names = "-lt", required = true, description = "Less than grade entered.")
         public void less(boolean b)
         {
-            searchType = (b) ? SearchType.LESS : searchType;
+            comparisonType = (b) ? ComparisonType.LESS : comparisonType;
         }
 
         @CommandLine.Option(names = "-le", required = true, description = "Less or equal to grade entered.")
         public void lessEqual(boolean b)
         {
-            searchType = (b) ? SearchType.LESSEQUAL : searchType;
+            comparisonType = (b) ? ComparisonType.LESSEQUAL : comparisonType;
         }
     }
 
@@ -67,44 +63,31 @@ public class StudentsFilterCommand extends BaseCommand implements IStudentsFilte
     public StudentsFilterCommand(
             IYamlReader yamlReader,
             IValidator validator,
-            IExceptionPrinter exceptionPrinter,
-            IFilterStrategy filterStrategy,
-            IStudentPrinter studentPrinter
+            IYamlWriter yamlWriter,
+            IFilterStrategy filterStrategy
     )
     {
-        super(yamlReader);
-        this.validator = validator;
-        this.exceptionPrinter = exceptionPrinter;
+        super(yamlReader, validator, yamlWriter);
         this.filterStrategy = filterStrategy;
-        this.studentPrinter = studentPrinter;
     }
 
     @Override
-    public Integer call() throws Exception
+    public Integer call() throws CommandLine.ParameterException
     {
         IInstitute institute = super.readInstitute();
 
+        FilterSettings settings = new FilterSettings(comparisonType, grade);
+
+        Collection<IStudent> students = filterStrategy.get(institute, settings, collectionType);
+
         try
         {
-            validator.validate(institute);
-        } catch (InvalidDataStructureException e)
+            yamlWriter.write(System.out, students);
+        } catch (IOException e)
         {
-            StringWriter stringWriter = new StringWriter();
-            exceptionPrinter.print(e, stringWriter);
-            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
+            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
         }
 
-        FilterSettings settings = new FilterSettings(searchType, grade);
-
-        Collection<IStudent> students = filterStrategy.get(institute, settings, dataType);
-
-        PrintWriter writer = new PrintWriter(System.out);
-
-        studentPrinter.print(students, writer);
-        writer.write("\n");
-        writer.flush();
-        writer.close();
-
-        return 0;
+        return CommandLine.ExitCode.OK;
     }
 }

@@ -1,6 +1,6 @@
 package Main.Tools.Printers;
 
-import Main.Tools.InvalidDataStructureException;
+import Main.Tools.MyClasses.InvalidDataStructureException;
 import MyClasses.Abstract.IDepartment;
 import MyClasses.Abstract.IInstitute;
 import MyClasses.Abstract.IStudent;

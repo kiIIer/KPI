@@ -1,6 +1,8 @@
 package Main.FileWorker;
 
 import java.io.*;
+import java.util.Iterator;
+import java.util.stream.Stream;
 
 public class FirstLongestStringFinder implements IFirstLongestStringFinder
 {
@@ -11,14 +13,10 @@ public class FirstLongestStringFinder implements IFirstLongestStringFinder
 
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String longestString = null;
-        while (true)
+        Stream<String> lines = reader.lines();
+        for (Iterator<String> iterator = lines.iterator(); iterator.hasNext(); )
         {
-            String s = reader.readLine();
-
-            if (s == null)
-            {
-                break;
-            }
+            String s = iterator.next();
 
             if (longestString == null)
             {

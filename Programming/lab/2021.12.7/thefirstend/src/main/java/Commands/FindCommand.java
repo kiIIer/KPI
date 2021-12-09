@@ -5,13 +5,18 @@ import Main.Finder.IFinderHash;
 import Main.Finder.IFinderList;
 import Main.Finder.IFinderSet;
 import Main.Tools.*;
+import Main.Tools.MyClasses.IValidator;
+import Main.Tools.MyClasses.InvalidDataStructureException;
 import Main.Tools.Printers.IDepartmentPrinter;
 import Main.Tools.Printers.IExceptionPrinter;
+import Main.Tools.Yaml.IYamlReader;
+import Main.Tools.Yaml.IYamlWriter;
 import MyClasses.Abstract.IDepartment;
 import MyClasses.Abstract.IInstitute;
 import com.google.inject.Inject;
 import picocli.CommandLine;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
@@ -21,60 +26,48 @@ import java.util.Map;
 public class FindCommand extends BaseCommand implements IFindCommand
 {
 
-    private final IValidator validator;
-    private final IExceptionPrinter exceptionPrinter;
     private final IDepartmentPrinter departmentPrinter;
-    private final Map<DataType, IFinder> finders;
+    private final Map<CollectionType, IFinder> finders;
 
     @Inject
     public FindCommand(
             IYamlReader yamlReader,
             IValidator validator,
-            IExceptionPrinter exceptionPrinter,
+            IYamlWriter yamlWriter,
             IFinderList finderList,
             IFinderSet finderSet,
             IFinderHash finderHash,
             IDepartmentPrinter departmentPrinter
     )
     {
-        super(yamlReader);
-        this.validator = validator;
-        this.exceptionPrinter = exceptionPrinter;
+        super(yamlReader, validator, yamlWriter);
         this.departmentPrinter = departmentPrinter;
 
         finders = new HashMap<>();
 
-        finders.put(DataType.LIST, finderList);
-        finders.put(DataType.TREESET, finderSet);
-        finders.put(DataType.HASHSET, finderHash);
+        finders.put(CollectionType.LIST, finderList);
+        finders.put(CollectionType.TREESET, finderSet);
+        finders.put(CollectionType.HASHSET, finderHash);
     }
 
     @Override
-    public Integer call() throws Exception
+    public Integer call() throws CommandLine.ParameterException
     {
         IInstitute institute = super.readInstitute();
 
-        try
-        {
-            validator.validate(institute);
-        } catch (InvalidDataStructureException e)
-        {
-            StringWriter stringWriter = new StringWriter();
-            exceptionPrinter.print(e, stringWriter);
-            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
-        }
-
-        IFinder finder = finders.get(dataType);
+        IFinder finder = finders.get(collectionType);
 
         IDepartment department = finder.findMaxStudentDepartment(institute);
 
-        PrintWriter writer = new PrintWriter(System.out);
-
-        departmentPrinter.print(department, writer);
-        writer.write("\n");
-        writer.flush();
-        writer.close();
-
-        return 0;
+        try (PrintWriter writer = new PrintWriter(System.out))
+        {
+            departmentPrinter.print(department, writer);
+            writer.write(System.lineSeparator());
+            writer.flush();
+        } catch (IOException e)
+        {
+            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+        }
+        return CommandLine.ExitCode.OK;
     }
 }

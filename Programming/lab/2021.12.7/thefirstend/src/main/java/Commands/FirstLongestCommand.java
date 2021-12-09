@@ -11,6 +11,7 @@ import java.util.concurrent.Callable;
 public class FirstLongestCommand implements IFirstLongestCommand
 {
     private final IFirstLongestStringFinder firstLongestStringFinder;
+
     @CommandLine.Spec
     CommandLine.Model.CommandSpec spec;
 
@@ -26,7 +27,7 @@ public class FirstLongestCommand implements IFirstLongestCommand
     }
 
     @Override
-    public Integer call() throws Exception
+    public Integer call() throws CommandLine.ParameterException
     {
         try
         {
@@ -36,6 +37,6 @@ public class FirstLongestCommand implements IFirstLongestCommand
             throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
         }
 
-        return 0;
+        return CommandLine.ExitCode.OK;
     }
 }

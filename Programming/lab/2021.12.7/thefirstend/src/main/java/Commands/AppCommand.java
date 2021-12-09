@@ -7,9 +7,9 @@ public class AppCommand implements IAppCommand
 {
 
     @Override
-    public Integer call() throws Exception
+    public Integer call()
     {
         System.out.println("Hello whoever you are. Have a nice day!");
-        return 0;
+        return CommandLine.ExitCode.OK;
     }
 }

@@ -1,15 +1,19 @@
 package Commands;
 
-import Main.Tools.*;
+import Main.Tools.MyClasses.IDepartmentFinder;
+import Main.Tools.MyClasses.IStudentFinder;
+import Main.Tools.MyClasses.IValidator;
+import Main.Tools.MyClasses.InvalidDataStructureException;
 import Main.Tools.Printers.IExceptionPrinter;
 import Main.Tools.Printers.IStudentPrinter;
+import Main.Tools.Yaml.IYamlReader;
+import Main.Tools.Yaml.IYamlWriter;
 import MyClasses.Abstract.IDepartment;
 import MyClasses.Abstract.IInstitute;
 import MyClasses.Abstract.IStudent;
 import com.google.inject.Inject;
 import picocli.CommandLine;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -17,11 +21,9 @@ import java.io.StringWriter;
 @CommandLine.Command(name = "student", description = "Shows the string representation of selected student.")
 public class ShowStudentCommand extends BaseCommand implements IShowStudentCommand
 {
-    private final IValidator validator;
-    private final IExceptionPrinter exceptionPrinter;
     private final IDepartmentFinder departmentFinder;
     private final IStudentFinder studentFinder;
-    private final IStudentPrinter studentPrinter;
+
     @CommandLine.Option(names = {"-i", "--id"}, required = true, description = "Grade book ID for sought student.")
     String gradeBookID;
 
@@ -32,35 +34,22 @@ public class ShowStudentCommand extends BaseCommand implements IShowStudentComma
     public ShowStudentCommand(
             IYamlReader yamlReader,
             IValidator validator,
-            IExceptionPrinter exceptionPrinter,
+            IYamlWriter yamlWriter,
             IDepartmentFinder departmentFinder,
-            IStudentFinder studentFinder,
-            IStudentPrinter studentPrinter
+            IStudentFinder studentFinder
     )
     {
-        super(yamlReader);
-        this.validator = validator;
-        this.exceptionPrinter = exceptionPrinter;
+        super(yamlReader, validator, yamlWriter);
         this.departmentFinder = departmentFinder;
         this.studentFinder = studentFinder;
-        this.studentPrinter = studentPrinter;
     }
 
 
     @Override
-    public Integer call() throws Exception
+    public Integer call() throws CommandLine.ParameterException
     {
         IInstitute institute = super.readInstitute();
 
-        try
-        {
-            validator.validate(institute);
-        } catch (InvalidDataStructureException e)
-        {
-            StringWriter stringWriter = new StringWriter();
-            exceptionPrinter.print(e, stringWriter);
-            throw new CommandLine.ParameterException(spec.commandLine(), stringWriter.toString());
-        }
         IDepartment department = departmentFinder.find(departmentName, institute.getDepartments());
 
         if (department == null)
@@ -75,12 +64,14 @@ public class ShowStudentCommand extends BaseCommand implements IShowStudentComma
             throw new CommandLine.ParameterException(spec.commandLine(), "There is no such student!");
         }
 
-        PrintWriter writer = new PrintWriter(System.out);
-        studentPrinter.print(student, writer);
-        writer.write("\n");
-        writer.flush();
-        writer.close();
+        try
+        {
+            yamlWriter.write(System.out, student);
+        } catch (IOException e)
+        {
+            throw new CommandLine.ParameterException(spec.commandLine(), e.getMessage());
+        }
 
-        return 0;
+        return CommandLine.ExitCode.OK;
     }
 }
