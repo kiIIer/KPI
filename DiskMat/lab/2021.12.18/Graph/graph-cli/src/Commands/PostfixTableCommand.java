@@ -1,6 +1,7 @@
 package Commands;
 
 import Tree.IBranch;
+import Tree.ITreeFromString;
 import Yaml.IYamlReader;
 import picocli.CommandLine;
 import Tree.Tablers.IPostTable;
@@ -17,10 +18,11 @@ public class PostfixTableCommand extends BaseTreeCommand implements IPostfixTabl
     @Inject
     public PostfixTableCommand(
             IYamlReader yamlReader,
+            ITreeFromString treeFromString,
             IPostTable postTable
     )
     {
-        super(yamlReader);
+        super(yamlReader, treeFromString);
         this.postTable = postTable;
     }
 

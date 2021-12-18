@@ -7,6 +7,7 @@ import Definer.GraphDefiner;
 import Definer.IGraphDefiner;
 import Tree.Calculator.BranchCalculator;
 import Tree.Calculator.IBranchCalculator;
+import Tree.ITreeFromString;
 import Tree.Tablers.IPostTable;
 import Tree.Tablers.IPreTable;
 import Tree.Tablers.PostTable;
@@ -15,6 +16,7 @@ import Tree.ToStringers.IPostfixToString;
 import Tree.ToStringers.IPrefixToString;
 import Tree.ToStringers.PostfixToString;
 import Tree.ToStringers.PrefixToString;
+import Tree.TreeFromString;
 import Validators.GraphValidator;
 import Validators.IGraphValidator;
 import Yaml.IYamlReader;
@@ -34,6 +36,7 @@ public class ToolsModule extends AbstractModule
         bind(IPostTable.class).to(PostTable.class);
         bind(IMatrixReader.class).to(MatrixReader.class);
         bind(IGraphDefiner.class).to(GraphDefiner.class);
+        bind(ITreeFromString.class).to(TreeFromString.class);
 
         bind(IBranchCalculator.class).to(BranchCalculator.class);
         bind(IAddition.class).to(Addition.class);

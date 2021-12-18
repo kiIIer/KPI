@@ -1,6 +1,7 @@
 package Commands;
 
 import Tree.IBranch;
+import Tree.ITreeFromString;
 import Yaml.IYamlReader;
 import picocli.CommandLine;
 
@@ -11,9 +12,12 @@ import java.util.concurrent.Callable;
 public class ShowTreeCommand extends BaseTreeCommand implements IShowTreeCommand
 {
     @Inject
-    public ShowTreeCommand(IYamlReader yamlReader)
+    public ShowTreeCommand(
+            IYamlReader yamlReader,
+            ITreeFromString treeFromString
+    )
     {
-        super(yamlReader);
+        super(yamlReader, treeFromString);
     }
 
     @Override

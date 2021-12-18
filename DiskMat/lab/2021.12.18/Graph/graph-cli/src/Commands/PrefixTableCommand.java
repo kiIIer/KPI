@@ -1,6 +1,7 @@
 package Commands;
 
 import Tree.IBranch;
+import Tree.ITreeFromString;
 import Tree.Tablers.IPreTable;
 import Yaml.IYamlReader;
 import picocli.CommandLine;
@@ -16,10 +17,11 @@ public class PrefixTableCommand extends BaseTreeCommand implements IPrefixTableC
     @Inject
     public PrefixTableCommand(
             IYamlReader yamlReader,
+            ITreeFromString treeFromString,
             IPreTable preTable
     )
     {
-        super(yamlReader);
+        super(yamlReader, treeFromString);
         this.preTable = preTable;
     }
 
