@@ -1,0 +1,17 @@
+action: "/"
+leftBranch:
+  action: "-"
+  leftBranch:
+    action: "*"
+    leftBranch:
+      action: "+"
+      leftBranch:
+        number: 2
+      rightBranch:
+        number: 5
+    rightBranch:
+      number: 4
+  rightBranch:
+    number: 7
+rightBranch:
+  number: 3
