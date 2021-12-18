@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="graph-logic">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../graph-logic/out/artifacts/graph_logic_jar/graph-logic.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
