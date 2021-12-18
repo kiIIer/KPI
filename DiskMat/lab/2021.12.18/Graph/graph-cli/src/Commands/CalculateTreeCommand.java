@@ -2,6 +2,7 @@ package Commands;
 
 import Tree.Calculator.IBranchCalculator;
 import Tree.IBranch;
+import Tree.ITreeFromString;
 import Yaml.IYamlReader;
 import picocli.CommandLine;
 
@@ -16,10 +17,11 @@ public class CalculateTreeCommand extends BaseTreeCommand implements ICalculateT
     @Inject
     public CalculateTreeCommand(
             IYamlReader yamlReader,
+            ITreeFromString treeFromString,
             IBranchCalculator branchCalculator
     )
     {
-        super(yamlReader);
+        super(yamlReader, treeFromString);
         this.branchCalculator = branchCalculator;
     }
 

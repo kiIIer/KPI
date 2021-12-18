@@ -1,23 +1,9 @@
 package Tree;
 
-import java.util.HashMap;
-import java.util.Map;
+import Tools.StringToAction;
 
 public class Branch implements IBranch
 {
-    private static final Map<String, Action> actions;
-
-    static
-    {
-        actions = new HashMap<>();
-
-        actions.put("+", Action.ADDITION);
-        actions.put("-", Action.SUBTRACTION);
-        actions.put("*", Action.MULTIPLICATION);
-        actions.put("/", Action.DIVISION);
-        actions.put("^", Action.EXPONENTIATION);
-    }
-
     public Object content;
     public IBranch leftBranch;
     public IBranch rightBranch;
@@ -34,7 +20,7 @@ public class Branch implements IBranch
         {
             return null;
         }
-        return actions.get(content);
+        return StringToAction.actions.get(content);
     }
 
     public void setAction(String action)
