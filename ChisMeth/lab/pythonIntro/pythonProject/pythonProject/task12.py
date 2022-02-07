@@ -1,5 +1,7 @@
 import matplotlib.pyplot as ppl
+
 import numpy
+
 
 
 def buildMatrix(rows, columns):
@@ -11,13 +13,13 @@ def buildMatrix(rows, columns):
         matrix.append(row)
     return matrix
 
-
 def drawHist(data):
     ppl.hist(data, bins=10)
 
 
 def drawMatrix(matrix):
     transposed = numpy.transpose(matrix)
+
 
     for row in transposed:
         drawHist(row)
