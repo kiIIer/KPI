@@ -1,6 +1,6 @@
 def rectangle(a, b):
     s = a * b
-    p = a + b
+    p = (a + b)*2
 
     print("S = %d" % s)
     print("P = %d" % p)

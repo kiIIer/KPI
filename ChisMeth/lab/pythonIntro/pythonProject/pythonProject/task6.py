@@ -14,18 +14,6 @@ def buildMatrix(rows, columns):
     return matrix
 
 
-def getTransposed(matrix):
-    transposed = buildMatrix(len(matrix[0]), len(matrix))
-    i = 0
-    j = 0
-    while i < len(matrix):
-        while j < len(matrix[i]):
-            transposed[j][i] = matrix[i][j]
-            j += 1
-        i += 1
-    return transposed
-
-
 def findAverage(array):
     sum = 0
     for a in array:
@@ -51,25 +39,10 @@ def findHighestDeviation(matrix):
     return row
 
 
-def increaseMatrix(matrix):
-    new = matrix
-
-    i = 0
-    j = 0
-    while i < len(matrix):
-        while j < len(matrix[i]):
-            new[i][j] = matrix[i][j]*100
-            j+=1
-        i+=1
-    return new
-
-
 def drawGraph():
     matrix = numpy.random.randn(50, 50)
 
-    matrix2 = increaseMatrix(matrix)
-
-    matrix3 = getTransposed(matrix2)
+    matrix3 = numpy.transpose(matrix)
 
     ox = findLowestAverageRow(matrix3)
     oy = findHighestDeviation(matrix3)
