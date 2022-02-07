@@ -1,5 +1,8 @@
 import matplotlib.pyplot as ppl
 
+import numpy
+
+
 
 def buildMatrix(rows, columns):
     matrix = []
@@ -10,25 +13,13 @@ def buildMatrix(rows, columns):
         matrix.append(row)
     return matrix
 
-
-def getTransposed(matrix):
-    transposed = buildMatrix(len(matrix[0]), len(matrix))
-    i = 0
-    j = 0
-    while i < len(matrix):
-        while j < len(matrix[i]):
-            transposed[j][i] = matrix[i][j]
-            j += 1
-        i += 1
-    return transposed
-
-
 def drawHist(data):
     ppl.hist(data, bins=10)
 
 
 def drawMatrix(matrix):
-    transposed = getTransposed(matrix)
+    transposed = numpy.transpose(matrix)
+
 
     for row in transposed:
         drawHist(row)
@@ -36,4 +27,4 @@ def drawMatrix(matrix):
 
 
 print("Task 12. Historgram")
-drawMatrix([[1, 3, 3, 4, 5], [10, 2, 3, 2, 1], [100, 1, 1, 1, 1]])
+drawMatrix([[1, 3, 3, 4, 5], [10, 2, 3, 2, 1], [10, 1, 1, 1, 1]])
