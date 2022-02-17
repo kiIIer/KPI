@@ -1,0 +1,26 @@
+<div class="container">
+  <mat-card>
+
+    <button mat-button [matMenuTriggerFor]="menu">Formulas</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngFor="let formula of formulas | async"
+              (click)="showParameters(formula)">{{formula.id}}</button>
+    </mat-menu>
+
+    <form [formGroup]="requestForm" (submit)="submit()" *ngIf="requestParameters">
+      <mat-form-field class="form-field" *ngFor="let param of requestParameters">
+        <mat-label>{{param}}</mat-label>
+        <input matInput formControlName="{{param}}" required>
+
+        <mat-error *ngIf="requestForm.controls[param].touched && requestForm.controls[param].invalid">
+          <span *ngIf="requestForm.controls[param].errors!['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Send</button>
+    </form>
+
+    <h2 *ngIf="result">{{(result | async)?.result}}</h2>
+
+  </mat-card>
+</div>
