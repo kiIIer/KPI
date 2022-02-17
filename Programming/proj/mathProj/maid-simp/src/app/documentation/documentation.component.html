@@ -1,0 +1,140 @@
+<mat-card>
+  <mat-card-header>
+    <h1>A little bit about this project</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="The Story">
+        <p>
+          So, the prog. This whole idea of this project started when I realized that I don't want to build server side
+          page. So, I decided to build angular page instead. But... Angular on it's own can handle with most of our labs
+          and there will be no java. So... I needed something which was made on java. And that was the moment when I
+          realized. I want to build service.
+        </p>
+        <p>
+          In addition to all that I wanted that service to be built using spring boot and I wanted it to use database.
+          My dad helped me pick the db - cockroachdb. A relation database built on Golang. Now I knew what I wanted, but
+          building it...
+        </p>
+        <p>
+          I started with the service. Without database, and no ideas about how spring works I entered spring
+          initializer. A few guides there a bit of documentation here na here I am building Hello World. It was a
+          success, I got my first response in postman. Yay. I continued and returned basic hardcoded arithmetic
+          operation from 2 url params and the service calculated 1 + 2. I then added body to the request and sent the
+          result not as an int but as an Object with int. Then... I Started building calculation algorithm
+        </p>
+        <p>
+          The idea came to me from our Discrete Mathematics lab works(Tsymbal thank you very much). I needed to build a
+          Tree, which will calculate itself and a way to build this tree. I wanted to store the tree itself in db but
+          that's not fun, so I started building the polish translator. The idea was to build that tree from something
+          like this "sqrt abs + a / b c" so... I split it by spaces and then iterate resulting array, if I have
+          operation corresponding to that string - I add operation, if I can parse this string to double - I add
+          constant and if parsing failed - i have param name and then i just add it. This whole thing started to work,
+          and it was the time to move the db from in memory Collection to cockroach
+        </p>
+        <p>
+          I just downloaded docker image of that db and started it. That was easy. I wasn't setting any security and
+          clusters, so it was very simple. I then added a table and a simple row (id: 1, polish: "+ a b", parameters: "a
+          b") and... Nothing works. I needed to customise connection to db. And i did just that. Url to it, username and
+          password. And it started working.
+        </p>
+        <p>
+          Now it's time to make it the way it should be. I added the post and get mapping with url like formulas/id and
+          getting from db by that url. After I restarted PC... Everything crashed. IDK why. Just... Spring couldn't
+          connect to db it just took forever to access db. After a couple of frustrating hours I realized... i forgot to
+          init database. After that it was working like a charm.
+        </p>
+        <p>
+          Now the user side. Angular, typescript, material etc. I am not a pro in that stuff but i had some
+          experience... but... anyway it looked wired af. I added routs, math component and this test docs component. I
+          was just testing material and displays here. And... I had a lot of things going wrong... Forgot to import
+          HttpClientModule and boom math component doesn't show. So... I simulated response from server and started
+          designing form to enter params. With Spread I made form controls, made all params required, and with ngFor and
+          ngIf I displayed cool form with params only if they were in response. I pretty much made everything and...
+        </p>
+        <p>
+          BOSS BATTLE CORS POLICY. I fear no man... but that thing... it scares me... Cross origin xmlhttprequest are
+          not allowed. So... It was the 3rd day of my constant work... and... It was getting pretty late when this
+          started. I needed to customize my service, so it allows those connections. And... I opened tutorial on spring
+          site, I was reading, then I tried and... Deprecated class. So... I can't use that tutorial. What about
+          annotations on controller? Well... Now my get request would work. But I couldn't post. I tried almost
+          everything. I added all the configs I could and it still didn't work. The OPTIONS request was getting 403
+          status code. Something wasn't allowing that request. And... At 2AM I went to bed. Defeated. And today, when I
+          am writing all this stuff. I found class to which that deprecated one was changed... F... So, I added that
+          class, added proper methods and headers and boi oh boi. I GOT 5. 2 + 3 = 5 and my lil boi showed this to me.
+        </p>
+        <p>
+          The final touches were: add this documentation cuz I had a lot of pain and I need a bit of pleasure from this
+          project; remove some(a lot of) unused getters setters constructors in service and... I think that's all. If
+          you are reading this - thank you for your attention. Have a nice day!
+        </p>
+      </mat-tab>
+      <mat-tab label="The Explanation">
+        <h2>The site</h2>
+        <p>
+          You are now viewing this documentation on single page application(I'll call it spa cuz it's where user gets
+          most of pleasure... and cuz it's abbreviation). This page is built using angular and angular material with a
+          little design advices from my gf, thank you very much. The angular allows me to build this spa. It is a
+          complex project which is then built into one web site, which once loaded from server, will be fully working
+          without internet(you won't get formulas from service though). The angular material makes this whole thing
+          pretty with animations and stuff. The core concept of this site was to use the service, so using HttpClient I
+          can send different requests on urls with bodies or not. And this is how I get formulas. This site sends get
+          request to get array of available formulas. The ids are then put into menu and once you select formula, form
+          with required params will popup. When you enter numbers and then press send, the spa sends post request with
+          all those parameters you specified to the service. In response the result of calculations is send and
+          displayed just below the button.
+        </p>
+        <h2>The service</h2>
+        <p>
+          This is core part of this project, it is the brain of this whole system. It is the RESTful web service built
+          using spring boot which processes requests, makes connections to database, calculates formulas and much more
+          stuff. Let's walk through a simple workload. The spa sends get all formulas request to the service, then it is
+          passed to RestController's get mapping, b4 Controller can do anything the spring automatically injects the
+          repository, which allows basic operations with database. It retrieves formulas from database and then sends
+          the id and required parameters back to site. Next time site till attempt to calculate formula by sending post
+          request with formula parameter names and values in payload. It is passed to Controller, which then executes
+          post mapping. It gets formula by id from database. The formula is stored in polish way(+ a b). It is then
+          translated to the formula tree, where in each node operation/constant/parameter name is present and if it's
+          operation, the array of similar formulas. When compute method is executed. The tree recursively computes
+          itself using map of request parameters(it places their value in right place) and then gives the answer. The
+          answer is packed and then sent as a response. That's the most basic stuff. But it is enough to understand what
+          is going on.
+        </p>
+        <h2>The Database</h2>
+        <p>
+          The service need a place to store data. Or just a place where it can find data. This is where database comes
+          in hand. I am using Relation based database called CockroachDb(my dad suggested it). It's a neat db made on
+          Golang. I am not using the relation based tables and all neat stuff it provides, but I am still using db.
+          There is one table of formulas, where 1 formula is a row with unique id, polish formula representation and
+          required parameters for this formula. There is not much to say about it, really. The next part, however, is
+          interesting.
+        </p>
+        <h2>The Docker</h2>
+        <p>
+          The application need to run somewhere and I want it to setup it by running one command line command. But...
+          Setup 3 things, connect them... it's too much. So, I am using docker for it. It allows me to build docker
+          images, which I pre divine. Docker image is a set of instruction which docker runs to build the component.
+          When you run docker build. The component installs all it needs, runs build in that environment and after the
+          app is built, it deploys it without tools needed for building. This allows me to build apps using 1 command.
+          Now, building all apps at once! It is done using docker-compose, the tool which allows you to build multiple
+          services which will be all run together in docker. And that is what I am doing. When I run docker-compose
+          first the db is run, setup and initialized, then the service starts, the env variables are set, spring boot is
+          started and configured, and then the nginx is started(it is hosting the spa). Default http port is forwarded
+          to nginx and port 8080 is forwarded to service. And... That's it! The app is running.
+        </p>
+        <h2>Conclusion</h2>
+        <p>
+          So... Now you know what is happening behind the scenes. It's a bit ruff explanation but if you know all that
+          stuff - you will understand what is happening, and if you don't know that stuff, you will understand a bit and
+          don't get confused.
+        </p>
+        <h2>Thank you</h2>
+        <p>Mr. Evgeniy, I wish you more spare time and strength to get better.</p>
+        <p>Maksym Mikhailovich, thank you for your permission to build this, you are amazing.</p>
+        <p>Shata, ty for being with me when I was building all this stuff</p>
+        <p>Dad, thank you for your guidance.</p>
+        <p>Lera, love you <3</p>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

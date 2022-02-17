@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:26257/postgres
+    username: root
+    password: root
+    hikari:
+      connection-test-query: SELECT 1
+
+server:
+  port: 9090
