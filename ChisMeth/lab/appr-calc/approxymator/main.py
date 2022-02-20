@@ -11,6 +11,11 @@ def df(x):
     return (1 / np.cos(x)) - 10 * x
 
 
+# x^2-x-1=0
+def f2(x):
+    return 1 / (x - 1)
+
+
 def halfDivRoot(start, interval, stop, which):
     n = start
     nn = start + interval
@@ -80,6 +85,12 @@ def newtRoot(start, stop):
         n = n - fn / dfn
 
 
+def simpIter(x):
+    while abs(x - f2(x)) > 1e-10:
+        x = f2(x)
+    return x
+
+
 x = np.arange(-1, 1, 0.1)
 y = f(x)
 
@@ -95,3 +106,4 @@ plt.show()
 print(halfDivRoot(-1, 0.1, 0.000001, 1))
 print(hordeRoot(-1, 0.1, 0.000001, 1))
 print(newtRoot(-1, 0.000001))
+print(simpIter(-1))
