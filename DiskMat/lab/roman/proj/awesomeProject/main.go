@@ -8,7 +8,9 @@ type dic struct {
 }
 
 func main() {
-	number := 19
+
+	number := 999
+
 	fmt.Println(toRome(number))
 	fmt.Println(toDeci(toRome(number)))
 }
