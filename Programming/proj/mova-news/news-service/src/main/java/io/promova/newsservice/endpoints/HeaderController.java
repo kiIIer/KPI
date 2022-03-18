@@ -6,11 +6,14 @@ import io.promova.newsservice.endpoints.tools.IResponseAllHeadersEntityModelAsse
 import io.promova.newsservice.endpoints.tools.ISingleHeaderEntityModelAssembler;
 import io.promova.newsservice.rep.INewsRepository;
 import io.promova.newsservice.rep.NewsEntity;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -49,10 +52,23 @@ public class HeaderController
                 );
     }
 
-    @GetMapping(value = "/news/headers")
+    @GetMapping(value = "/news/headers/all")
     public ResponseEntity<EntityModel<ResponseAllHeadersEntity>> getAll()
     {
         List<NewsEntity> all = newsRepository.findAll();
+        return getEntityModelResponseEntity(all);
+    }
+
+    @GetMapping(value = "/news/headers")
+    public ResponseEntity<EntityModel<ResponseAllHeadersEntity>> getPaged(@RequestParam(defaultValue = "0") int page)
+    {
+        List<NewsEntity> all = newsRepository.findAll(PageRequest.of(page, 10)).getContent();
+        return getEntityModelResponseEntity(all);
+    }
+
+    @NotNull
+    private ResponseEntity<EntityModel<ResponseAllHeadersEntity>> getEntityModelResponseEntity(List<NewsEntity> all)
+    {
         List<HeaderEntity> allHeaders = all.stream().map(HeaderEntity::new).toList();
         AllHeadersEntity allHeadersEntity = new AllHeadersEntity(allHeaders.toArray(new HeaderEntity[0]));
         EntityModel<ResponseAllHeadersEntity> responseAllNewsEntityEntityModel = allModelAssembler.toModel(allHeadersEntity);
