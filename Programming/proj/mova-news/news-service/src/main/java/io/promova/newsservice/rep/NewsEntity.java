@@ -22,6 +22,10 @@ public class NewsEntity
     @NotNull
     private String body;
 
+//    @Column
+//    @NotNull
+//    private long timeCreated;
+
     public String getId()
     {
         return id;

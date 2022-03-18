@@ -1,4 +1,4 @@
-package io.promova.newsservice.singlenew.entities;
+package io.promova.newsservice.endpoints.entities;
 
 import jakarta.validation.constraints.NotNull;
 
