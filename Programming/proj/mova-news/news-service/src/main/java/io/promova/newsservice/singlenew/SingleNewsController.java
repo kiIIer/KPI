@@ -2,8 +2,11 @@ package io.promova.newsservice.singlenew;
 
 import io.promova.newsservice.rep.INewsRepository;
 import io.promova.newsservice.rep.NewsEntity;
+import io.promova.newsservice.singlenew.entities.RequestNewsEntity;
 import io.promova.newsservice.singlenew.exceptions.SingleNewsNotFoundException;
+import io.promova.newsservice.singlenew.tools.SingleNewsModelAssembler;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,16 +20,18 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class SingleNewsController
 {
     private final INewsRepository newsRepository;
+    private final SingleNewsModelAssembler modelAssembler;
 
     public SingleNewsController(
-            INewsRepository newsRepository
-    )
+            INewsRepository newsRepository,
+            SingleNewsModelAssembler modelAssembler)
     {
         this.newsRepository = newsRepository;
+        this.modelAssembler = modelAssembler;
     }
 
     @GetMapping(value = "/news/{id}")
-    public EntityModel<NewsEntity> getOne(@PathVariable long id)
+    public ResponseEntity<EntityModel<NewsEntity>> getOne(@PathVariable String id)
     {
         NewsEntity news = newsRepository.findById(id)
                 .orElseThrow(
@@ -34,18 +39,24 @@ public class SingleNewsController
                 );
 
 
-        return EntityModel.of(news,
-                linkTo(methodOn(SingleNewsController.class).getOne(id)).withSelfRel());
-
-        // TODO: make link to all
+        return
+                new ResponseEntity<>(
+                        modelAssembler.toModel(news),
+                        HttpStatus.OK
+                );
     }
 
-    @PutMapping(value = "/news/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> putOne(@RequestBody @Valid NewsEntity newNews, @PathVariable long id)
+    @PostMapping(value = "/news/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<EntityModel<NewsEntity>> putOne(@RequestBody @Valid RequestNewsEntity newNews)
     {
-        newsRepository.save(newNews);
+        NewsEntity properNews = new NewsEntity("a", newNews.getHeader(), newNews.getBody());
 
-        return new ResponseEntity<>("News added successfully", HttpStatus.OK);
+        newsRepository.save(properNews);
+
+        return new ResponseEntity<>(
+                modelAssembler.toModel(properNews),
+                HttpStatus.OK
+        );
     }
 
 }

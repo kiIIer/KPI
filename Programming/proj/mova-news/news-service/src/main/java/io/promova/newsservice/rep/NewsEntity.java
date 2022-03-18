@@ -12,7 +12,7 @@ public class NewsEntity
 {
     @Id
     @Column
-    private long id;
+    private String id;
 
     @Column
     @NotNull
@@ -22,12 +22,12 @@ public class NewsEntity
     @NotNull
     private String body;
 
-    public long getId()
+    public String getId()
     {
         return id;
     }
 
-    public void setId(long id)
+    public void setId(String id)
     {
         this.id = id;
     }
@@ -56,7 +56,7 @@ public class NewsEntity
     {
     }
 
-    public NewsEntity(int id, String header, String body)
+    public NewsEntity(String id, String header, String body)
     {
         this.id = id;
         this.header = header;
