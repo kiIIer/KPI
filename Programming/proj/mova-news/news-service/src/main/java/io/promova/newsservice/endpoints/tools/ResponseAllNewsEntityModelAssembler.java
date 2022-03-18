@@ -5,7 +5,6 @@ import io.promova.newsservice.endpoints.entities.AllNewsEntity;
 import io.promova.newsservice.endpoints.entities.ResponseAllNewsEntity;
 import io.promova.newsservice.rep.NewsEntity;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.RepresentationModelAssembler;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,12 +12,12 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-public class ResponseAllNewsEntityModelAssembler implements RepresentationModelAssembler<AllNewsEntity, EntityModel<ResponseAllNewsEntity>>
+public class ResponseAllNewsEntityModelAssembler implements IResponseAllNewsEntityModelAssembler
 {
-    private final SingleNewsModelAssembler modelAssembler;
+    private final ISingleNewsModelAssembler modelAssembler;
 
     public ResponseAllNewsEntityModelAssembler(
-            SingleNewsModelAssembler modelAssembler
+            ISingleNewsModelAssembler modelAssembler
     )
     {
         this.modelAssembler = modelAssembler;

@@ -4,7 +4,7 @@ public class NewsNotFoundException extends RuntimeException
 {
     public NewsNotFoundException(String id)
     {
-        super("Couldn't find formula with id: " + id);
+        super("Couldn't find news with id: " + id);
     }
 
 }

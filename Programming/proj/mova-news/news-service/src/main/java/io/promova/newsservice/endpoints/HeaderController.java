@@ -2,8 +2,8 @@ package io.promova.newsservice.endpoints;
 
 import io.promova.newsservice.endpoints.entities.*;
 import io.promova.newsservice.endpoints.error.exceptions.NewsNotFoundException;
-import io.promova.newsservice.endpoints.tools.ResponseAllHeadersEntityModelAssembler;
-import io.promova.newsservice.endpoints.tools.SingleHeaderEntityModelAssembler;
+import io.promova.newsservice.endpoints.tools.IResponseAllHeadersEntityModelAssembler;
+import io.promova.newsservice.endpoints.tools.ISingleHeaderEntityModelAssembler;
 import io.promova.newsservice.rep.INewsRepository;
 import io.promova.newsservice.rep.NewsEntity;
 import org.springframework.hateoas.EntityModel;
@@ -19,13 +19,13 @@ import java.util.List;
 public class HeaderController
 {
     private final INewsRepository newsRepository;
-    private final SingleHeaderEntityModelAssembler modelAssembler;
-    private final ResponseAllHeadersEntityModelAssembler allModelAssembler;
+    private final ISingleHeaderEntityModelAssembler modelAssembler;
+    private final IResponseAllHeadersEntityModelAssembler allModelAssembler;
 
     public HeaderController(
             INewsRepository newsRepository,
-            SingleHeaderEntityModelAssembler modelAssembler,
-            ResponseAllHeadersEntityModelAssembler allModelAssembler
+            ISingleHeaderEntityModelAssembler modelAssembler,
+            IResponseAllHeadersEntityModelAssembler allModelAssembler
     )
     {
         this.newsRepository = newsRepository;

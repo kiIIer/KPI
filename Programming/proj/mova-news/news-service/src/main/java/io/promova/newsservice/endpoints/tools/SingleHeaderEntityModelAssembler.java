@@ -9,7 +9,7 @@ import org.springframework.hateoas.server.RepresentationModelAssembler;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-public class SingleHeaderEntityModelAssembler implements RepresentationModelAssembler<HeaderEntity, EntityModel<HeaderEntity>>
+public class SingleHeaderEntityModelAssembler implements ISingleHeaderEntityModelAssembler
 {
     @Override
     public EntityModel<HeaderEntity> toModel(HeaderEntity entity)

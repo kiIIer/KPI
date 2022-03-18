@@ -9,7 +9,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-public class SingleNewsModelAssembler implements RepresentationModelAssembler<NewsEntity, EntityModel<NewsEntity>>
+public class SingleNewsModelAssembler implements ISingleNewsModelAssembler
 {
     @Override
     public EntityModel<NewsEntity> toModel(NewsEntity newsEntity)

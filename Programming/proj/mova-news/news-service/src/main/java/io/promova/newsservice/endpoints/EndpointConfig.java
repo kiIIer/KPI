@@ -1,9 +1,6 @@
 package io.promova.newsservice.endpoints;
 
-import io.promova.newsservice.endpoints.tools.ResponseAllHeadersEntityModelAssembler;
-import io.promova.newsservice.endpoints.tools.ResponseAllNewsEntityModelAssembler;
-import io.promova.newsservice.endpoints.tools.SingleHeaderEntityModelAssembler;
-import io.promova.newsservice.endpoints.tools.SingleNewsModelAssembler;
+import io.promova.newsservice.endpoints.tools.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,25 +8,25 @@ import org.springframework.context.annotation.Configuration;
 public class EndpointConfig
 {
     @Bean
-    public SingleNewsModelAssembler singleNewsModelAssembler()
+    public ISingleNewsModelAssembler singleNewsModelAssembler()
     {
         return new SingleNewsModelAssembler();
     }
 
     @Bean
-    public ResponseAllNewsEntityModelAssembler responseAllNewsEntityModelAssembler(SingleNewsModelAssembler modelAssembler)
+    public IResponseAllNewsEntityModelAssembler responseAllNewsEntityModelAssembler(ISingleNewsModelAssembler modelAssembler)
     {
         return new ResponseAllNewsEntityModelAssembler(modelAssembler);
     }
 
     @Bean
-    public SingleHeaderEntityModelAssembler singleHeaderEntityModelAssembler()
+    public ISingleHeaderEntityModelAssembler singleHeaderEntityModelAssembler()
     {
         return new SingleHeaderEntityModelAssembler();
     }
 
     @Bean
-    public ResponseAllHeadersEntityModelAssembler responseAllHeadersEntityModelAssembler(SingleHeaderEntityModelAssembler modelAssembler)
+    public IResponseAllHeadersEntityModelAssembler responseAllHeadersEntityModelAssembler(ISingleHeaderEntityModelAssembler modelAssembler)
     {
         return new ResponseAllHeadersEntityModelAssembler(modelAssembler);
     }

@@ -2,12 +2,12 @@ package io.promova.newsservice.endpoints;
 
 import io.promova.newsservice.endpoints.entities.AllNewsEntity;
 import io.promova.newsservice.endpoints.entities.ResponseAllNewsEntity;
-import io.promova.newsservice.endpoints.tools.ResponseAllNewsEntityModelAssembler;
+import io.promova.newsservice.endpoints.tools.IResponseAllNewsEntityModelAssembler;
+import io.promova.newsservice.endpoints.tools.ISingleNewsModelAssembler;
 import io.promova.newsservice.rep.INewsRepository;
 import io.promova.newsservice.rep.NewsEntity;
 import io.promova.newsservice.endpoints.entities.RequestNewsEntity;
 import io.promova.newsservice.endpoints.error.exceptions.NewsNotFoundException;
-import io.promova.newsservice.endpoints.tools.SingleNewsModelAssembler;
 import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.hateoas.EntityModel;
@@ -23,13 +23,13 @@ import java.util.UUID;
 public class NewsController
 {
     private final INewsRepository newsRepository;
-    private final SingleNewsModelAssembler modelAssembler;
-    private final ResponseAllNewsEntityModelAssembler allModelAssembler;
+    private final ISingleNewsModelAssembler modelAssembler;
+    private final IResponseAllNewsEntityModelAssembler allModelAssembler;
 
     public NewsController(
             INewsRepository newsRepository,
-            SingleNewsModelAssembler modelAssembler,
-            ResponseAllNewsEntityModelAssembler allModelAssembler
+            ISingleNewsModelAssembler modelAssembler,
+            IResponseAllNewsEntityModelAssembler allModelAssembler
     )
     {
         this.newsRepository = newsRepository;

@@ -2,9 +2,7 @@ package io.promova.newsservice.endpoints.tools;
 
 import io.promova.newsservice.endpoints.HeaderController;
 import io.promova.newsservice.endpoints.entities.*;
-import io.promova.newsservice.rep.NewsEntity;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.RepresentationModelAssembler;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,11 +10,11 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-public class ResponseAllHeadersEntityModelAssembler implements RepresentationModelAssembler<AllHeadersEntity, EntityModel<ResponseAllHeadersEntity>>
+public class ResponseAllHeadersEntityModelAssembler implements IResponseAllHeadersEntityModelAssembler
 {
-    private SingleHeaderEntityModelAssembler modelAssembler;
+    private ISingleHeaderEntityModelAssembler modelAssembler;
 
-    public ResponseAllHeadersEntityModelAssembler(SingleHeaderEntityModelAssembler modelAssembler)
+    public ResponseAllHeadersEntityModelAssembler(ISingleHeaderEntityModelAssembler modelAssembler)
     {
         this.modelAssembler = modelAssembler;
     }
