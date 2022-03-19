@@ -5,38 +5,38 @@ import jakarta.validation.constraints.NotNull;
 public class RequestNewsEntity
 {
     @NotNull
-    private String header;
+    private String title;
 
     @NotNull
-    private String body;
+    private String article;
 
-    public String getHeader()
+    public String getTitle()
     {
-        return header;
+        return title;
     }
 
-    public void setHeader(String header)
+    public void setTitle(String title)
     {
-        this.header = header;
+        this.title = title;
     }
 
-    public String getBody()
+    public String getArticle()
     {
-        return body;
+        return article;
     }
 
-    public void setBody(String body)
+    public void setArticle(String article)
     {
-        this.body = body;
+        this.article = article;
     }
 
     public RequestNewsEntity()
     {
     }
 
-    public RequestNewsEntity(String header, String body)
+    public RequestNewsEntity(String title, String article)
     {
-        this.header = header;
-        this.body = body;
+        this.title = title;
+        this.article = article;
     }
 }

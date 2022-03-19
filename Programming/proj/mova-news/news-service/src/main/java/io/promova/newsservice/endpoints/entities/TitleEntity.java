@@ -2,11 +2,11 @@ package io.promova.newsservice.endpoints.entities;
 
 import io.promova.newsservice.rep.NewsEntity;
 
-public class HeaderEntity
+public class TitleEntity
 {
     private String id;
 
-    private String header;
+    private String title;
 
     public String getId()
     {
@@ -18,29 +18,29 @@ public class HeaderEntity
         this.id = id;
     }
 
-    public String getHeader()
+    public String getTitle()
     {
-        return header;
+        return title;
     }
 
-    public void setHeader(String header)
+    public void setTitle(String title)
     {
-        this.header = header;
+        this.title = title;
     }
 
-    public HeaderEntity()
+    public TitleEntity()
     {
     }
 
-    public HeaderEntity(String id, String header)
+    public TitleEntity(String id, String title)
     {
         this.id = id;
-        this.header = header;
+        this.title = title;
     }
 
-    public HeaderEntity(NewsEntity newsEntity)
+    public TitleEntity(NewsEntity newsEntity)
     {
         this.id = newsEntity.getId();
-        this.header = newsEntity.getHeader();
+        this.title = newsEntity.getTitle();
     }
 }

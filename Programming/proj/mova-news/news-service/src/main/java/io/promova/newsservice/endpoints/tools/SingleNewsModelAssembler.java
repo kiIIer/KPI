@@ -14,10 +14,9 @@ public class SingleNewsModelAssembler implements ISingleNewsModelAssembler
     @Override
     public EntityModel<NewsEntity> toModel(NewsEntity newsEntity)
     {
-
         return EntityModel.of(newsEntity,
-                linkTo(methodOn(NewsController.class).getOne(newsEntity.getId())).withSelfRel(),
-                linkTo(methodOn(NewsController.class).getAll()).withRel("news")
+                linkTo(methodOn(NewsController.class).getOne(newsEntity.getId())).withSelfRel()
+//                linkTo(methodOn(NewsController.class).getAll()).withRel("news")
         );
     }
 }

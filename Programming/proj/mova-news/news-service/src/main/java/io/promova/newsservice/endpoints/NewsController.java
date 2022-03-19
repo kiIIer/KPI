@@ -37,16 +37,16 @@ public class NewsController
         this.allModelAssembler = allModelAssembler;
     }
 
-    @GetMapping(value = "/news/")
-    public ResponseEntity<EntityModel<ResponseAllNewsEntity>> getAll()
-    {
-        List<NewsEntity> all = newsRepository.findAll();
-        AllNewsEntity allNewsEntity = new AllNewsEntity(all.toArray(new NewsEntity[0]));
-        EntityModel<ResponseAllNewsEntity> responseAllNewsEntityEntityModel = allModelAssembler.toModel(allNewsEntity);
-        return new ResponseEntity<>(responseAllNewsEntityEntityModel, HttpStatus.OK);
-    }
+//    @GetMapping(value = "/news/")
+//    public ResponseEntity<EntityModel<ResponseAllNewsEntity>> getAll()
+//    {
+//        List<NewsEntity> all = newsRepository.findAll();
+//        AllNewsEntity allNewsEntity = new AllNewsEntity(all.toArray(new NewsEntity[0]));
+//        EntityModel<ResponseAllNewsEntity> responseAllNewsEntityEntityModel = allModelAssembler.toModel(allNewsEntity);
+//        return new ResponseEntity<>(responseAllNewsEntityEntityModel, HttpStatus.OK);
+//    }
 
-    @GetMapping(value = "/news/{id}")
+    @GetMapping(value = "/titles/{id}/article")
     public ResponseEntity<EntityModel<NewsEntity>> getOne(@PathVariable String id)
     {
         NewsEntity news = newsRepository.findById(id)
@@ -62,10 +62,10 @@ public class NewsController
                 );
     }
 
-    @PostMapping(value = "/news/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/titles/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<NewsEntity>> postOne(@RequestBody @Valid @NotNull RequestNewsEntity newNews)
     {
-        NewsEntity properNews = new NewsEntity(UUID.randomUUID().toString(), newNews.getHeader(), newNews.getBody());
+        NewsEntity properNews = new NewsEntity(UUID.randomUUID().toString(), newNews.getTitle(), newNews.getArticle(), System.nanoTime());
 
         NewsEntity result = newsRepository.save(properNews);
 
@@ -75,12 +75,12 @@ public class NewsController
         );
     }
 
-    @PatchMapping(value = "/news/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/titles/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<NewsEntity>> patchOne(@RequestBody @Valid @NotNull RequestNewsEntity newNews, @PathVariable String id)
     {
         newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
 
-        NewsEntity properNews = new NewsEntity(id, newNews.getHeader(), newNews.getBody());
+        NewsEntity properNews = new NewsEntity(id, newNews.getTitle(), newNews.getArticle(), System.nanoTime());
 
         NewsEntity result = newsRepository.save(properNews);
 

@@ -27,8 +27,8 @@ public class ResponseAllNewsEntityModelAssembler implements IResponseAllNewsEnti
     public EntityModel<ResponseAllNewsEntity> toModel(AllNewsEntity allNews)
     {
         return EntityModel.of(
-                prepareResponse(allNews),
-                linkTo(methodOn(NewsController.class).getAll()).withSelfRel()
+                prepareResponse(allNews)
+//                linkTo(methodOn(NewsController.class).getAll()).withSelfRel()
         );
     }
 

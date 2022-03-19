@@ -16,15 +16,15 @@ public class NewsEntity
 
     @Column
     @NotNull
-    private String header;
+    private String title;
 
     @Column
     @NotNull
-    private String body;
+    private String article;
 
-//    @Column
-//    @NotNull
-//    private long timeCreated;
+    @Column
+    @NotNull
+    private Long datecreated;
 
     public String getId()
     {
@@ -36,34 +36,45 @@ public class NewsEntity
         this.id = id;
     }
 
-    public String getHeader()
+    public String getTitle()
     {
-        return header;
+        return title;
     }
 
-    public void setHeader(String header)
+    public void setTitle(String title)
     {
-        this.header = header;
+        this.title = title;
     }
 
-    public String getBody()
+    public String getArticle()
     {
-        return body;
+        return article;
     }
 
-    public void setBody(String body)
+    public void setArticle(String article)
     {
-        this.body = body;
+        this.article = article;
+    }
+
+    public Long getDatecreated()
+    {
+        return datecreated;
+    }
+
+    public void setDatecreated(Long dateCreated)
+    {
+        this.datecreated = dateCreated;
     }
 
     public NewsEntity()
     {
     }
 
-    public NewsEntity(String id, String header, String body)
+    public NewsEntity(String id, String title, String article, long datecreated)
     {
         this.id = id;
-        this.header = header;
-        this.body = body;
+        this.title = title;
+        this.article = article;
+        this.datecreated = datecreated;
     }
 }

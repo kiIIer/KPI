@@ -20,14 +20,14 @@ public class EndpointConfig
     }
 
     @Bean
-    public ISingleHeaderEntityModelAssembler singleHeaderEntityModelAssembler()
+    public ISingleTitleEntityModelAssembler singleTitleEntityModelAssembler()
     {
-        return new SingleHeaderEntityModelAssembler();
+        return new SingleTitleEntityModelAssembler();
     }
 
     @Bean
-    public IResponseAllHeadersEntityModelAssembler responseAllHeadersEntityModelAssembler(ISingleHeaderEntityModelAssembler modelAssembler)
+    public IResponseAllTitlesEntityModelAssembler responseAllTitlesEntityModelAssembler(ISingleTitleEntityModelAssembler modelAssembler)
     {
-        return new ResponseAllHeadersEntityModelAssembler(modelAssembler);
+        return new ResponseAllTitlesEntityModelAssembler(modelAssembler);
     }
 }
