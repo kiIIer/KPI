@@ -11,13 +11,19 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class SingleTitleEntityModelAssembler implements ISingleTitleEntityModelAssembler
 {
     @Override
-    public EntityModel<TitleEntity> toModel(TitleEntity entity)
+    public EntityModel<TitleEntity> toModel(TitleEntity entity, boolean addLinks)
     {
-        return EntityModel.of(
+//        return EntityModel.of(
+//                entity,
+//                linkTo(methodOn(TitleController.class).getOne(entity.getId())).withSelfRel(),
+//                linkTo(methodOn(NewsController.class).getOne(entity.getId())).withRel("full")
+//        );
+        return (addLinks) ? EntityModel.of(
                 entity,
-                linkTo(methodOn(TitleController.class).getOne(entity.getId())).withSelfRel(),
-                linkTo(methodOn(NewsController.class).getOne(entity.getId())).withRel("full")
-//                linkTo(methodOn(TitleController.class).getAll()).withRel("titles")
+                linkTo(methodOn(TitleController.class).getOne(entity.getId(), "*/*")).withSelfRel(),
+                linkTo(methodOn(NewsController.class).getOne(entity.getId(), "*/*")).withRel("full")
+        ) : EntityModel.of(
+                entity
         );
     }
 }

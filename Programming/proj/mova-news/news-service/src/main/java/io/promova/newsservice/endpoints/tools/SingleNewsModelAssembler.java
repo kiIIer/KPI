@@ -12,11 +12,16 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class SingleNewsModelAssembler implements ISingleNewsModelAssembler
 {
     @Override
-    public EntityModel<NewsEntity> toModel(NewsEntity newsEntity)
+    public EntityModel<NewsEntity> toModel(NewsEntity newsEntity, boolean addLinks)
     {
-        return EntityModel.of(newsEntity,
-                linkTo(methodOn(NewsController.class).getOne(newsEntity.getId())).withSelfRel()
-//                linkTo(methodOn(NewsController.class).getAll()).withRel("news")
+//        return EntityModel.of(newsEntity,
+//                linkTo(methodOn(NewsController.class).getOne(newsEntity.getId())).withSelfRel()
+//        );
+        return (addLinks) ? EntityModel.of(
+                newsEntity,
+                linkTo(methodOn(NewsController.class).getOne(newsEntity.getId(), "*/*")).withSelfRel()
+        ) : EntityModel.of(
+                newsEntity
         );
     }
 }

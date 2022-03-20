@@ -1,8 +1,6 @@
 package io.promova.newsservice.endpoints;
 
-import io.promova.newsservice.endpoints.entities.AllNewsEntity;
-import io.promova.newsservice.endpoints.entities.ResponseAllNewsEntity;
-import io.promova.newsservice.endpoints.tools.IResponseAllNewsEntityModelAssembler;
+import io.promova.newsservice.endpoints.tools.IAcceptHeaderParser;
 import io.promova.newsservice.endpoints.tools.ISingleNewsModelAssembler;
 import io.promova.newsservice.rep.INewsRepository;
 import io.promova.newsservice.rep.NewsEntity;
@@ -16,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,17 +21,16 @@ public class NewsController
 {
     private final INewsRepository newsRepository;
     private final ISingleNewsModelAssembler modelAssembler;
-    private final IResponseAllNewsEntityModelAssembler allModelAssembler;
+    private final IAcceptHeaderParser acceptHeaderParser;
 
     public NewsController(
             INewsRepository newsRepository,
             ISingleNewsModelAssembler modelAssembler,
-            IResponseAllNewsEntityModelAssembler allModelAssembler
-    )
+            IAcceptHeaderParser acceptHeaderParser)
     {
         this.newsRepository = newsRepository;
         this.modelAssembler = modelAssembler;
-        this.allModelAssembler = allModelAssembler;
+        this.acceptHeaderParser = acceptHeaderParser;
     }
 
 //    @GetMapping(value = "/news/")
@@ -47,7 +43,10 @@ public class NewsController
 //    }
 
     @GetMapping(value = "/titles/{id}/article")
-    public ResponseEntity<EntityModel<NewsEntity>> getOne(@PathVariable String id)
+    public ResponseEntity<EntityModel<NewsEntity>> getOne(
+            @PathVariable String id,
+            @RequestHeader("Accept") String acceptHeader
+    )
     {
         NewsEntity news = newsRepository.findById(id)
                 .orElseThrow(
@@ -57,26 +56,33 @@ public class NewsController
 
         return
                 new ResponseEntity<>(
-                        modelAssembler.toModel(news),
+                        modelAssembler.toModel(news, acceptHeaderParser.addLinks(acceptHeader)),
                         HttpStatus.OK
                 );
     }
 
     @PostMapping(value = "/titles/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<NewsEntity>> postOne(@RequestBody @Valid @NotNull RequestNewsEntity newNews)
+    public ResponseEntity<EntityModel<NewsEntity>> postOne(
+            @RequestBody @Valid @NotNull RequestNewsEntity newNews,
+            @RequestHeader("Accept") String acceptHeader
+    )
     {
         NewsEntity properNews = new NewsEntity(UUID.randomUUID().toString(), newNews.getTitle(), newNews.getArticle(), System.nanoTime());
 
         NewsEntity result = newsRepository.save(properNews);
 
         return new ResponseEntity<>(
-                modelAssembler.toModel(result),
-                HttpStatus.OK
+                modelAssembler.toModel(result, acceptHeaderParser.addLinks(acceptHeader)),
+                HttpStatus.CREATED
         );
     }
 
     @PatchMapping(value = "/titles/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<NewsEntity>> patchOne(@RequestBody @Valid @NotNull RequestNewsEntity newNews, @PathVariable String id)
+    public ResponseEntity<EntityModel<NewsEntity>> patchOne(
+            @RequestBody @Valid @NotNull RequestNewsEntity newNews,
+            @PathVariable String id,
+            @RequestHeader("Accept") String acceptHeader
+    )
     {
         newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
 
@@ -85,7 +91,20 @@ public class NewsController
         NewsEntity result = newsRepository.save(properNews);
 
         return new ResponseEntity<>(
-                modelAssembler.toModel(result),
+                modelAssembler.toModel(result, acceptHeaderParser.addLinks(acceptHeader)),
+                HttpStatus.OK
+        );
+    }
+
+    @DeleteMapping(value = "/titles/{id}")
+    public ResponseEntity<EntityModel<String>> deleteOne(
+            @PathVariable String id
+    )
+    {
+        newsRepository.deleteById(id);
+
+        return new ResponseEntity<>(
+                EntityModel.of("News with id " + id + " was deleted"),
                 HttpStatus.OK
         );
     }

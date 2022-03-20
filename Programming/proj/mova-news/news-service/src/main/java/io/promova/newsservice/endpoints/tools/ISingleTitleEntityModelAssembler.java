@@ -2,10 +2,8 @@ package io.promova.newsservice.endpoints.tools;
 
 import io.promova.newsservice.endpoints.entities.TitleEntity;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.RepresentationModelAssembler;
 
-public interface ISingleTitleEntityModelAssembler extends RepresentationModelAssembler<TitleEntity, EntityModel<TitleEntity>>
+public interface ISingleTitleEntityModelAssembler
 {
-    @Override
-    EntityModel<TitleEntity> toModel(TitleEntity entity);
+    EntityModel<TitleEntity> toModel(TitleEntity entity, boolean addLinks);
 }

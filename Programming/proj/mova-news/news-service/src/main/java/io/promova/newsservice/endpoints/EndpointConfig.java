@@ -14,12 +14,6 @@ public class EndpointConfig
     }
 
     @Bean
-    public IResponseAllNewsEntityModelAssembler responseAllNewsEntityModelAssembler(ISingleNewsModelAssembler modelAssembler)
-    {
-        return new ResponseAllNewsEntityModelAssembler(modelAssembler);
-    }
-
-    @Bean
     public ISingleTitleEntityModelAssembler singleTitleEntityModelAssembler()
     {
         return new SingleTitleEntityModelAssembler();
@@ -29,5 +23,11 @@ public class EndpointConfig
     public IResponseAllTitlesEntityModelAssembler responseAllTitlesEntityModelAssembler(ISingleTitleEntityModelAssembler modelAssembler)
     {
         return new ResponseAllTitlesEntityModelAssembler(modelAssembler);
+    }
+
+    @Bean
+    public IAcceptHeaderParser acceptHeaderParser()
+    {
+        return new AcceptHeaderParser();
     }
 }
