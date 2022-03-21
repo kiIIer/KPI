@@ -1,0 +1,6 @@
+<div class="main-div">
+  <mat-card class="dashboard-card">
+    <a mat-button *ngFor="let model of (titles | async)?.entityModels" class="dashboard-link"
+       routerLink="details/{{model.id}}">{{model.title}}</a>
+  </mat-card>
+</div>
