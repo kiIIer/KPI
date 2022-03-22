@@ -1,8 +1,8 @@
-import {ITitle} from "../ITitle";
-import {IHref} from "../IHref";
+import {ILinks} from "./ILinks";
+import {ITitle} from "./ITitle";
 
 export interface IPagedTitles
 {
   entityModels: ITitle[],
-  _links: Map<string, IHref>
+  _links: ILinks
 }

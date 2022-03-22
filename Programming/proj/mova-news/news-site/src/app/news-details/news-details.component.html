@@ -1,6 +1,6 @@
 <div class="details-main-div">
   <mat-card class="details-card">
-    <h1>{{this.article.title}}</h1>
-    <p>{{this.article.article}}</p>
+    <h1>{{(this.article | async)?.title}}</h1>
+    <p>{{(this.article | async)?.article}}</p>
   </mat-card>
 </div>

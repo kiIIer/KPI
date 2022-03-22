@@ -27,6 +27,7 @@ public class TitleController
     private final ISingleTitleEntityModelAssembler modelAssembler;
     private final IResponseAllTitlesEntityModelAssembler allModelAssembler;
     private final IAcceptHeaderParser acceptHeaderParser;
+    private final int pageSize = 10;
 
     public TitleController(
             INewsRepository newsRepository,
@@ -72,7 +73,7 @@ public class TitleController
             @RequestHeader("Accept") String acceptHeader
     )
     {
-        List<NewsEntity> all = newsRepository.findAll(PageRequest.of(page, 10, Sort.by("datecreated").descending())).getContent();
+        List<NewsEntity> all = newsRepository.findAll(PageRequest.of(page, pageSize, Sort.by("datecreated").descending())).getContent();
         return getEntityModelResponseEntity(all, page, acceptHeaderParser.addLinks(acceptHeader));
     }
 
@@ -86,7 +87,7 @@ public class TitleController
         List<TitleEntity> allTitles = all.stream().map(TitleEntity::new).toList();
         AllTitlesEntity allTitlesEntity = new AllTitlesEntity(allTitles.toArray(new TitleEntity[0]));
         EntityModel<ResponseAllTitlesEntity> responseAllNewsEntityEntityModel = allModelAssembler.toModel(allTitlesEntity, addLinks);
-        if (addLinks && allTitles.size() == 10)
+        if (addLinks && allTitles.size() == pageSize)
         {
             responseAllNewsEntityEntityModel.add(linkTo(methodOn(TitleController.class).getPaged(page + 1, "*/*")).withRel("nextPage"));
         }
