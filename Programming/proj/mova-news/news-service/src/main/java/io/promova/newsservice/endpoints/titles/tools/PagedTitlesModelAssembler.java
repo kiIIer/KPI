@@ -10,28 +10,29 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
 
-public class PagedTitlesModelAssembler
+public class PagedTitlesModelAssembler implements IPagedTitlesModelAssembler
 {
-    private final TitleModelAssembler modelAssembler;
+    private final ITitleModelAssembler modelAssembler;
 
-    public PagedTitlesModelAssembler(TitleModelAssembler modelAssembler)
+    public PagedTitlesModelAssembler(ITitleModelAssembler modelAssembler)
     {
         this.modelAssembler = modelAssembler;
     }
 
-    public EntityModel<PagedTitlesResponse> toModel(List<TitleEntity> titles, boolean areLinksEnabled, Integer nextPage)
+    @Override
+    public EntityModel<PagedTitlesResponse> toModel(List<TitleEntity> titles, boolean areLinksEnabled, Integer nextPage, Integer pageSize)
     {
         PagedTitlesResponse pagedTitlesResponse = make(titles, areLinksEnabled);
         EntityModel<PagedTitlesResponse> entityModel = EntityModel.of(pagedTitlesResponse);
         if (areLinksEnabled)
         {
             entityModel.add(
-                    linkTo(methodOn(TitlesController.class).all(0, "*/*")).withSelfRel()
+                    linkTo(methodOn(TitlesController.class).all(null, null, null)).withSelfRel()
             );
             if (nextPage != null)
             {
                 entityModel.add(
-                        linkTo(methodOn(TitlesController.class).all(nextPage, "*/*")).withRel("nextPage")
+                        linkTo(methodOn(TitlesController.class).all(String.valueOf(nextPage), String.valueOf(pageSize), null)).withRel("nextPage")
                 );
             }
         }

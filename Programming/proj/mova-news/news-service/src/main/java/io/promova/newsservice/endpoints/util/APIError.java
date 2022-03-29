@@ -91,4 +91,10 @@ public class APIError
         this.message = message;
         this.debugMessage = ex.getMessage();
     }
+
+    public APIError(HttpStatus status, String message, Throwable ex, List<APISubError> errors)
+    {
+        this(status, message, ex);
+        this.subErrors = errors;
+    }
 }

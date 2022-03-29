@@ -5,15 +5,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "cont")
 public class EnvConfig
 {
-    private int pages = 10;
+    private int maxPageSize = 10;
 
-    public int getPages()
+    public int getMaxPageSize()
     {
-        return pages;
+        return maxPageSize;
     }
 
-    public void setPages(int pages)
+    public void setMaxPageSize(int maxPageSize)
     {
-        this.pages = pages;
+        this.maxPageSize = maxPageSize;
     }
 }
