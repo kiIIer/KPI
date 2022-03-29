@@ -1,4 +1,4 @@
-package io.promova.newsservice.endpoints.error;
+package io.promova.newsservice.endpoints.util;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
@@ -6,14 +6,14 @@ import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ApiError
+public class APIError
 {
     private HttpStatus status;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime timestamp;
     private String message;
     private String debugMessage;
-    private List<ApiSubError> subErrors;
+    private List<APISubError> subErrors;
 
     public HttpStatus getStatus()
     {
@@ -55,28 +55,28 @@ public class ApiError
         this.debugMessage = debugMessage;
     }
 
-    public List<ApiSubError> getSubErrors()
+    public List<APISubError> getSubErrors()
     {
         return subErrors;
     }
 
-    public void setSubErrors(List<ApiSubError> subErrors)
+    public void setSubErrors(List<APISubError> subErrors)
     {
         this.subErrors = subErrors;
     }
 
-    private ApiError()
+    private APIError()
     {
         timestamp = LocalDateTime.now();
     }
 
-    public ApiError(HttpStatus status)
+    public APIError(HttpStatus status)
     {
         this();
         this.status = status;
     }
 
-    public ApiError(HttpStatus status, Throwable ex)
+    public APIError(HttpStatus status, Throwable ex)
     {
         this();
         this.status = status;
@@ -84,7 +84,7 @@ public class ApiError
         this.debugMessage = ex.getMessage();
     }
 
-    public ApiError(HttpStatus status, String message, Throwable ex)
+    public APIError(HttpStatus status, String message, Throwable ex)
     {
         this();
         this.status = status;

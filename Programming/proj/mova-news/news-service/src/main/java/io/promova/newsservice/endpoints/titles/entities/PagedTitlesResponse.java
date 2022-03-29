@@ -1,12 +1,13 @@
-package io.promova.newsservice.endpoints.entities;
+package io.promova.newsservice.endpoints.titles.entities;
 
+import io.promova.newsservice.reps.TitleEntity;
 import org.springframework.hateoas.EntityModel;
 
 import java.util.List;
 
-public class ResponseAllTitlesEntity
+public class PagedTitlesResponse
 {
-    private List<EntityModel<TitleEntity>> entityModels;
+    List<EntityModel<TitleEntity>> entityModels;
 
     public List<EntityModel<TitleEntity>> getEntityModels()
     {
@@ -18,12 +19,12 @@ public class ResponseAllTitlesEntity
         this.entityModels = entityModels;
     }
 
-    public ResponseAllTitlesEntity(List<EntityModel<TitleEntity>> entityModels)
+    public PagedTitlesResponse(List<EntityModel<TitleEntity>> entityModels)
     {
         this.entityModels = entityModels;
     }
 
-    public ResponseAllTitlesEntity()
+    public PagedTitlesResponse()
     {
     }
 }
