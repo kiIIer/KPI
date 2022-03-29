@@ -1,0 +1,31 @@
+.creator-main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.creator-card {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.creator-form-field {
+  width: 100%;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+}
+
+.redirect-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

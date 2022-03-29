@@ -31,8 +31,14 @@ export class RestCommunicatorService
     return this.http.get<IArticle>(this.serviceUrl + 'titles/' + id + '/article')
   }
 
-  getPagedTitlesFromLink(link:string): Observable<IPagedTitles>{
+  getPagedTitlesFromLink(link: string): Observable<IPagedTitles>
+  {
     return this.http.get<IPagedTitles>(link)
+  }
+
+  postArticle(article: IArticle): Observable<IArticle>
+  {
+    return this.http.post<IArticle>(this.serviceUrl + 'titles/', article);
   }
 
 }

@@ -21,6 +21,7 @@ import {MatListModule} from "@angular/material/list";
 import {NewsDetailsComponent} from './news-details/news-details.component';
 import {RestCommunicatorService} from "./rest-communicator.service";
 import {HttpClientModule} from "@angular/common/http";
+import { NewsCreatorComponent } from './news-creator/news-creator.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {HttpClientModule} from "@angular/common/http";
     ToolbarComponent,
     NewsDashboardComponent,
     NewsDetailsComponent,
+    NewsCreatorComponent,
   ],
   imports: [
     BrowserModule,
