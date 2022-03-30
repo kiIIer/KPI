@@ -1,4 +1,4 @@
-package io.promova.newsservice.endpoints.titles.exceptions;
+package io.promova.newsservice.endpoints.util.exceptions;
 
 import io.promova.newsservice.endpoints.util.APISubError;
 

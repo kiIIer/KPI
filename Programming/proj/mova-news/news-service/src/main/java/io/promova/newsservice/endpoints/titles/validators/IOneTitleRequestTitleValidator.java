@@ -5,7 +5,7 @@ import io.promova.newsservice.endpoints.util.validators.IValidator;
 
 import java.util.List;
 
-public interface IPageSizeValidator extends IValidator<String>
+public interface IOneTitleRequestTitleValidator extends IValidator<String>
 {
     @Override
     List<APISubError> validate(String object);

@@ -2,6 +2,7 @@ package io.promova.newsservice.endpoints.titles.validators;
 
 import io.promova.newsservice.endpoints.util.APISubError;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IsIntegerValidator implements IIsIntegerValidator
@@ -14,9 +15,9 @@ public class IsIntegerValidator implements IIsIntegerValidator
             Integer.valueOf(object);
         } catch (NumberFormatException exception)
         {
-            return List.of(new APISubError("One or more parameters are not numbers", null));
+            return List.of(new APISubError("Value is not a number", null));
         }
 
-        return List.of();
+        return new ArrayList<>();
     }
 }

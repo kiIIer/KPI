@@ -5,5 +5,5 @@ import org.springframework.hateoas.EntityModel;
 
 public interface ITitleModelAssembler
 {
-    EntityModel<TitleEntity> toModel(TitleEntity title, boolean areLinksEnabled);
+    EntityModel<TitleEntity> toModel(TitleEntity title, boolean areLinksEnabled, Integer pageSize);
 }

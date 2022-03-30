@@ -1,15 +1,18 @@
 package io.promova.newsservice.endpoints.titles;
 
-import io.promova.newsservice.config.EnvConfig;
+import io.promova.newsservice.config.EnviromentalConfig;
 import io.promova.newsservice.endpoints.titles.entities.PagedTitlesResponse;
-import io.promova.newsservice.endpoints.titles.exceptions.InvalidRequestException;
-import io.promova.newsservice.endpoints.titles.exceptions.TitleEntityNotFoundException;
-import io.promova.newsservice.endpoints.titles.tools.IAcceptHeaderProcessor;
+import io.promova.newsservice.endpoints.titles.entities.PostOneTitleRequest;
+import io.promova.newsservice.endpoints.util.exceptions.InvalidRequestException;
+import io.promova.newsservice.endpoints.util.exceptions.EntityNotFoundException;
+import io.promova.newsservice.endpoints.util.tools.IAcceptHeaderProcessor;
 import io.promova.newsservice.endpoints.titles.tools.IPagedTitlesModelAssembler;
+import io.promova.newsservice.endpoints.titles.tools.ITitleEntityCreator;
 import io.promova.newsservice.endpoints.titles.tools.ITitleModelAssembler;
 import io.promova.newsservice.endpoints.titles.tools.util.TitlesAllGetRequest;
-import io.promova.newsservice.endpoints.titles.validators.IIdValidator;
-import io.promova.newsservice.endpoints.titles.validators.IValidator;
+import io.promova.newsservice.endpoints.util.validators.IIdValidator;
+import io.promova.newsservice.endpoints.titles.validators.IOneTitleRequestValidator;
+import io.promova.newsservice.endpoints.util.validators.IValidator;
 import io.promova.newsservice.endpoints.util.APISubError;
 import io.promova.newsservice.reps.ITitleRepository;
 import io.promova.newsservice.reps.TitleEntity;
@@ -18,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,23 +30,25 @@ import java.util.List;
 @RestController
 public class TitlesController
 {
-    private final EnvConfig config;
+    private final EnviromentalConfig config;
     private final IAcceptHeaderProcessor headerProcessor;
     private final ITitleRepository repository;
     private final ITitleModelAssembler modelAssembler;
     private final IPagedTitlesModelAssembler pagedModelAssembler;
     private final IValidator<TitlesAllGetRequest> getAllValidator;
     private final IIdValidator idValidator;
+    private final ITitleEntityCreator titleEntityCreator;
+    private final IOneTitleRequestValidator oneTitleRequestValidator;
 
     public TitlesController(
-            EnvConfig config,
+            EnviromentalConfig config,
             IAcceptHeaderProcessor headerProcessor,
             ITitleRepository repository,
             ITitleModelAssembler modelAssembler,
             IPagedTitlesModelAssembler pagedModelAssembler,
             IValidator<TitlesAllGetRequest> getAllValidator,
-            IIdValidator idValidator
-    )
+            IIdValidator idValidator,
+            ITitleEntityCreator titleEntityCreator, IOneTitleRequestValidator oneTitleRequestValidator)
     {
         this.config = config;
         this.headerProcessor = headerProcessor;
@@ -51,6 +57,8 @@ public class TitlesController
         this.pagedModelAssembler = pagedModelAssembler;
         this.getAllValidator = getAllValidator;
         this.idValidator = idValidator;
+        this.titleEntityCreator = titleEntityCreator;
+        this.oneTitleRequestValidator = oneTitleRequestValidator;
     }
 
     @GetMapping("/titles")
@@ -97,6 +105,56 @@ public class TitlesController
 
     }
 
+    @PostMapping(value = "/titles", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<EntityModel<TitleEntity>> postOne(
+            @RequestHeader("Accept") String acceptHeader,
+            @RequestBody PostOneTitleRequest requestBody
+    )
+    {
+        List<APISubError> errors = oneTitleRequestValidator.validate(requestBody);
+        if (errors.size() != 0)
+        {
+            throw new InvalidRequestException("Body is invalid", errors);
+        }
+        TitleEntity titleEntity = titleEntityCreator.create(requestBody.getTitle());
+        TitleEntity save = repository.save(titleEntity);
+
+        return new ResponseEntity<>(
+                modelAssembler.toModel(save, headerProcessor.areLinksEnables(acceptHeader), config.getMaxPageSize()),
+                HttpStatus.CREATED
+        );
+    }
+
+    @PatchMapping(value = "/titles/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<EntityModel<TitleEntity>> patchOne(
+            @PathVariable String id,
+            @RequestHeader("Accept") String acceptHeader,
+            @RequestBody PostOneTitleRequest requestBody
+    )
+    {
+        List<APISubError> errors = idValidator.validate(id);
+        if (errors.size() != 0)
+        {
+            throw new EntityNotFoundException(id, errors);
+        }
+
+        errors = oneTitleRequestValidator.validate(requestBody);
+        if (errors.size() != 0)
+        {
+            throw new InvalidRequestException("Body is invalid", errors);
+        }
+        TitleEntity titleEntity = repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException(id, List.of(new APISubError("Not found in database"))
+                ));
+        titleEntity.setTitle(requestBody.getTitle());
+        TitleEntity save = repository.save(titleEntity);
+
+        return new ResponseEntity<>(
+                modelAssembler.toModel(save, headerProcessor.areLinksEnables(acceptHeader), config.getMaxPageSize()),
+                HttpStatus.OK
+        );
+    }
+
     @GetMapping("/titles/{id}")
     public ResponseEntity<EntityModel<TitleEntity>> one(
             @PathVariable String id,
@@ -106,13 +164,15 @@ public class TitlesController
         List<APISubError> errors = idValidator.validate(id);
         if (errors.size() != 0)
         {
-            throw new TitleEntityNotFoundException("This title does not exist");
+            throw new EntityNotFoundException(id, errors);
         }
 
-        TitleEntity titleEntity = repository.findById(id).orElseThrow(() -> new TitleEntityNotFoundException(id));
+        TitleEntity titleEntity = repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException(id, List.of(new APISubError("Not found in database"))
+                ));
 
         return new ResponseEntity<>(
-                modelAssembler.toModel(titleEntity, headerProcessor.areLinksEnables(acceptHeader)),
+                modelAssembler.toModel(titleEntity, headerProcessor.areLinksEnables(acceptHeader), config.getMaxPageSize()),
                 HttpStatus.OK
         );
 

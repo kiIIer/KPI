@@ -1,4 +1,4 @@
-package io.promova.newsservice.endpoints.titles.tools;
+package io.promova.newsservice.endpoints.util.tools;
 
 public interface IAcceptHeaderProcessor
 {

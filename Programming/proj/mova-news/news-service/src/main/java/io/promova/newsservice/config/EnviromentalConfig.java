@@ -3,7 +3,7 @@ package io.promova.newsservice.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "cont")
-public class EnvConfig
+public class EnviromentalConfig
 {
     private int maxPageSize = 10;
 

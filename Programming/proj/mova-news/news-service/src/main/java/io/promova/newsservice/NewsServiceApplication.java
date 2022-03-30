@@ -1,13 +1,12 @@
 package io.promova.newsservice;
 
-import io.promova.newsservice.config.EnvConfig;
+import io.promova.newsservice.config.EnviromentalConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
-@EnableConfigurationProperties(EnvConfig.class)
+@EnableConfigurationProperties(EnviromentalConfig.class)
 public class NewsServiceApplication
 {
 

@@ -1,4 +1,4 @@
-package io.promova.newsservice.endpoints.titles.validators;
+package io.promova.newsservice.endpoints.util.validators;
 
 import io.promova.newsservice.endpoints.util.APISubError;
 

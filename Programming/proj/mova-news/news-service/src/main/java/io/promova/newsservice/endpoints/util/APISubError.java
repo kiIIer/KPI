@@ -34,6 +34,11 @@ public class APISubError
         this.subErrors = subErrors;
     }
 
+    public APISubError(String message)
+    {
+        this(message, null);
+    }
+
     public APISubError()
     {
     }

@@ -1,20 +1,16 @@
 package io.promova.newsservice.endpoints.titles;
 
-import io.promova.newsservice.config.EnvConfig;
+import io.promova.newsservice.config.EnviromentalConfig;
 import io.promova.newsservice.endpoints.titles.tools.*;
 import io.promova.newsservice.endpoints.titles.tools.util.TitlesAllGetRequest;
 import io.promova.newsservice.endpoints.titles.validators.*;
+import io.promova.newsservice.endpoints.util.validators.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DIConfig
+public class DITitlesConfig
 {
-    @Bean
-    public IAcceptHeaderProcessor acceptHeaderProcessor()
-    {
-        return new AcceptHeaderProcessor();
-    }
 
     @Bean
     public ITitleModelAssembler titleModelAssembler()
@@ -29,9 +25,15 @@ public class DIConfig
     }
 
     @Bean
-    public IPageSizeValidator pageSizeValidator(EnvConfig envConfig, IIsIntegerValidator isIntegerValidator)
+    public ITitleEntityCreator titleEntityCreator()
     {
-        return new PageSizeValidator(envConfig, isIntegerValidator);
+        return new TitleEntityCreator();
+    }
+
+    @Bean
+    public IPageSizeValidator pageSizeValidator(EnviromentalConfig enviromentalConfig, IIsIntegerValidator isIntegerValidator)
+    {
+        return new PageSizeValidator(enviromentalConfig, isIntegerValidator);
     }
 
     @Bean
@@ -46,15 +48,16 @@ public class DIConfig
         return new TitlesAllGetRequestValidator(pageSizeValidator, pageValidator);
     }
 
+
     @Bean
-    public IIsIntegerValidator isIntegerValidator()
+    public IOneTitleRequestTitleValidator postOneTitleRequestTitleValidator(INotNullValidator notNullValidator)
     {
-        return new IsIntegerValidator();
+        return new OneTitleRequestTitleValidator(notNullValidator);
     }
 
     @Bean
-    public IIdValidator idValidator()
+    public IOneTitleRequestValidator postOneTitleRequestValidator(INotNullValidator notNullValidator, IOneTitleRequestTitleValidator postOneTitleRequestTitleValidator)
     {
-        return new IdValidator();
+        return new OneTitleRequestValidator(notNullValidator, postOneTitleRequestTitleValidator);
     }
 }
