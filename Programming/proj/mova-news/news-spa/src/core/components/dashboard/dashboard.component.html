@@ -1,0 +1,36 @@
+<div class="main-div">
+  <mat-card class="dashboard-card">
+    <!--    <mat-card-actions>-->
+    <!--      <button mat-button>sadfk</button>-->
+    <!--    </mat-card-actions>-->
+    <mat-card-content>
+      <div *ngFor="let story of stories" class="dashboard-row">
+        <a mat-button
+           class="dashboard-link"
+           (click)="openDetails(story!.id)"
+        >{{story!.title}}
+        </a>
+        <button mat-icon-button
+                color="accent"
+                class="dashboard-icon"
+                *ngIf="idAdmin"
+                (click)="openEditor(story!.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button
+                color="warn"
+                class="dashboard-icon"
+                *ngIf="idAdmin"
+                (click)="deleteStory(story!.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <mat-spinner class="dashboard-spinner" *ngIf="loading"></mat-spinner>
+      <button mat-raised-button color="primary" class="dashboard-button"
+              *ngIf="nextPage"
+              (click)="loadMore()">Load more
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

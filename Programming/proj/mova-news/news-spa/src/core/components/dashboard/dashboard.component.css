@@ -1,0 +1,42 @@
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-card {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-row{
+  display: flex;
+}
+
+.dashboard-link {
+  /*display: flex;*/
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.dashboard-icon{
+ /*display: flex;*/
+}
+
+.dashboard-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.dashboard-spinner {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
