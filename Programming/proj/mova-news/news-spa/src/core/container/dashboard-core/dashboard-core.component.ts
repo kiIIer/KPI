@@ -4,7 +4,7 @@ import {loadStories} from "../../store";
 import {asyncScheduler, Observable, of, scheduled} from "rxjs";
 import {selectLoading, selectStoryEntities, selectNextPage} from "../../store/selectors/stories.selector";
 import {AppState} from "../../store/state/app.state";
-import {StoryEntity} from "../../entities/story.entity";
+import {StoryEntity} from "../../models/story.entity";
 import {selectIsAdmin} from "../../store/selectors/user.selector";
 import {Router} from "@angular/router";
 import {go} from "../../store/actions/router.actions";

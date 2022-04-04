@@ -10,4 +10,7 @@
   <mat-card-content>
     {{story!.article}}
   </mat-card-content>
+  <mat-card-footer *ngIf="!story!.article">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
 </mat-card>

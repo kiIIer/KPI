@@ -1,5 +1,5 @@
 import {EntityState} from "@ngrx/entity";
-import {StoryEntity} from "../../entities/story.entity";
+import {StoryEntity} from "../../models/story.entity";
 
 export interface StoriesState
 {
@@ -12,10 +12,8 @@ export interface StoriesState
 export const initialStoriesState: StoriesState =
   {
     news: {
-      ids: ['one'],
-      entities: {
-        ['one']: {id: 'one', title: 'first', article: 'in state', dateCreated: 0}
-      }
+      ids: [],
+      entities: {}
     },
     loading: false,
     loaded: false,

@@ -5,4 +5,4 @@ spring:
     password: root
     hikari:
       connection-test-query: SELECT 1
-      schema: news
+      schema: stories

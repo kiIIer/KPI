@@ -177,4 +177,16 @@ public class TitlesController
         );
 
     }
+
+    @DeleteMapping("/titles/{id}")
+    public ResponseEntity<Object> one(
+            @PathVariable String id
+    )
+    {
+        repository.deleteById(id);
+
+        return new ResponseEntity<>(
+                HttpStatus.NO_CONTENT
+        );
+    }
 }

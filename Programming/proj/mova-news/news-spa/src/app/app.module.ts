@@ -17,6 +17,8 @@ import {DashboardCoreComponent} from "../core/container/dashboard-core/dashboard
 import {userReducer} from "../core/store/reducers/user.reducer";
 import {RouterEffects} from "../core/store/effects/router.effects";
 import {DetailsCoreComponent} from '../core/container/details-core/details-core.component';
+import {StoriesGuard} from "../core/guards/stories.guard";
+import {StoryGuard} from "../core/guards/story.guard";
 
 @NgModule({
   declarations: [
@@ -31,8 +33,8 @@ import {DetailsCoreComponent} from '../core/container/details-core/details-core.
     }),
     RouterModule.forRoot([
       {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardCoreComponent},
-      {path: 'details/:id', component: DetailsCoreComponent},
+      {path: 'dashboard', component: DashboardCoreComponent, canActivate: [StoriesGuard]},
+      {path: 'details/:id', component: DetailsCoreComponent, canActivate: [StoryGuard]},
     ]),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([StoriesEffects, RouterEffects]),

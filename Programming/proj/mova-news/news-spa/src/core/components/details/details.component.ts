@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {StoryEntity} from "../../entities/story.entity";
+import {StoryEntity} from "../../models/story.entity";
 
 @Component({
   selector: 'app-details',

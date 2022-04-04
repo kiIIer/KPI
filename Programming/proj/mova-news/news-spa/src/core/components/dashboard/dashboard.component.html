@@ -1,8 +1,5 @@
 <div class="main-div">
   <mat-card class="dashboard-card">
-    <!--    <mat-card-actions>-->
-    <!--      <button mat-button>sadfk</button>-->
-    <!--    </mat-card-actions>-->
     <mat-card-content>
       <div *ngFor="let story of stories" class="dashboard-row">
         <a mat-button
@@ -26,7 +23,6 @@
         </button>
       </div>
 
-      <mat-spinner class="dashboard-spinner" *ngIf="loading"></mat-spinner>
       <button mat-raised-button color="primary" class="dashboard-button"
               *ngIf="nextPage"
               (click)="loadMore()">Load more
