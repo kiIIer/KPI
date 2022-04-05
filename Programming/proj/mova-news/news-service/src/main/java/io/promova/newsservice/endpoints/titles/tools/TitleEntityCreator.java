@@ -8,6 +8,6 @@ public class TitleEntityCreator implements ITitleEntityCreator
     @Override
     public TitleEntity create(String title)
     {
-        return new TitleEntity(RandomStringUtils.random(10, true, true), title, System.nanoTime());
+        return new TitleEntity(RandomStringUtils.random(10, true, true), title, System.currentTimeMillis());
     }
 }
