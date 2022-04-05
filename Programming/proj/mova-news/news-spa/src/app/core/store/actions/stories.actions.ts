@@ -3,7 +3,7 @@ import { PagedStories } from '../../models/response/PagedStories';
 import { StoryEntity } from '../../models/story.entity';
 
 export const loadStories = createAction('[Stories] Load Stories');
-export const loadNewsSuccesses = createAction(
+export const loadStoriesSuccesses = createAction(
   '[Stories] Load Stories Successes',
   props<{ page: PagedStories }>()
 );

@@ -6,7 +6,7 @@ import {
   deleteStorySuccesses,
   loadArticle,
   loadArticleSuccesses,
-  loadNewsSuccesses,
+  loadStoriesSuccesses,
   loadStories,
   loadStory,
   loadStorySuccesses,
@@ -30,6 +30,7 @@ import { PagedStories } from '../../models/response/PagedStories';
 import { StoryEntity } from '../../models/story.entity';
 import { HttpResponse } from '@angular/common/http';
 import { go } from '../actions/router.actions';
+import { errorNotFound } from '../actions/errors.actions';
 
 @Injectable()
 export class StoriesEffects {
@@ -40,7 +41,12 @@ export class StoriesEffects {
       mergeMap(([_, nextPage]) =>
         this.service.getPagedStories(nextPage!).pipe(
           // tap((page: PagedStories) => (page._links.nextPage = undefined)),
-          map((page: PagedStories) => loadNewsSuccesses({ page: page }))
+          map((response: HttpResponse<PagedStories>) =>
+            response.status == 404
+              ? errorNotFound()
+              : loadStoriesSuccesses({ page: response!.body! })
+          )
+          // map((page: PagedStories) => loadNewsSuccesses({ page: page }))
         )
       )
     );
@@ -53,7 +59,11 @@ export class StoriesEffects {
         this.service
           .getStory(action.id)
           .pipe(
-            map((story: StoryEntity) => loadStorySuccesses({ story: story }))
+            map((response: HttpResponse<StoryEntity>) =>
+              response.status == 404
+                ? errorNotFound()
+                : loadStorySuccesses({ story: response!.body! })
+            )
           )
       )
     );
@@ -63,13 +73,16 @@ export class StoriesEffects {
     return this.actions$.pipe(
       ofType(loadArticle),
       mergeMap((action) =>
-        this.service
-          .getArticle(action.id)
-          .pipe(
-            map((story: StoryEntity) =>
-              loadArticleSuccesses({ article: story.article!, id: story.id })
-            )
+        this.service.getArticle(action.id).pipe(
+          map((response: HttpResponse<StoryEntity>) =>
+            response.status == 404
+              ? errorNotFound
+              : loadArticleSuccesses({
+                  article: response.body!.article!,
+                  id: response.body!.id,
+                })
           )
+        )
       )
     );
   });
@@ -81,7 +94,13 @@ export class StoriesEffects {
         (typeof action.story.id === 'undefined'
           ? this.service.postStory(action.story)
           : this.service.patchStory(action.story)
-        ).pipe(map((story: StoryEntity) => saveStorySuccesses({ story })))
+        ).pipe(
+          map((response: HttpResponse<StoryEntity>) =>
+            response.status != 404
+              ? saveStorySuccesses({ story: response.body! })
+              : errorNotFound()
+          )
+        )
       )
     );
   });

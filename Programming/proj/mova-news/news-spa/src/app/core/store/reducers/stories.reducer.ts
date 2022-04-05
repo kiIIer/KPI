@@ -3,7 +3,7 @@ import { StoriesState, initialStoriesState } from '../state/stories.state';
 import {
   loadStories,
   loadNewsFail,
-  loadNewsSuccesses,
+  loadStoriesSuccesses,
   loadArticleSuccesses,
   loadArticle,
   loadStory,
@@ -21,7 +21,7 @@ export const storiesReducer = createReducer(
     loading: true,
     loaded: false,
   })),
-  on(loadNewsSuccesses, (state: StoriesState, { page }) => ({
+  on(loadStoriesSuccesses, (state: StoriesState, { page }) => ({
     ...state,
     loading: false,
     loaded: true,
@@ -95,7 +95,6 @@ export const storiesReducer = createReducer(
         ...state.news.entities,
         [story.id]: {
           ...(state.news.entities[story.id] as StoryEntity),
-          ...story,
         },
       },
     },

@@ -57,7 +57,7 @@ export class StoryGuard implements CanActivate {
         this.store.select(selectStoryEntity(id)).pipe(
           map((story: StoryEntity | undefined) => ({ story, id })),
           tap(({ story, id }) => {
-            if (typeof story === 'undefined') {
+            if (typeof story === 'undefined' || typeof story.title === 'undefined') {
               this.store.dispatch(loadStory({ id }));
             }
           }),
