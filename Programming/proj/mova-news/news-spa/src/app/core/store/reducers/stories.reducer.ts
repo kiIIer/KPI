@@ -95,6 +95,7 @@ export const storiesReducer = createReducer(
         ...state.news.entities,
         [story.id]: {
           ...(state.news.entities[story.id] as StoryEntity),
+          ...story,
         },
       },
     },
