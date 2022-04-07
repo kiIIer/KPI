@@ -20,6 +20,9 @@ import { EditorComponent } from './components/editor/editor.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ToolbarCoreComponent } from './container/toolbar-core/toolbar-core.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 
 @NgModule({
@@ -29,11 +32,12 @@ import {MatInputModule} from "@angular/material/input";
     DetailsComponent,
     DetailsCoreComponent,
     EditorCoreComponent,
-    EditorComponent
+    EditorComponent,
+    NotFoundComponent,
+    ToolbarCoreComponent,
+    ToolbarComponent,
   ],
-  exports: [
-    DashboardCoreComponent,
-  ],
+  exports: [DashboardCoreComponent, ToolbarCoreComponent, ToolbarComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -50,8 +54,6 @@ import {MatInputModule} from "@angular/material/input";
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-  ]
+  ],
 })
-export class CoreModule
-{
-}
+export class CoreModule {}

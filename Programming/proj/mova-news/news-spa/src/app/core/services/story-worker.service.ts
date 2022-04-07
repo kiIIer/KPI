@@ -25,10 +25,16 @@ export class StoryWorkerService {
     return this.http.get<PagedStories>(url, { observe: 'response' });
   }
 
-  getStory(id: string): Observable<HttpResponse<StoryEntity>> {
-    return this.http.get<StoryEntity>(`${this.restUrl}/titles/${id}`, {
-      observe: 'response',
-    });
+  getTitle(id: string): Observable<HttpResponse<StoryEntity>> {
+    return this.http
+      .get<StoryEntity>(`${this.restUrl}/titles/${id}`, {
+        observe: 'response',
+      })
+      .pipe(
+        catchError((err, source) => {
+          return scheduled([err], asyncScheduler);
+        })
+      );
   }
 
   getArticle(id: string): Observable<HttpResponse<StoryEntity>> {
@@ -38,19 +44,27 @@ export class StoryWorkerService {
   }
 
   postTitle(story: StoryEntity): Observable<HttpResponse<StoryEntity>> {
-    return this.http.post<StoryEntity>(`${this.restUrl}/titles/`, story, {
-      observe: 'response',
-    });
+    return this.http
+      .post<StoryEntity>(`${this.restUrl}/titles/`, story, {
+        observe: 'response',
+      })
+      .pipe(
+        catchError((err, source) => {
+          return scheduled([err], asyncScheduler);
+        })
+      );
   }
 
   postArticle(story: StoryEntity): Observable<HttpResponse<StoryEntity>> {
-    return this.http.post<StoryEntity>(
-      `${this.restUrl}/titles/${story.id}/article`,
-      story,
-      {
+    return this.http
+      .post<StoryEntity>(`${this.restUrl}/titles/${story.id}/article`, story, {
         observe: 'response',
-      }
-    );
+      })
+      .pipe(
+        catchError((err, source) => {
+          return scheduled([err], asyncScheduler);
+        })
+      );
   }
 
   postStory(story: StoryEntity): Observable<HttpResponse<StoryEntity>> {
@@ -60,50 +74,51 @@ export class StoryWorkerService {
       })
       .pipe(
         switchMap((titleResponse: HttpResponse<StoryEntity>) =>
-          titleResponse.status == 201
-            ? this.http
-                .post<StoryEntity>(
-                  `${this.restUrl}/titles/${titleResponse.body!.id}/article`,
-                  story,
-                  { observe: 'response' }
-                )
-                .pipe(
-                  map((articleResponse: HttpResponse<StoryEntity>) =>
-                    articleResponse.status == 201
-                      ? ({
-                          ...titleResponse,
-                          ...articleResponse,
-                          body: {
-                            ...titleResponse.body,
-                            ...articleResponse.body,
-                          },
-                        } as HttpResponse<StoryEntity>)
-                      : articleResponse
-                  )
-                )
-            : scheduled([titleResponse], asyncScheduler)
+          this.http
+            .post<StoryEntity>(
+              `${this.restUrl}/titles/${titleResponse.body!.id}/article`,
+              story,
+              { observe: 'response' }
+            )
+            .pipe(
+              map(
+                (articleResponse: HttpResponse<StoryEntity>) =>
+                  ({
+                    ...titleResponse,
+                    ...articleResponse,
+                    body: {
+                      ...titleResponse.body,
+                      ...articleResponse.body,
+                    },
+                  } as HttpResponse<StoryEntity>)
+              )
+            )
         )
       );
   }
 
   patchTitle(story: StoryEntity): Observable<HttpResponse<StoryEntity>> {
-    return this.http.patch<StoryEntity>(
-      `${this.restUrl}/titles/${story.id}`,
-      story,
-      {
+    return this.http
+      .patch<StoryEntity>(`${this.restUrl}/titles/${story.id}`, story, {
         observe: 'response',
-      }
-    );
+      })
+      .pipe(
+        catchError((err, source) => {
+          return scheduled([err], asyncScheduler);
+        })
+      );
   }
 
   patchArticle(story: StoryEntity): Observable<HttpResponse<StoryEntity>> {
-    return this.http.patch<StoryEntity>(
-      `${this.restUrl}/titles/${story.id}/article`,
-      story,
-      {
+    return this.http
+      .patch<StoryEntity>(`${this.restUrl}/titles/${story.id}/article`, story, {
         observe: 'response',
-      }
-    );
+      })
+      .pipe(
+        catchError((err, source) => {
+          return scheduled([err], asyncScheduler);
+        })
+      );
   }
 
   patchStory(story: StoryEntity): Observable<HttpResponse<StoryEntity>> {
@@ -113,35 +128,44 @@ export class StoryWorkerService {
       })
       .pipe(
         switchMap((titleResponse: HttpResponse<StoryEntity>) =>
-          titleResponse.status == 200
-            ? this.http
-                .patch<StoryEntity>(
-                  `${this.restUrl}/titles/${story.id}/article`,
-                  story,
-                  { observe: 'response' }
-                )
-                .pipe(
-                  map((articleResponse: HttpResponse<StoryEntity>) =>
-                    articleResponse.status == 200
-                      ? ({
-                          ...titleResponse,
-                          ...articleResponse,
-                          body: {
-                            ...titleResponse.body,
-                            ...articleResponse.body,
-                          },
-                        } as HttpResponse<StoryEntity>)
-                      : articleResponse
-                  )
-                )
-            : scheduled([titleResponse], asyncScheduler)
-        )
+          this.http
+            .patch<StoryEntity>(
+              `${this.restUrl}/titles/${story.id}/article`,
+              story,
+              { observe: 'response' }
+            )
+            .pipe(
+              map(
+                (articleResponse: HttpResponse<StoryEntity>) =>
+                  ({
+                    ...titleResponse,
+                    ...articleResponse,
+                    body: {
+                      ...titleResponse.body,
+                      ...articleResponse.body,
+                    },
+                  } as HttpResponse<StoryEntity>)
+              ),
+              catchError((err, source) => {
+                return scheduled([err], asyncScheduler);
+              })
+            )
+        ),
+        catchError((err, source) => {
+          return scheduled([err], asyncScheduler);
+        })
       );
   }
 
   deleteStory(id: string): Observable<HttpResponse<Object>> {
-    return this.http.delete(`${this.restUrl}/titles/${id}`, {
-      observe: 'response',
-    });
+    return this.http
+      .delete(`${this.restUrl}/titles/${id}`, {
+        observe: 'response',
+      })
+      .pipe(
+        catchError((err, source) => {
+          return scheduled([err], asyncScheduler);
+        })
+      );
   }
 }

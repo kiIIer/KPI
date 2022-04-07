@@ -1,6 +1,7 @@
 .main-div {
   display: flex;
   justify-content: center;
+  margin: 10px
   /*max-width: 600px;*/
 }
 
@@ -8,7 +9,7 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 .dashboard-row {

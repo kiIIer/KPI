@@ -1,10 +1,12 @@
 package main
 
-func reverseR(input []rune, start int) string {
-	if start < len(input)-1 {
-		return reverseR(input, start+1) + string(input[start])
+func reverseR(input []rune, start int, end int) string {
+	if start < end {
+		return string(input[end]) + reverseR(input, start+1, end-1) + string(input[start])
+	} else if end == start-1 {
+		return ""
 	} else {
-		return string(input[start])
+		return string(input[end])
 	}
 
 }
@@ -30,7 +32,7 @@ func main() {
 
 	input = []rune{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
 
-	println(reverseR(input, 0))
+	println(reverseR(input, 0, len(input)-1))
 	println(reverseI(input))
-	println(comp(200, 2))
+	println(comp(5, 4))
 }

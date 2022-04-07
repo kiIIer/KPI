@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="my-toolbar">
+  <a mat-button (click)="goHome()">Mova news</a>
+  <form class="my-form">
+    <mat-form-field class="full-width">
+      <mat-label>Search</mat-label>
+      <input matInput
+             placeholder="Something interesting">
+    </mat-form-field>
+  </form>
+  <button mat-icon-button
+          class="loginButton"
+          *ngIf="isLogined == false"
+          (click)="logIn()">
+    <mat-icon>login</mat-icon>
+  </button>
+  <button mat-icon-button
+          class="account-button"
+          *ngIf="isLogined == true"
+          [matMenuTriggerFor]="menu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item
+            (click)="logOut()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-menu>
+</mat-toolbar>

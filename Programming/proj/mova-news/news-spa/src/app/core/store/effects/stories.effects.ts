@@ -14,10 +14,12 @@ import {
   saveStorySuccesses,
 } from '../actions';
 import {
+  asyncScheduler,
   catchError,
   map,
   mergeMap,
   of,
+  scheduled,
   switchMap,
   tap,
   withLatestFrom,
@@ -57,7 +59,7 @@ export class StoriesEffects {
       ofType(loadStory),
       mergeMap((action) =>
         this.service
-          .getStory(action.id)
+          .getTitle(action.id)
           .pipe(
             map((response: HttpResponse<StoryEntity>) =>
               response.status == 404

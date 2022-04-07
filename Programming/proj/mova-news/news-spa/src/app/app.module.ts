@@ -17,6 +17,12 @@ import { DetailsCoreComponent } from './core/container/details-core/details-core
 import { StoriesGuard } from './core/guards/stories.guard';
 import { StoryGuard } from './core/guards/story.guard';
 import { EditorCoreComponent } from './core/container/editor-core/editor-core.component';
+import { effects } from './core/store/effects';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthGuard } from './core/guards/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,17 +45,25 @@ import { EditorCoreComponent } from './core/container/editor-core/editor-core.co
         component: DetailsCoreComponent,
         canActivate: [StoryGuard],
       },
-      { path: 'editor/new', component: EditorCoreComponent },
+      {
+        path: 'editor/new',
+        component: EditorCoreComponent,
+        canActivate: [AuthGuard],
+      },
       {
         path: 'editor/:id',
         component: EditorCoreComponent,
-        canActivate: [StoryGuard],
+        canActivate: [StoryGuard, AuthGuard],
       },
+      { path: 'not-found', component: NotFoundComponent },
     ]),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([StoriesEffects, RouterEffects]),
+    EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument(),
     CoreModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [],
   exports: [],
