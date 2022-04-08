@@ -21,14 +21,14 @@ public class TableMathController
         this.matrixFormer = matrixFormer;
     }
 
-    @PostMapping
+    @PostMapping("/table-math")
     public ResponseEntity<EntityModel<Matrix>> solve(
             @RequestBody SolveRequestModel request
     )
     {
-        Matrix matrix = new Matrix();
+        Matrix matrix = new Matrix(request.getParamA().getIters(), request.getParamB().getIters());
         matrixFormer.form(matrix, request.getParamA(), request.getParamB());
         EntityModel<Matrix> entityModel = EntityModel.of(matrix);
-        return new ResponseEntity<EntityModel<Matrix>>(HttpStatus.OK, entityModel);
+        return new ResponseEntity<EntityModel<Matrix>>(entityModel, HttpStatus.OK);
     }
 }

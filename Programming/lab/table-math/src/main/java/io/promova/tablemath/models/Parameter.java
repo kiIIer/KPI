@@ -47,6 +47,11 @@ public class Parameter
         this.step = step;
     }
 
+    public int getIters()
+    {
+        return (int) ((upperBound - lowerBound) / step);
+    }
+
     public Parameter(String name, long lowerBound, long upperBound, long step)
     {
         this.name = name;
