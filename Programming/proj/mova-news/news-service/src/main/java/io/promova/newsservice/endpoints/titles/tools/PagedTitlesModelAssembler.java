@@ -21,21 +21,16 @@ public class PagedTitlesModelAssembler implements IPagedTitlesModelAssembler
     }
 
     @Override
-    public EntityModel<PagedTitlesResponse> toModel(List<TitleEntity> titles, boolean areLinksEnabled, Integer nextPage, Integer pageSize)
+    public EntityModel<PagedTitlesResponse> toModel(List<TitleEntity> titles, boolean areLinksEnabled, Integer nextPage, Integer pageSize, String acceptHeader)
     {
         PagedTitlesResponse pagedTitlesResponse = make(titles, areLinksEnabled, pageSize);
         EntityModel<PagedTitlesResponse> entityModel = EntityModel.of(pagedTitlesResponse);
-        if (areLinksEnabled)
+
+        if (nextPage != null)
         {
             entityModel.add(
-                    linkTo(methodOn(TitlesController.class).all("0", String.valueOf(pageSize), MediaType.ALL_VALUE)).withSelfRel()
+                    linkTo(methodOn(TitlesController.class).all(String.valueOf(nextPage), String.valueOf(pageSize), "", acceptHeader)).withRel("nextPage")
             );
-            if (nextPage != null)
-            {
-                entityModel.add(
-                        linkTo(methodOn(TitlesController.class).all(String.valueOf(nextPage), String.valueOf(pageSize), MediaType.ALL_VALUE)).withRel("nextPage")
-                );
-            }
         }
         return entityModel;
     }

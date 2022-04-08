@@ -36,4 +36,8 @@ export class ToolbarCoreComponent implements OnInit {
   onLogOut() {
     this.store.dispatch(logOut());
   }
+
+  onSearch(q: string) {
+    console.log(q);
+  }
 }

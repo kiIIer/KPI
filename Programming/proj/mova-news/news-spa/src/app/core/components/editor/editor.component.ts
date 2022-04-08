@@ -34,8 +34,10 @@ export class EditorComponent implements OnInit {
   }
 
   submit() {
+    if (!this.storyForm!.valid) {
+      return;
+    }
     this.story = { ...this.story, ...(this.storyForm!.value as StoryEntity) };
-    console.log(this.story);
     this.save.emit(this.story);
   }
 }

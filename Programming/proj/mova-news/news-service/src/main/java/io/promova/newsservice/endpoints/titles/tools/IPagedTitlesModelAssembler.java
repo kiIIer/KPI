@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IPagedTitlesModelAssembler
 {
-    EntityModel<PagedTitlesResponse> toModel(List<TitleEntity> titles, boolean areLinksEnabled, Integer nextPage, Integer pageSize);
+    EntityModel<PagedTitlesResponse> toModel(List<TitleEntity> titles, boolean areLinksEnabled, Integer nextPage, Integer pageSize, String acceptHeader);
 }

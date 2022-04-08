@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,10 +12,17 @@ export class ToolbarComponent implements OnInit {
   @Output() goHomeEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() logInEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() logOutEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() {}
+  searchForm: FormGroup = new FormGroup({});
 
-  ngOnInit(): void {}
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.searchForm = this.formBuilder.group({
+      ['q']: [null, null],
+    });
+  }
 
   goHome() {
     this.goHomeEvent.emit();
@@ -26,5 +34,12 @@ export class ToolbarComponent implements OnInit {
 
   logOut() {
     this.logOutEvent.emit();
+  }
+
+  search() {
+    if (!this.searchForm.valid) {
+      return;
+    }
+    this.searchEvent.emit(this.searchForm.value as string);
   }
 }

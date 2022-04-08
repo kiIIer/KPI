@@ -22,7 +22,7 @@ public class TitleModelAssembler implements ITitleModelAssembler
                 ? EntityModel.of(
                 title,
                 linkTo(methodOn(TitlesController.class).one(title.getId(), MediaType.ALL_VALUE)).withSelfRel(),
-                linkTo(methodOn(TitlesController.class).all("0", String.valueOf(pageSize), MediaType.ALL_VALUE)).withRel("all"),
+                linkTo(methodOn(TitlesController.class).all("0", String.valueOf(pageSize), "", MediaType.ALL_VALUE)).withRel("all"),
                 linkTo(methodOn(ArticlesController.class).one(title.getId(), MediaType.ALL_VALUE)).withRel("article")
         )
                 : EntityModel.of(title);

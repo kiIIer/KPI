@@ -1,11 +1,18 @@
 <mat-toolbar color="primary" class="my-toolbar">
   <a mat-button (click)="goHome()">Mova news</a>
-  <form class="my-form">
+  <form class="my-form"
+        (submit)="search()"
+        [formGroup]="searchForm">
     <mat-form-field class="full-width">
       <mat-label>Search</mat-label>
       <input matInput
+             formControlName="q"
              placeholder="Something interesting">
     </mat-form-field>
+    <button mat-icon-button
+            type="submit">
+      <mat-icon>search</mat-icon>
+    </button>
   </form>
   <button mat-icon-button
           class="loginButton"

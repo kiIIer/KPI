@@ -26,6 +26,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class TitlesController
@@ -65,6 +66,7 @@ public class TitlesController
     public ResponseEntity<EntityModel<PagedTitlesResponse>> all(
             @RequestParam(required = false) String page,
             @RequestParam(required = false) String pageSize,
+            @RequestParam(required = false, defaultValue = "") String q,
             @RequestHeader("Accept") String acceptHeader
     )
     {
@@ -81,13 +83,9 @@ public class TitlesController
         int pageNumber = Integer.parseInt(page);
         int pageSizeNumber = Integer.parseInt(pageSize);
 
-        Page<TitleEntity> currentPage = repository.findAll(
-                PageRequest.of(
-                        pageNumber,
-                        pageSizeNumber,
-                        Sort.by("dateCreated").descending()
-                )
-        );
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSizeNumber, Sort.by(Objects.equals(q, "") ? "dateCreated" : "date_created").descending());
+
+        Page<TitleEntity> currentPage = Objects.equals(q, "") ? repository.findAll(pageRequest) : repository.search(q, pageRequest);
 
         List<TitleEntity> titleEntities = currentPage.getContent();
 
@@ -98,7 +96,8 @@ public class TitlesController
                         titleEntities,
                         headerProcessor.areLinksEnables(request.getAcceptHeader()),
                         nextPage,
-                        pageSizeNumber
+                        pageSizeNumber,
+                        acceptHeader
                 ),
                 HttpStatus.OK
         );
