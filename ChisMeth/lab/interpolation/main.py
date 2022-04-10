@@ -63,15 +63,17 @@ def f(x):
 x = np.linspace(np.pi / 8, np.pi / 2, 100)
 
 # first set
-xd = [np.pi / 8, np.pi / 4, 3 * np.pi / 8, np.pi / 2]
-yd = [np.cos(np.pi / 8) / np.sin(np.pi / 8), np.cos(np.pi / 4) / np.sin(np.pi / 4),
-      np.cos(3 * np.pi / 8) / np.sin(3 * np.pi / 8), np.cos(np.pi / 2) / np.sin(np.pi / 2)]
+# xd = [np.pi / 8, np.pi / 4, 3 * np.pi / 8, np.pi / 2]
+# yd = [np.cos(np.pi / 8) / np.sin(np.pi / 8), np.cos(np.pi / 4) / np.sin(np.pi / 4),
+#       np.cos(3 * np.pi / 8) / np.sin(3 * np.pi / 8), np.cos(np.pi / 2) / np.sin(np.pi / 2)]
 
 # # second set
-# xd = [np.pi / 8, 5 * np.pi / 16, 3 * np.pi / 8, np.pi / 2]
-# yd = [np.sqrt(2) + 1, 0.668179, np.sqrt(2) - 1, 0]
+xd = [np.pi / 8, 5 * np.pi / 16, 3 * np.pi / 8, np.pi / 2]
+yd = [np.sqrt(2) + 1, 0.668179, np.sqrt(2) - 1, 0]
 #
 plt.plot(x, interpolatedFLag(x, xd, yd))
 plt.plot(x, interpolatedFNew(x, xd, yd, len(xd)))
 plt.plot(x, f(x), 'r')
 plt.show()
+
+print(f(np.pi/3)-interpolatedFLag(np.pi/3, xd, yd))
