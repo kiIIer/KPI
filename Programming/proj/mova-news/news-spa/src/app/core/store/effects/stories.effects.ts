@@ -42,7 +42,7 @@ export class StoriesEffects {
       withLatestFrom(this.store.select(selectNextPage)),
       mergeMap(([_, nextPage]) =>
         this.service.getPagedStories(nextPage!).pipe(
-          // tap((page: PagedStories) => (page._links.nextPage = undefined)),
+          // tap((a) => console.log(a)),
           map((response: HttpResponse<PagedStories>) =>
             response.status == 404
               ? errorNotFound()

@@ -26,7 +26,7 @@ export const storiesReducer = createReducer(
     loading: false,
     loaded: true,
     nextPage:
-      typeof page._links.nextPage === 'undefined'
+      typeof page._links === 'undefined'
         ? undefined
         : page._links.nextPage.href,
     news: {
