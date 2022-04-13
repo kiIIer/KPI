@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98dc5b0d-2657-4cd3-9e0c-c7a270f58870" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/dashboard/dashboard.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/dashboard/dashboard.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/details/details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/details/details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/details/details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/details/details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/editor/editor.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/editor/editor.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/editor/editor.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/components/editor/editor.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/core.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/services/story-worker.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/services/story-worker.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/actions/user.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/actions/user.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/effects/stories.effects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/effects/stories.effects.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/reducers/user.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/reducers/user.reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/selectors/user.selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/selectors/user.selector.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/state/user.state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/app/core/store/state/user.state.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Programming/proj/mova-news/news-spa/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab2.go" beforeDir="false" afterPath="$PROJECT_DIR$/lab2.go" afterDir="false" />
-    </list>
+    <list default="true" id="98dc5b0d-2657-4cd3-9e0c-c7a270f58870" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
