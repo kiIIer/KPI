@@ -1,22 +1,25 @@
 package sorters
 
-func QuickSort(input []int) []int {
-	array := make([]int, len(input))
-	array = append(array, input...)
-	return conquer(array, 0, len(array)-1)
+type QuickSorter struct {
 }
 
-func conquer(array []int, low, high int) []int {
+func (sorter QuickSorter) Sort(input []int) []int {
+	array := make([]int, len(input))
+	copy(array, input)
+	return sorter.conquer(array, 0, len(array)-1)
+}
+
+func (sorter QuickSorter) conquer(array []int, low, high int) []int {
 	if low < high {
 		var p int
-		array, p = divide(array, low, high)
-		array = conquer(array, low, p-1)
-		array = conquer(array, p+1, high)
+		array, p = sorter.divide(array, low, high)
+		array = sorter.conquer(array, low, p-1)
+		array = sorter.conquer(array, p+1, high)
 	}
 	return array
 }
 
-func divide(array []int, low, high int) ([]int, int) {
+func (sorter QuickSorter) divide(array []int, low, high int) ([]int, int) {
 	conqueror := array[high]
 	i := low
 	for j := low; j < high; j++ {

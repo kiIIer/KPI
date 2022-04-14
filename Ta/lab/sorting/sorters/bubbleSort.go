@@ -1,8 +1,11 @@
 package sorters
 
-func BubbleSort(input []int) []int {
+type BubbleSorter struct {
+}
+
+func (sorter BubbleSorter) Sort(input []int) []int {
 	array := make([]int, len(input))
-	array = append(array, input...)
+	copy(array, input)
 	for i := 0; i < len(input); i++ {
 		for j := i; j < len(input); j++ {
 			if array[i] > array[j] {

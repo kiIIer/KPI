@@ -4,8 +4,14 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 */
 package main
 
-import "sorting/cmd"
+import (
+	"fmt"
+	"sorting/sorters"
+)
 
 func main() {
-	cmd.Execute()
+	something := []int{1}
+	sorter := sorters.MergeSorter{}
+	fmt.Println(sorter.Sort(something))
+	//cmd.Execute()
 }
