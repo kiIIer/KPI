@@ -11,10 +11,10 @@ func (sorter QuickSorter) Sort(input []int) []int {
 
 func (sorter QuickSorter) conquer(array []int, low, high int) []int {
 	if low < high {
-		var p int
-		array, p = sorter.divide(array, low, high)
-		array = sorter.conquer(array, low, p-1)
-		array = sorter.conquer(array, p+1, high)
+		var conqueror int
+		array, conqueror = sorter.divide(array, low, high)
+		array = sorter.conquer(array, low, conqueror-1)
+		array = sorter.conquer(array, conqueror+1, high)
 	}
 	return array
 }

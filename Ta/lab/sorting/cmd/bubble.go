@@ -1,38 +1,30 @@
-/*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"sorting/sorters"
 )
 
-// bubbleCmd represents the bubble command
 var bubbleCmd = &cobra.Command{
 	Use:   "bubble",
-	Short: "Eto je buble gum",
-	Long:  `This command uses bubble sorting algorithm on provided array`,
-	Run: func(cmd *cobra.Command, args []string) {
+	Short: "Sorts provided array with good old bubble sort",
+	Long: `Applies basic bubble sorting algorithm on provided array.
 
+Worst case performance O( n^2 ), 
+best case performance O( n ),
+on average O( n^2 ).
+Compares and swaps 2 elements in double loop`,
+	Run: func(cmd *cobra.Command, args []string) {
+		result, err := BaseRun(Settings{sorter: new(sorters.BubbleSorter), args: args, cmd: cmd})
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(result)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(bubbleCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// bubbleCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// bubbleCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-}
-
-func applySort(input []int) {
-	fmt.Println("sorting...")
 }
