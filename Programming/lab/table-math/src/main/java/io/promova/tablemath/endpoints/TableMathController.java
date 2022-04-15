@@ -1,14 +1,17 @@
 package io.promova.tablemath.endpoints;
 
 import io.promova.tablemath.endpoints.tools.IMatrixFormer;
-import io.promova.tablemath.models.Matrix;
 import io.promova.tablemath.models.SolveRequestModel;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.hateoas.EntityModel;
+
+import java.util.Collections;
+import java.util.List;
 
 
 @RestController
@@ -22,13 +25,11 @@ public class TableMathController
     }
 
     @PostMapping("/table-math")
-    public ResponseEntity<EntityModel<Matrix>> solve(
+    public ResponseEntity<CollectionModel<List<List<Long>>>> solve(
             @RequestBody SolveRequestModel request
     )
     {
-        Matrix matrix = new Matrix(request.getParamA().getIters(), request.getParamB().getIters());
-        matrixFormer.form(matrix, request.getParamA(), request.getParamB());
-        EntityModel<Matrix> entityModel = EntityModel.of(matrix);
-        return new ResponseEntity<EntityModel<Matrix>>(entityModel, HttpStatus.OK);
+        CollectionModel<List<List<Long>>> collectionModel = CollectionModel.of(Collections.singleton(this.matrixFormer.form(request.getParamA(), request.getParamB())));
+        return new ResponseEntity<>(collectionModel, HttpStatus.OK);
     }
 }

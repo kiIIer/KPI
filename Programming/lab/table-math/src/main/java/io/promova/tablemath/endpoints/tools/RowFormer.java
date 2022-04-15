@@ -22,10 +22,9 @@ public class RowFormer implements Runnable
     @Override
     public void run()
     {
-        int index = 0;
-        for (long i = paramB.getLowerBound(); i < paramB.getUpperBound(); i += paramB.getStep(), index++)
+        for (int i = 0; i < paramB.getIterations(); i++)
         {
-            resultSheet.set(index, formulaSolver.solve(staticParamA, i));
+            resultSheet.set(i, formulaSolver.solve(staticParamA, paramB.getValue(i)));
         }
         Thread.yield();
     }

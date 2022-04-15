@@ -5,9 +5,7 @@ import org.springframework.lang.NonNull;
 
 public class SolveRequestModel
 {
-    @NonNull
     private Parameter paramA;
-    @NonNull
     private Parameter paramB;
 
     public Parameter getParamA()

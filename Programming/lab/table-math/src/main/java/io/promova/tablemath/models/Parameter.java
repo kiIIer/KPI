@@ -2,20 +2,9 @@ package io.promova.tablemath.models;
 
 public class Parameter
 {
-    private String name;
     private long lowerBound;
     private long upperBound;
     private long step;
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
 
     public long getLowerBound()
     {
@@ -47,14 +36,18 @@ public class Parameter
         this.step = step;
     }
 
-    public int getIters()
+    public int getIterations()
     {
         return (int) ((upperBound - lowerBound) / step);
     }
 
-    public Parameter(String name, long lowerBound, long upperBound, long step)
+    public long getValue(int i)
     {
-        this.name = name;
+        return lowerBound + step * i;
+    }
+
+    public Parameter(long lowerBound, long upperBound, long step)
+    {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
         this.step = step;
