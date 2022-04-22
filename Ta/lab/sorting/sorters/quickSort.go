@@ -3,13 +3,17 @@ package sorters
 type QuickSorter struct {
 }
 
-func (sorter QuickSorter) Sort(input []int) []int {
+
+func (sorter *QuickSorter) Sort(input []int) []int {
+
 	array := make([]int, len(input))
 	copy(array, input)
 	return sorter.conquer(array, 0, len(array)-1)
 }
 
-func (sorter QuickSorter) conquer(array []int, low, high int) []int {
+
+func (sorter *QuickSorter) conquer(array []int, low, high int) []int {
+
 	if low < high {
 		var conqueror int
 		array, conqueror = sorter.divide(array, low, high)
@@ -19,7 +23,9 @@ func (sorter QuickSorter) conquer(array []int, low, high int) []int {
 	return array
 }
 
-func (sorter QuickSorter) divide(array []int, low, high int) ([]int, int) {
+
+func (sorter *QuickSorter) divide(array []int, low, high int) ([]int, int) {
+
 	conqueror := array[high]
 	i := low
 	for j := low; j < high; j++ {
