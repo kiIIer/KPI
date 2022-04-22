@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"fmt"
+	"sorting/sorters"
 
 	"github.com/spf13/cobra"
 )
@@ -55,7 +56,12 @@ THE ANCIENT ONE HAS HONORED US WITH HIS PRESENCE!!!
 THE CONCURRENT BEAST, THE QUICKSORT!!!!!!!!!
 ALL BOW BEFORE HIM AND ACCEPT THE SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("super called")
+		result, err := BaseRun(Settings{sorter: new(sorters.SuperSorter), args: args, cmd: cmd})
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(result)
 	},
 }
 
