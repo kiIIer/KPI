@@ -4,7 +4,8 @@ import io.promova.multicube.tools.util.APISubError;
 
 import java.util.List;
 
-public interface IValidator<V>
+public interface INullValidator extends IValidator<Object>
 {
-    List<APISubError> validate(V object);
+    @Override
+    List<APISubError> validate(Object object);
 }

@@ -1,8 +1,10 @@
 package io.promova.multicube.calculators.operation;
 
+import io.promova.multicube.calculators.OperationsMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,22 +12,14 @@ import java.util.Map;
 public class DIOperations
 {
     @Bean
-    IOperationProvider operationProvider(
-            IAdd add
+    OperationsMap operationMap(
+            IAdd add,
+            ISubtract subtract
     )
     {
-        return new OperationProvider(
-                add
-        );
-    }
-
-    @Bean
-    Map<String, IOperation> operationMap(
-            IAdd add
-    )
-    {
-        Map<String, IOperation> map = new HashMap<>();
+        OperationsMap map = new OperationsMap();
         map.put(add.getSymbol(), add);
+        map.put(subtract.getSymbol(), subtract);
 
         return map;
     }
@@ -34,5 +28,11 @@ public class DIOperations
     IAdd add()
     {
         return new Add();
+    }
+
+    @Bean
+    ISubtract subtract()
+    {
+        return new Subtract();
     }
 }

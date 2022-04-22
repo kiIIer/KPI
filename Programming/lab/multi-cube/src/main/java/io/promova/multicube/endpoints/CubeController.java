@@ -1,15 +1,15 @@
 package io.promova.multicube.endpoints;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import io.promova.multicube.calculators.ITranslator;
 import io.promova.multicube.models.Dimension;
 import io.promova.multicube.models.HypercubeRequest;
-import io.promova.multicube.models.Parameter;
 import io.promova.multicube.tools.DimensionBuilder;
 import io.promova.multicube.tools.IDimensionBuilderFactory;
 import io.promova.multicube.tools.Terminator;
+import io.promova.multicube.tools.util.APISubError;
 import io.promova.multicube.tools.util.DimensionBuilderConfig;
-import org.apache.tomcat.jni.Time;
+import io.promova.multicube.tools.util.InvalidRequestException;
+import io.promova.multicube.tools.validators.IHypercubeRequestValidator;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,14 +22,17 @@ public class CubeController
 {
     private final ITranslator translator;
     private final IDimensionBuilderFactory dimensionBuilderFactory;
+    private final IHypercubeRequestValidator requestValidator;
 
     public CubeController(
             ITranslator translator,
-            IDimensionBuilderFactory dimensionBuilderFactory
+            IDimensionBuilderFactory dimensionBuilderFactory,
+            IHypercubeRequestValidator requestValidator
     )
     {
         this.translator = translator;
         this.dimensionBuilderFactory = dimensionBuilderFactory;
+        this.requestValidator = requestValidator;
     }
 
     @PostMapping("/hypercube")
@@ -37,6 +40,11 @@ public class CubeController
             @RequestBody HypercubeRequest request
     )
     {
+        List<APISubError> errors = requestValidator.validate(request);
+        if (errors.size() != 0)
+        {
+            throw new InvalidRequestException(errors);
+        }
         ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         Semaphore semaphore = new Semaphore(Integer.MAX_VALUE);
         try

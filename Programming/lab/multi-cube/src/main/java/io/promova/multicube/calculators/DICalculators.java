@@ -1,7 +1,6 @@
 package io.promova.multicube.calculators;
 
 import io.promova.multicube.calculators.operation.IOperation;
-import io.promova.multicube.calculators.operation.IOperationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,8 +17,7 @@ public class DICalculators
 
     @Bean
     public ITranslator translator(
-            IOperationProvider operationProvider,
-            Map<String, IOperation> operations
+            OperationsMap operations
     )
     {
         return new Translator(operations);

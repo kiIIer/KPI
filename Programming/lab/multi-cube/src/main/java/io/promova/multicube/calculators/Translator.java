@@ -1,7 +1,6 @@
 package io.promova.multicube.calculators;
 
 import io.promova.multicube.calculators.operation.IOperation;
-import io.promova.multicube.calculators.operation.IOperationProvider;
 import io.promova.multicube.tools.util.Counter;
 
 import java.util.LinkedList;
@@ -10,15 +9,12 @@ import java.util.Map;
 
 public class Translator implements ITranslator
 {
-    //    private final IOperationProvider provider;
-    private final Map<String, IOperation> operations;
+    private final OperationsMap operations;
 
     public Translator(
-//            IOperationProvider provider,
-            Map<String, IOperation> operations
+            OperationsMap operations
     )
     {
-//        this.provider = provider;
         this.operations = operations;
     }
 
