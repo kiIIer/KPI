@@ -1,11 +1,11 @@
 package io.promova.multicube.calculators.operation;
 
-public class Add implements IAdd
+public class Subtract implements ISubtract
 {
     @Override
     public double execute(double[] operands)
     {
-        return operands[0] + operands[1];
+        return operands[0]-operands[1];
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Add implements IAdd
     @Override
     public String getSymbol()
     {
-        return "+";
+        return "-";
     }
 }

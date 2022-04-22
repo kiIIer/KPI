@@ -7,4 +7,7 @@ public interface IAdd extends IOperation
 
     @Override
     int getNumberOfParams();
+
+    @Override
+    String getSymbol();
 }
