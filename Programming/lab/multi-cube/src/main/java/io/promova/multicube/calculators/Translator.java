@@ -6,33 +6,37 @@ import io.promova.multicube.tools.util.Counter;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class Translator implements ITranslator
 {
-    private final IOperationProvider provider;
+    //    private final IOperationProvider provider;
+    private final Map<String, IOperation> operations;
 
     public Translator(
-            IOperationProvider provider
+//            IOperationProvider provider,
+            Map<String, IOperation> operations
     )
     {
-        this.provider = provider;
+//        this.provider = provider;
+        this.operations = operations;
     }
 
     @Override
-    public IFormula translate(String polish)
+    public Formula translate(String polish)
     {
         Counter counter = new Counter();
         String[] math = polish.split(" ");
         return crawler(math, counter);
     }
 
-    private IFormula crawler(String[] math, Counter counter)
+    private Formula crawler(String[] math, Counter counter)
     {
-        IFormula formula = new Formula();
+        Formula formula = new Formula();
         String currentElement = math[counter.getCounter()];
         counter.increment();
 
-        IOperation operation = provider.getOperation(currentElement);
+        IOperation operation = operations.get(currentElement);
 
         if (operation == null)
         {
@@ -47,13 +51,13 @@ public class Translator implements ITranslator
         }
 
         formula.setOperation(operation);
-        List<IFormula> list = new LinkedList<IFormula>();
+        List<Formula> list = new LinkedList<Formula>();
 
         for (int i = 0; i < formula.getOperation().getNumberOfParams(); i++)
         {
             list.add(crawler(math, counter));
         }
-        formula.setFormulas(list.toArray(new IFormula[]{}));
+        formula.setFormulas(list.toArray(new Formula[]{}));
         return formula;
     }
 

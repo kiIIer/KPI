@@ -6,6 +6,7 @@ import io.promova.multicube.models.Dimension;
 import io.promova.multicube.models.HypercubeRequest;
 import io.promova.multicube.models.Parameter;
 import io.promova.multicube.tools.DimensionBuilder;
+import io.promova.multicube.tools.IDimensionBuilderFactory;
 import io.promova.multicube.tools.Terminator;
 import io.promova.multicube.tools.util.DimensionBuilderConfig;
 import org.apache.tomcat.jni.Time;
@@ -20,10 +21,15 @@ import java.util.concurrent.*;
 public class CubeController
 {
     private final ITranslator translator;
+    private final IDimensionBuilderFactory dimensionBuilderFactory;
 
-    public CubeController(ITranslator translator)
+    public CubeController(
+            ITranslator translator,
+            IDimensionBuilderFactory dimensionBuilderFactory
+    )
     {
         this.translator = translator;
+        this.dimensionBuilderFactory = dimensionBuilderFactory;
     }
 
     @PostMapping("/hypercube")
@@ -43,7 +49,7 @@ public class CubeController
         executorService.execute(new Terminator(semaphore, executorService));
 
         Dimension topLvl = new Dimension();
-        DimensionBuilder builder = new DimensionBuilder(new DimensionBuilderConfig(
+        DimensionBuilder builder = dimensionBuilderFactory.create(new DimensionBuilderConfig(
                 0,
                 request.getParameters(),
                 topLvl,

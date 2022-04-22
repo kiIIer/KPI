@@ -1,6 +1,6 @@
 package io.promova.multicube.tools.util;
 
-import io.promova.multicube.calculators.IFormula;
+import io.promova.multicube.calculators.Formula;
 import io.promova.multicube.models.Dimension;
 import io.promova.multicube.models.Parameter;
 
@@ -17,7 +17,7 @@ public class DimensionBuilderConfig
     public ExecutorService executorService;
     public Semaphore semaphore;
     public Map<String, Integer> coefficientMap;
-    public IFormula formula;
+    public Formula formula;
 
     public DimensionBuilderConfig(
             int dimension,
@@ -26,7 +26,7 @@ public class DimensionBuilderConfig
             ExecutorService executorService,
             Semaphore semaphore,
             Map<String, Integer> coefficientMap,
-            IFormula formula)
+            Formula formula)
     {
         this.dimension = dimension;
         this.parameters = parameters;

@@ -2,5 +2,5 @@ package io.promova.multicube.calculators;
 
 public interface ITranslator
 {
-    IFormula translate(String polish);
+    Formula translate(String polish);
 }

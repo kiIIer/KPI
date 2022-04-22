@@ -1,5 +1,6 @@
 package io.promova.multicube.tools;
 
+import io.promova.multicube.calculators.IFormulaCrawler;
 import io.promova.multicube.models.Dimension;
 import io.promova.multicube.models.Parameter;
 import io.promova.multicube.tools.util.DimensionBuilderConfig;
@@ -14,10 +15,18 @@ import java.util.concurrent.Semaphore;
 public class DimensionBuilder implements Runnable
 {
     private final DimensionBuilderConfig config;
+    private final IFormulaCrawler formulaCrawler;
+    private final IDimensionBuilderFactory dimensionBuilderFactory;
 
-    public DimensionBuilder(DimensionBuilderConfig config)
+    public DimensionBuilder(
+            DimensionBuilderConfig config,
+            IFormulaCrawler formulaCrawler,
+            IDimensionBuilderFactory dimensionBuilderFactory
+    )
     {
         this.config = config;
+        this.formulaCrawler = formulaCrawler;
+        this.dimensionBuilderFactory = dimensionBuilderFactory;
     }
 
     @Override
@@ -34,7 +43,7 @@ public class DimensionBuilder implements Runnable
                                     .get(parameter.getName())
                     )
             ));
-            config.myDimension.setValue(config.formula.compute(paramValues));
+            config.myDimension.setValue(formulaCrawler.compute(config.formula, paramValues));
             config.semaphore.release();
             return;
         }
@@ -55,7 +64,7 @@ public class DimensionBuilder implements Runnable
             {
                 e.printStackTrace();
             }
-            DimensionBuilder builder = new DimensionBuilder(new DimensionBuilderConfig(
+            DimensionBuilder builder = dimensionBuilderFactory.create(new DimensionBuilderConfig(
                     config.dimension + 1,
                     config.parameters,
                     subDimension,

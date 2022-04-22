@@ -12,7 +12,7 @@ public class OperationProvider implements IOperationProvider
     )
     {
         operations = new HashMap<>();
-        operations.put(Operations.ADDITION.getSymbol(), add);
+        operations.put(add.getSymbol(), add);
     }
 
     @Override
