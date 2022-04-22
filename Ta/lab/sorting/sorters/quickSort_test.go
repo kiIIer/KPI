@@ -1,7 +1,9 @@
 package sorters
 
 import (
+
 	"fmt"
+
 	"math/rand"
 	"testing"
 )
@@ -79,13 +81,15 @@ func BenchmarkQuickSortRandom1_000_000_000Elements(b *testing.B) {
 func BenchmarkQuickSortIdeal10Elements(b *testing.B) {
 	sorter := QuickSorter{}
 	var input []int
-	for i := 0; i < 100; i++ {
+
+	for i := 0; i < 10; i++ {
+
 		input = append(input, i)
 	}
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		sorter.Sort(input)
-		fmt.Println(sorter)
+
 	}
 }
 
@@ -147,7 +151,7 @@ func BenchmarkQuickSortIdeal1_000_000Elements(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sorter.Sort(input)
 	}
-	fmt.Println(sorter)
+
 }
 
 func BenchmarkQuickSortWorst10Elements(b *testing.B) {

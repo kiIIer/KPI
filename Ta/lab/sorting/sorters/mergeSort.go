@@ -3,7 +3,9 @@ package sorters
 type MergeSorter struct {
 }
 
+
 func (sorter *MergeSorter) Sort(input []int) []int {
+
 	array := make([]int, len(input))
 	copy(array, input)
 
@@ -16,7 +18,10 @@ func (sorter *MergeSorter) Sort(input []int) []int {
 	return sorter.merge(sorter.Sort(array[:middleIndex]), sorter.Sort(array[middleIndex:]))
 }
 
+
 func (sorter *MergeSorter) merge(left, right []int) []int {
+
+
 
 	size, i, j := len(left)+len(right), 0, 0
 	array := make([]int, size, size)
