@@ -4,10 +4,12 @@ import io.promova.multicube.calculators.operation.IOperation;
 
 import java.util.Map;
 
+
 public class Formula
 {
     private IOperation operation;
     private Formula[] formulas;
+
 
     private Double constant = null;
     private String paramName;

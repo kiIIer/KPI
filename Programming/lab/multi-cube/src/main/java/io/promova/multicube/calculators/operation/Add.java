@@ -2,7 +2,6 @@ package io.promova.multicube.calculators.operation;
 
 public class Add implements IAdd
 {
-
     @Override
     public double execute(double[] operands)
     {

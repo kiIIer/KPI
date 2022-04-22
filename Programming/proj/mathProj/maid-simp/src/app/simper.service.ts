@@ -10,7 +10,7 @@ import {Result} from "./Entities/response/Result";
 })
 export class SimperService
 {
-  private formulasUrl = 'http://killer.promova.io:8080/formulas'
+  private formulasUrl = 'http://localhost:8080/formulas'
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

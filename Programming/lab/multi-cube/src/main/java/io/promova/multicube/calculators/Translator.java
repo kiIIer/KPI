@@ -20,11 +20,13 @@ public class Translator implements ITranslator
 
     @Override
     public Formula translate(String polish)
+
     {
         Counter counter = new Counter();
         String[] math = polish.split(" ");
         return crawler(math, counter);
     }
+
 
     private Formula crawler(String[] math, Counter counter)
     {
@@ -33,6 +35,7 @@ public class Translator implements ITranslator
         counter.increment();
 
         IOperation operation = operations.get(currentElement);
+
 
         if (operation == null)
         {
@@ -47,13 +50,17 @@ public class Translator implements ITranslator
         }
 
         formula.setOperation(operation);
+
         List<Formula> list = new LinkedList<Formula>();
+
 
         for (int i = 0; i < formula.getOperation().getNumberOfParams(); i++)
         {
             list.add(crawler(math, counter));
         }
+
         formula.setFormulas(list.toArray(new Formula[]{}));
+
         return formula;
     }
 
