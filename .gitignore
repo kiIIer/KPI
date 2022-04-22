@@ -1,5 +1,5 @@
 **/.DS_Store
-**/.angular
-**/.idea
-**/node_modules
-**/target
+**/.angular/**
+**/.idea/**
+**/node_modules/**
+**/target/**
