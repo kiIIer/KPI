@@ -1,0 +1,77 @@
+<div>
+  <mat-card>
+
+    <mat-card-header>
+      <h1>Table calculator</h1>
+    </mat-card-header>
+
+    <mat-card-actions>
+      <form [formGroup]="addParameterFormGroup" (submit)="addParameter()">
+        <mat-form-field>
+          <mat-label>Parameter</mat-label>
+          <input matInput
+                 formControlName="param">
+          <mat-error>
+            Provide a name for parameter
+          </mat-error>
+        </mat-form-field>
+        <button mat-icon-button type="submit" color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </form>
+    </mat-card-actions>
+
+    <mat-card-content>
+      <form [formGroup]="polishFormGroup!">
+        <mat-form-field>
+          <mat-label>Polish</mat-label>
+          <input matInput placeholder="+ 2 2" formControlName="polish">
+          <mat-error>
+            Provide a polish equation
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <div *ngFor="let keyValue of paramGroups | keyvalue">
+        <form [formGroup]="keyValue.value">
+          <mat-form-field>
+            <mat-label>
+              {{keyValue.key}}
+            </mat-label>
+            <input matInput placeholder="Name of param">
+            <mat-error>
+              Please provide a name
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>
+              Low bound
+            </mat-label>
+            <input matInput>
+            <mat-error>
+              Please enter valid bound
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>
+              High bound
+            </mat-label>
+            <input matInput>
+            <mat-error>
+              Please enter valid bound
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>
+              Step
+            </mat-label>
+            <input matInput>
+            <mat-error>
+              Please enter valid step
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+</div>
