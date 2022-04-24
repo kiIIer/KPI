@@ -1,0 +1,4 @@
+<app-table
+  [paramGroups]="(configs$ | async)"
+  (addParameterEvent)="onAddParameter($event)"
+></app-table>
