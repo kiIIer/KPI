@@ -10,7 +10,11 @@ import {ControlsConfigModel} from "../../models/controlsConfig.model";
 
 export const getEntityState = createSelector(
   getTableState,
-  (state: TableState) => state.parameters
+  (state: TableState) =>
+  {
+    console.log({state});
+    return state.parameters;
+  }
 );
 
 export const getParameterMap = createSelector(
@@ -29,14 +33,16 @@ export const getParameterFormConfigsMap = createSelector(
       let parameter: ParameterModel = state[name]!;
 
       configs = {
-        ...configs, [name]: {
-          ['name']: [name, Validators.required],
-          ['lowBound']: [parameter.lowBound, Validators.required, Validators.pattern("^[0-9]*$")],
-          ['highBound']: [parameter.highBound, Validators.required, Validators.pattern("^[0-9]*$")],
-          ['step']: [parameter.step, Validators.required, Validators.pattern("^[0-9]*$")]
+        ...configs,
+        [name]: {
+          ['name']: [name, [Validators.required]],
+          ['lowBound']: [parameter.lowBound, [Validators.required, Validators.pattern("^[0-9]*$")]],
+          ['highBound']: [parameter.highBound, [Validators.required, Validators.pattern("^[0-9]*$")]],
+          ['step']: [parameter.step, [Validators.required, Validators.pattern("^[0-9]*$")]]
         }
       }
     }
+    console.log(configs)
     return configs;
   }
 );

@@ -6,7 +6,8 @@
     </mat-card-header>
 
     <mat-card-actions>
-      <form [formGroup]="addParameterFormGroup" (submit)="addParameter()">
+      <form [formGroup]="addParameterFormGroup"
+            (submit)="addParameter()">
         <mat-form-field>
           <mat-label>Parameter</mat-label>
           <input matInput
@@ -15,17 +16,26 @@
             Provide a name for parameter
           </mat-error>
         </mat-form-field>
-        <button mat-icon-button type="submit" color="primary">
+        <button mat-icon-button
+                type="submit"
+                color="primary">
           <mat-icon>add</mat-icon>
         </button>
       </form>
+      <button mat-raised-button
+              color="primary"
+              (click)="calculate()">
+        Calculate
+      </button>
     </mat-card-actions>
 
     <mat-card-content>
       <form [formGroup]="polishFormGroup!">
         <mat-form-field>
           <mat-label>Polish</mat-label>
-          <input matInput placeholder="+ 2 2" formControlName="polish">
+          <input matInput
+                 placeholder="+ 2 2"
+                 formControlName="polish">
           <mat-error>
             Provide a polish equation
           </mat-error>
@@ -37,7 +47,9 @@
             <mat-label>
               {{keyValue.key}}
             </mat-label>
-            <input matInput placeholder="Name of param">
+            <input matInput
+                   formControlName="name"
+                   placeholder="Name of param">
             <mat-error>
               Please provide a name
             </mat-error>
@@ -46,7 +58,8 @@
             <mat-label>
               Low bound
             </mat-label>
-            <input matInput>
+            <input matInput
+                   formControlName="lowBound">
             <mat-error>
               Please enter valid bound
             </mat-error>
@@ -55,7 +68,8 @@
             <mat-label>
               High bound
             </mat-label>
-            <input matInput>
+            <input matInput
+                   formControlName="highBound">
             <mat-error>
               Please enter valid bound
             </mat-error>
@@ -64,11 +78,17 @@
             <mat-label>
               Step
             </mat-label>
-            <input matInput>
+            <input matInput
+                   formControlName="step">
             <mat-error>
               Please enter valid step
             </mat-error>
           </mat-form-field>
+          <button mat-icon-button
+                  color="warn"
+                  (click)="deleteParameter(keyValue.key)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </form>
       </div>
     </mat-card-content>
