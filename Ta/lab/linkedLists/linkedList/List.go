@@ -53,27 +53,34 @@ func (list *List[V]) Append(value V) *List[V] {
 }
 
 func (list *List[V]) Insert(id int, value V) *List[V] {
+	newElement := NewElement[V](WithValue(value))
 
-	var current *Element[V]
-	if id < list.size/2 {
-		current = list.head
+	if id == 0 {
+		if !list.isOneWay {
+			head := list.head
+			head.prev = newElement
+		}
+		newElement.next = list.head
+		list.head = newElement
+
+	} else if id == list.size {
+		list.Append(value)
+	} else {
+		current := list.head
+
 		for i := 0; i < id-1; i++ {
 			current = current.next
 		}
-	} else {
-		current = list.tail
-		for i := list.size; i > id; i-- {
-			current = current.prev
+
+		prev := current.prev
+		newElement.next = current
+		prev.next = newElement
+
+		if !list.isOneWay {
+			newElement.prev = prev
+			current.prev = newElement
 		}
 	}
-
-	newPev := current
-	newNext := current.next
-
-	newElement := NewElement(WithValue(value), WithPrev(newPev), WithNext(newNext))
-
-	newPev.next = newElement
-	newNext.prev = newElement
 
 	return list
 }
