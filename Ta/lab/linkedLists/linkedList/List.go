@@ -62,27 +62,89 @@ func (list *List[V]) Insert(id int, value V) *List[V] {
 		}
 		newElement.next = list.head
 		list.head = newElement
+		list.size++
 
 	} else if id == list.size {
 		list.Append(value)
-	} else {
+	} else if list.isOneWay || id < list.size/2 {
 		current := list.head
 
 		for i := 0; i < id-1; i++ {
 			current = current.next
 		}
 
-		prev := current.prev
-		newElement.next = current
-		prev.next = newElement
-
+		nextLink := current.next
+		newElement.next = nextLink
+		current.next = newElement
 		if !list.isOneWay {
-			newElement.prev = prev
-			current.prev = newElement
+			newElement.prev = current
+			nextLink.prev = newElement
 		}
+		list.size++
+	} else {
+		current := list.tail
+		for i := list.size - 1; i > id-1; i-- {
+			current = current.prev
+		}
+		nextLink := current.next
+		newElement.next = nextLink
+		current.next = newElement
+		newElement.prev = current
+		nextLink.prev = newElement
+		list.size++
 	}
 
 	return list
+}
+
+func (list *List[V]) Delete(index int) *Element[V] {
+	var toDelete *Element[V]
+	if index == 0 {
+		list.head = list.head.next
+		if !list.isOneWay {
+			list.head.prev = nil
+		}
+	} else if list.isOneWay || index < list.size/2 {
+		current := list.head
+		for i := 0; i < index; i++ {
+			current = current.next
+		}
+
+		toDelete = current.next
+		afterDelete := toDelete.next
+
+		current.next = afterDelete
+		if !list.isOneWay {
+			afterDelete.prev = current
+		}
+	} else {
+		current := list.tail
+		for i := list.size - 1; i > index; i-- {
+			current = current.prev
+		}
+
+		toDelete = current.next
+		afterDelete := toDelete.next
+
+		current.next = afterDelete
+		afterDelete.prev = current
+	}
+
+	list.size--
+	return toDelete
+}
+
+func (list *List[V]) ToSlice() []V {
+	slice := make([]V, list.size)
+
+	current := list.head
+
+	for i := 0; current != nil; i++ {
+		slice[i] = current.value
+		current = current.next
+	}
+
+	return slice
 }
 
 func (list *List[V]) Head() *Element[V] {
