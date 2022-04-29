@@ -1,6 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 import {tableInitialState, TableState} from "../state/table.state";
-import {addParameter, loadResultSuccesses, removeParameter} from "../actions/table.actions";
+import {addParameter, loadResultFail, loadResultSuccesses, removeParameter} from "../actions/table.actions";
 
 export const tableReducer = createReducer(
   tableInitialState,
@@ -44,5 +44,9 @@ export const tableReducer = createReducer(
   on(loadResultSuccesses, (state: TableState, {dimension}) => ({
     ...state,
     result: dimension
+  })),
+  on(loadResultFail, (state: TableState, {error}) => ({
+    ...state,
+    errors: error
   }))
 )

@@ -4,6 +4,10 @@ import {CalculateRequestModel} from "../../models/calculateRequest.model";
 import {group} from "@angular/animations";
 import {Parameter} from "@angular/compiler-cli/src/ngtsc/reflection";
 import {ParameterModel} from "../../models/parameter.model";
+import {ErrorModel} from "../../models/Error.model";
+import {DimensionModel} from "../../models/dimension.model";
+import {NestedTreeControl} from "@angular/cdk/tree";
+import {MatTreeNestedDataSource} from "@angular/material/tree";
 
 @Component({
   selector: 'app-table',
@@ -17,10 +21,12 @@ export class TableComponent implements OnInit
   @Output() deleteParameterEvent: EventEmitter<string> = new EventEmitter<string>();
 
   @Input() paramGroups: Map<string, FormGroup> | null = new Map<string, FormGroup>();
+  @Input() errors: ErrorModel | undefined | null;
+  @Input() result: DimensionModel | null | undefined;
 
   polishFormGroup: FormGroup = new FormGroup({polish: new FormControl('', [Validators.required])});
-
   addParameterFormGroup: FormGroup = new FormGroup({param: new FormControl('', [Validators.required])});
+
 
   constructor(
     private groupBuilder: FormBuilder
@@ -79,5 +85,4 @@ export class TableComponent implements OnInit
 
     this.loadResultEvent.emit(calculateRequest);
   }
-
 }

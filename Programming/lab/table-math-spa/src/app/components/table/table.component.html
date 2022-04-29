@@ -91,7 +91,22 @@
           </button>
         </form>
       </div>
+      <div>
+        <code>
+          <pre>
+            {{result | json}}
+          </pre>
+        </code>
+      </div>
     </mat-card-content>
+
+    <mat-card-footer>
+      <code>
+        <pre>
+          {{errors | json }}
+        </pre>
+      </code>
+    </mat-card-footer>
 
   </mat-card>
 </div>

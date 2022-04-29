@@ -1,6 +1,6 @@
 export interface DimensionModel
 {
-  value: number,
-  dimensions: Map<number, DimensionModel>,
-  parameterName: string
+  value: number | null,
+  dimensions: Map<number, DimensionModel> | null,
+  parameterName: string | null
 }

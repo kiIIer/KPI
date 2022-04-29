@@ -3,12 +3,15 @@ import {TableState} from "../../store/state/table.state";
 import {Store} from "@ngrx/store";
 import {asyncScheduler, map, Observable, scheduled, tap} from "rxjs";
 import {ControlsConfigModel} from "../../models/controlsConfig.model";
-import {getParameterFormConfigsMap} from "../../store/selectors/table.selector";
+import {getError, getParameterFormConfigsMap, getResult} from "../../store/selectors/table.selector";
 import {AppState} from "../../store/state/app.state";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Dictionary} from "@ngrx/entity";
 import {addParameter, loadResult, removeParameter} from "../../store/actions/table.actions";
 import {CalculateRequestModel} from "../../models/calculateRequest.model";
+import {ErrorModel} from "../../models/Error.model";
+import {DimensionModel} from "../../models/dimension.model";
+import {MatTreeNestedDataSource} from "@angular/material/tree";
 
 @Component({
   selector: 'app-table-core',
@@ -18,6 +21,8 @@ import {CalculateRequestModel} from "../../models/calculateRequest.model";
 export class TableCoreComponent implements OnInit
 {
   configs$: Observable<Map<string, FormGroup>> = scheduled([], asyncScheduler);
+  errors$: Observable<ErrorModel | undefined> = scheduled([], asyncScheduler);
+  result$: Observable<DimensionModel | null | undefined> = scheduled([], asyncScheduler);
 
   constructor(
     private store: Store<AppState>,
@@ -42,6 +47,8 @@ export class TableCoreComponent implements OnInit
       ),
       tap((a) => console.log(a)),
     );
+    this.errors$ = this.store.select(getError);
+    this.result$ = this.store.select(getResult);
   }
 
   onAddParameter(paramName: string)

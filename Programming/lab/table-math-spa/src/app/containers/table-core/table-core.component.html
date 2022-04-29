@@ -1,5 +1,7 @@
 <app-table
   [paramGroups]="(configs$ | async)"
+  [errors]="errors$ | async"
+  [result]="result$ | async"
   (loadResultEvent)="onLoadResult($event)"
   (addParameterEvent)="onAddParameter($event)"
   (deleteParameterEvent)="onDeleteParameter($event)"

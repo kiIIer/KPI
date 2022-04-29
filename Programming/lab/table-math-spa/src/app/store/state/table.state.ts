@@ -1,12 +1,14 @@
 import {EntityState} from "@ngrx/entity";
 import {ParameterModel} from "../../models/parameter.model";
 import {DimensionModel} from "../../models/dimension.model";
+import {ErrorModel} from "../../models/Error.model";
 
 export interface TableState
 {
   polish: string,
   parameters: EntityState<ParameterModel>,
-  result: DimensionModel | undefined
+  result: DimensionModel | undefined,
+  errors: ErrorModel | undefined
 }
 
 export const tableInitialState: TableState = {
@@ -22,5 +24,6 @@ export const tableInitialState: TableState = {
       }
     }
   },
-  result: undefined
+  result: undefined,
+  errors: undefined
 }

@@ -4,9 +4,10 @@ import {Store} from "@ngrx/store";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {CalculateResultService} from "../../services/calculate-result.service";
 import {loadResult, loadResultFail, loadResultSuccesses} from "../actions/table.actions";
-import {map, mergeMap} from "rxjs";
-import {HttpResponse} from "@angular/common/http";
+import {asyncScheduler, catchError, map, mergeMap, scheduled} from "rxjs";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {DimensionModel} from "../../models/dimension.model";
+import {ErrorModel} from "../../models/Error.model";
 
 @Injectable()
 export class TableEffects
@@ -14,7 +15,13 @@ export class TableEffects
   loadTable$ = createEffect(() => this.actions$.pipe(
       ofType(loadResult),
       mergeMap((action) => this.service$.getTable(action.request).pipe(
-          map((response: HttpResponse<DimensionModel>) => response.ok ? loadResultSuccesses({dimension: response.body!}) : loadResultFail)
+          map(
+            (response: HttpResponse<DimensionModel>) => loadResultSuccesses({dimension: response.body!}),
+          ),
+          catchError((error: HttpErrorResponse) =>
+          {
+            return scheduled([loadResultFail({error: error.error as ErrorModel})], asyncScheduler)
+          })
         )
       )
     )
@@ -27,4 +34,5 @@ export class TableEffects
   )
   {
   }
+
 }

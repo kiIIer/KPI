@@ -46,3 +46,7 @@ export const getParameterFormConfigsMap = createSelector(
     return configs;
   }
 );
+
+
+export const getError = createSelector(getTableState, (state: TableState) => state.errors);
+export const getResult = createSelector(getTableState, (state: TableState) => state.result)

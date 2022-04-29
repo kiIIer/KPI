@@ -17,6 +17,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {TableEffects} from "./store/effects/table.effects";
 import {StoreDevtools, StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {HttpClientModule} from "@angular/common/http";
+import {MatTreeModule} from "@angular/material/tree";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
