@@ -6,20 +6,7 @@ import (
 )
 
 func main() {
-	list := linkedList.NewList[int](linkedList.WithValues([]int{1, 2, 3, 4}))
-	list.Append(23)
-	list.Insert(0, 10)
-
-	current := list.Head()
-	for i := 0; i < list.Size(); i++ {
-		fmt.Println(current.Value())
-		current = current.Next()
-	}
-
-	print(list.Size())
-	fmt.Println(list.ToSlice())
-	list.Delete(0)
-	fmt.Println(list.ToSlice())
-	list.Delete(2)
-	fmt.Println(list.ToSlice())
+	list := linkedList.OneWayList[int]{}
+	list.Append(1, 3, 5).Insert(2, 4).Insert(1, 2).Insert(0, 0).Insert(6, 6).Delete(0).Delete(5).Delete(3)
+	fmt.Println(list.Slice())
 }

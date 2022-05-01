@@ -1,16 +1,16 @@
 package linkedList
 
-type Element[V any] struct {
+type Element[V comparable] struct {
 	prev  *Element[V]
 	next  *Element[V]
 	value V
 }
 
-type ElementOption[V any] func(element *Element[V])
+type ElementOption[V comparable] func(element *Element[V])
 
 // Element constructor
 
-func NewElement[V any](options ...ElementOption[V]) *Element[V] {
+func NewElement[V comparable](options ...ElementOption[V]) *Element[V] {
 	element := &Element[V]{}
 
 	for _, option := range options {
@@ -22,19 +22,19 @@ func NewElement[V any](options ...ElementOption[V]) *Element[V] {
 
 // Options
 
-func WithPrev[V any](prev *Element[V]) ElementOption[V] {
+func WithPrev[V comparable](prev *Element[V]) ElementOption[V] {
 	return func(element *Element[V]) {
 		element.prev = prev
 	}
 }
 
-func WithNext[V any](next *Element[V]) ElementOption[V] {
+func WithNext[V comparable](next *Element[V]) ElementOption[V] {
 	return func(element *Element[V]) {
 		element.next = next
 	}
 }
 
-func WithValue[V any](value V) ElementOption[V] {
+func WithValue[V comparable](value V) ElementOption[V] {
 	return func(element *Element[V]) {
 		element.value = value
 	}
