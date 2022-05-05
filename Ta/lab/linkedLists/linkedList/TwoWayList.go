@@ -14,23 +14,23 @@ func NewTwoWayList[V comparable]() *TwoWayList[V] {
 	}
 }
 
-func (list *TwoWayList[V]) FindById(id int) *Element[V] {
-	if id < 0 || id >= list.size {
+func (list *TwoWayList[V]) FindByIndex(index int) *Element[V] {
+	if index < 0 || index >= list.size {
 		panic("What the hell? Index out of bounds! Go fix your iterations. You lil shit")
 	}
 
 	var current *Element[V]
-	if id < list.size/2 {
+	if index < list.size/2 {
 		current = list.head
 
-		for i := 0; i < id; i++ {
+		for i := 0; i < index; i++ {
 			current = current.next
 		}
 
 	} else {
 		current = list.tail
 
-		for i := list.size - 1; i > id; i-- {
+		for i := list.size - 1; i > index; i-- {
 			current = current.prev
 		}
 	}
@@ -38,7 +38,7 @@ func (list *TwoWayList[V]) FindById(id int) *Element[V] {
 	return current
 }
 
-func (list *TwoWayList[V]) Append(values ...V) *TwoWayList[V] {
+func (list *TwoWayList[V]) Append(values ...V) List[V] {
 	for _, value := range values {
 
 		element := NewElement[V](WithValue[V](value))
@@ -57,24 +57,24 @@ func (list *TwoWayList[V]) Append(values ...V) *TwoWayList[V] {
 	return list
 }
 
-func (list *TwoWayList[V]) Insert(id int, value V) *TwoWayList[V] {
-	if id < 0 || id > list.size {
+func (list *TwoWayList[V]) Insert(index int, value V) List[V] {
+	if index < 0 || index > list.size {
 		panic("What the hell? Index out of bounds! Go fix your iterations. You lil shit")
 	}
 
 	element := NewElement[V](WithValue(value))
-	if id == list.size {
+	if index == list.size {
 		return list.Append(value)
-	} else if id == 0 {
+	} else if index == 0 {
 		element.next = list.head
 		list.head.prev = element
 		list.head = element
-	} else if id == list.size {
+	} else if index == list.size {
 		return list.Append(value)
 	} else {
-		if id < list.size/2 {
+		if index < list.size/2 {
 			current := list.head
-			for i := 0; i < id-1; i++ {
+			for i := 0; i < index-1; i++ {
 				current = current.next
 			}
 			element.next = current.next
@@ -83,7 +83,7 @@ func (list *TwoWayList[V]) Insert(id int, value V) *TwoWayList[V] {
 			current.next = element
 		} else {
 			current := list.tail
-			for i := list.size; i > id+1; i-- {
+			for i := list.size; i > index+1; i-- {
 				current = current.prev
 			}
 			element.prev = current.prev
@@ -97,31 +97,31 @@ func (list *TwoWayList[V]) Insert(id int, value V) *TwoWayList[V] {
 	return list
 }
 
-func (list *TwoWayList[V]) Delete(id int) *TwoWayList[V] {
-	if id < 0 || id >= list.size {
+func (list *TwoWayList[V]) Delete(index int) List[V] {
+	if index < 0 || index >= list.size {
 		panic("What the hell? Index out of bounds! Go fix your iterations. You lil shit")
 	}
 
 	if list.size == 1 {
 		list.head = nil
 		list.tail = nil
-	} else if id == 0 {
+	} else if index == 0 {
 		list.head = list.head.next
 		list.head.prev = nil
-	} else if id == list.size-1 {
+	} else if index == list.size-1 {
 		list.tail = list.tail.prev
 		list.tail.next = nil
 	} else {
-		if id < list.size/2 {
+		if index < list.size/2 {
 			current := list.head
-			for i := 0; i < id-1; i++ {
+			for i := 0; i < index-1; i++ {
 				current = current.next
 			}
 			current.next = current.next.next
 			current.next.prev = current
 		} else {
 			current := list.tail
-			for i := list.size - 1; i > id+1; i-- {
+			for i := list.size - 1; i > index+1; i-- {
 				current = current.prev
 			}
 			current.prev = current.prev.prev
