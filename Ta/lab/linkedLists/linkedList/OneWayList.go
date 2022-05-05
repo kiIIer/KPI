@@ -29,7 +29,7 @@ func (list *OneWayList[V]) FindByIndex(index int) *Element[V] {
 
 }
 
-func (list *OneWayList[V]) Append(values ...V) *OneWayList[V] {
+func (list *OneWayList[V]) Append(values ...V) List[V] {
 	for _, value := range values {
 
 		element := NewElement[V](WithValue[V](value))
@@ -46,7 +46,7 @@ func (list *OneWayList[V]) Append(values ...V) *OneWayList[V] {
 	return list
 }
 
-func (list *OneWayList[V]) Insert(index int, value V) *OneWayList[V] {
+func (list *OneWayList[V]) Insert(index int, value V) List[V] {
 	if index < 0 || index > list.size {
 		panic("What the hell? Index out of bounds! Go fix your iterations. You lil shit")
 	}
@@ -71,7 +71,7 @@ func (list *OneWayList[V]) Insert(index int, value V) *OneWayList[V] {
 	return list
 }
 
-func (list *OneWayList[V]) Delete(index int) *OneWayList[V] {
+func (list *OneWayList[V]) Delete(index int) List[V] {
 	if index < 0 || index >= list.size {
 		panic("What the hell? Index out of bounds! Go fix your iterations. You lil shit")
 	}
