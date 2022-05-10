@@ -1,6 +1,8 @@
+import {Dictionary} from "@ngrx/entity";
+
 export interface DimensionModel
 {
   value: number | null,
-  dimensions: Map<number, DimensionModel> | null,
+  dimensions: Dictionary<DimensionModel> | null,
   parameterName: string | null
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CalculateRequestModel} from "../../models/calculateRequest.model";
 import {group} from "@angular/animations";
@@ -6,8 +6,16 @@ import {Parameter} from "@angular/compiler-cli/src/ngtsc/reflection";
 import {ParameterModel} from "../../models/parameter.model";
 import {ErrorModel} from "../../models/Error.model";
 import {DimensionModel} from "../../models/dimension.model";
-import {NestedTreeControl} from "@angular/cdk/tree";
-import {MatTreeNestedDataSource} from "@angular/material/tree";
+import {FlatTreeControl, NestedTreeControl} from "@angular/cdk/tree";
+import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource} from "@angular/material/tree";
+import {TreeNodeModel} from "../../models/TreeNode.model";
+
+interface ResultFlatNode
+{
+  expandable: boolean;
+  name: string | number;
+  level: number;
+}
 
 @Component({
   selector: 'app-table',
@@ -22,10 +30,40 @@ export class TableComponent implements OnInit
 
   @Input() paramGroups: Map<string, FormGroup> | null = new Map<string, FormGroup>();
   @Input() errors: ErrorModel | undefined | null;
-  @Input() result: DimensionModel | null | undefined;
+
+  @Input() set result(value: TreeNodeModel | null | undefined)
+  {
+    if (!!value)
+    {
+      this.dataSource.data = [value!]
+    }
+  }
 
   polishFormGroup: FormGroup = new FormGroup({polish: new FormControl('', [Validators.required])});
   addParameterFormGroup: FormGroup = new FormGroup({param: new FormControl('', [Validators.required])});
+
+  private _transformer = (node: TreeNodeModel, level: number) =>
+  {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  };
+
+  treeControl = new FlatTreeControl<ResultFlatNode>(
+    node => node.level,
+    node => node.expandable,
+  );
+
+  treeFlattener = new MatTreeFlattener(
+    this._transformer,
+    node => node.level,
+    node => node.expandable,
+    node => node.children,
+  );
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
 
   constructor(
@@ -85,4 +123,6 @@ export class TableComponent implements OnInit
 
     this.loadResultEvent.emit(calculateRequest);
   }
+
+  hasChild = (_: number, node: ResultFlatNode) => node.expandable;
 }
