@@ -9,13 +9,13 @@ func (sorter *HeapSorter) Sort(input []int) []int {
 	heap.buildMinHeap(size)
 	for i := size - 1; i > 0; i-- {
 		heap.swap(0, i)
-		heap.downHeapHop(0, i)
+		heap.downHeapify(0, i)
 	}
 
 	return heap.arr
 }
 
-func (heap *heap) downHeapHop(current int, size int) {
+func (heap *heap) downHeapify(current int, size int) {
 	if heap.isLeaf(current, size) {
 		return
 	}
@@ -30,7 +30,7 @@ func (heap *heap) downHeapHop(current int, size int) {
 	}
 	if smallest != current {
 		heap.swap(current, smallest)
-		heap.downHeapHop(smallest, size)
+		heap.downHeapify(smallest, size)
 	}
 }
 
@@ -38,7 +38,7 @@ func (heap *heap) sort(size int) {
 	heap.buildMinHeap(size)
 	for i := size - 1; i > 0; i-- {
 		heap.swap(0, i)
-		heap.downHeapHop(0, i)
+		heap.downHeapify(0, i)
 	}
 }
 
@@ -57,7 +57,7 @@ func newHeap(input []int) *heap {
 
 func (heap *heap) buildMinHeap(size int) {
 	for index := (size / 2) - 1; index >= 0; index-- {
-		heap.downHeapHop(index, size)
+		heap.downHeapify(index, size)
 	}
 }
 
