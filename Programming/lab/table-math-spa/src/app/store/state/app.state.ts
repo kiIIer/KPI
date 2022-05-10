@@ -1,6 +1,6 @@
-import {tableInitialState, TableState} from "./table.state";
+import {tableInitialState, TableState} from './table.state';
 
 export interface AppState
 {
-  tableState: TableState
+  table: TableState;
 }
