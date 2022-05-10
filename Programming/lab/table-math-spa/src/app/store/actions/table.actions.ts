@@ -1,7 +1,7 @@
-import {createAction, props} from "@ngrx/store";
-import {CalculateRequestModel} from "../../models/calculateRequest.model";
-import {DimensionModel} from "../../models/dimension.model";
-import {ErrorModel} from "../../models/Error.model";
+import {createAction, props} from '@ngrx/store';
+import {CalculateRequestModel} from '../../models/calculateRequest.model';
+import {DimensionModel} from '../../models/dimension.model';
+import {ErrorModel} from '../../models/Error.model';
 
 export const loadResult = createAction('[Table] Load Result', props<{ request: CalculateRequestModel }>());
 export const loadResultSuccesses = createAction('[Table] Load Result Successes', props<{ dimension: DimensionModel }>());

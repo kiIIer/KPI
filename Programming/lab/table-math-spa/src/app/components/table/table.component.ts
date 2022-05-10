@@ -1,14 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {CalculateRequestModel} from "../../models/calculateRequest.model";
-import {group} from "@angular/animations";
-import {Parameter} from "@angular/compiler-cli/src/ngtsc/reflection";
-import {ParameterModel} from "../../models/parameter.model";
-import {ErrorModel} from "../../models/Error.model";
-import {DimensionModel} from "../../models/dimension.model";
-import {FlatTreeControl, NestedTreeControl} from "@angular/cdk/tree";
-import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource} from "@angular/material/tree";
-import {TreeNodeModel} from "../../models/TreeNode.model";
+import {Component, EventEmitter, Inject, Input, OnInit, Output, SimpleChanges} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CalculateRequestModel} from '../../models/calculateRequest.model';
+import {group} from '@angular/animations';
+import {Parameter} from '@angular/compiler-cli/src/ngtsc/reflection';
+import {ParameterModel} from '../../models/parameter.model';
+import {ErrorModel} from '../../models/Error.model';
+import {DimensionModel} from '../../models/dimension.model';
+import {FlatTreeControl, NestedTreeControl} from '@angular/cdk/tree';
+import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource} from '@angular/material/tree';
+import {TreeNodeModel} from '../../models/TreeNode.model';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {ErrorDialogComponent} from '../error-dialog/error-dialog.component';
 
 interface ResultFlatNode
 {
@@ -20,7 +22,7 @@ interface ResultFlatNode
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit
 {
@@ -29,13 +31,20 @@ export class TableComponent implements OnInit
   @Output() deleteParameterEvent: EventEmitter<string> = new EventEmitter<string>();
 
   @Input() paramGroups: Map<string, FormGroup> | null = new Map<string, FormGroup>();
-  @Input() errors: ErrorModel | undefined | null;
+
+  @Input() set error(value: ErrorModel | null | undefined)
+  {
+    if (!!value)
+    {
+      this.openDialog(value!);
+    }
+  }
 
   @Input() set result(value: TreeNodeModel | null | undefined)
   {
     if (!!value)
     {
-      this.dataSource.data = [value!]
+      this.dataSource.data = [value!];
     }
   }
 
@@ -67,13 +76,24 @@ export class TableComponent implements OnInit
 
 
   constructor(
-    private groupBuilder: FormBuilder
+    private groupBuilder: FormBuilder,
+    public dialog: MatDialog,
   )
   {
   }
 
   ngOnInit(): void
   {
+  }
+
+  openDialog(error: ErrorModel): void
+  {
+    console.log('opening dialog');
+    this.dialog.open(ErrorDialogComponent, {
+      data: error,
+    });
+
+
   }
 
   addParameter()
@@ -105,11 +125,11 @@ export class TableComponent implements OnInit
       {
         return;
       }
-    })
+    });
 
     let calculateRequest: CalculateRequestModel = {
       parameters: [],
-      polish: ""
+      polish: '',
     };
 
     calculateRequest.polish = this.polishFormGroup.value.polish;

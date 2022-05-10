@@ -1,4 +1,4 @@
-import {ParameterModel} from "./parameter.model";
+import {ParameterModel} from './parameter.model';
 
 export interface CalculateRequestModel
 {

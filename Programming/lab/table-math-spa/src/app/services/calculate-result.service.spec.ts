@@ -1,16 +1,19 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { CalculateResultService } from './calculate-result.service';
+import {CalculateResultService} from './calculate-result.service';
 
-describe('CalculateResultService', () => {
+describe('CalculateResultService', () =>
+{
   let service: CalculateResultService;
 
-  beforeEach(() => {
+  beforeEach(() =>
+  {
     TestBed.configureTestingModule({});
     service = TestBed.inject(CalculateResultService);
   });
 
-  it('should be created', () => {
+  it('should be created', () =>
+  {
     expect(service).toBeTruthy();
   });
 });

@@ -1,30 +1,30 @@
 import {Component, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
-import {asyncScheduler, map, Observable, scheduled, tap} from "rxjs";
-import {ControlsConfigModel} from "../../models/controlsConfig.model";
-import {getError, getParameterFormConfigsMap, getResult} from "../../store/selectors/table.selector";
-import {AppState} from "../../store/state/app.state";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {addParameter, loadResult, removeParameter} from "../../store/actions/table.actions";
-import {CalculateRequestModel} from "../../models/calculateRequest.model";
-import {ErrorModel} from "../../models/Error.model";
-import {DimensionModel} from "../../models/dimension.model";
-import {TreeNodeModel} from "../../models/TreeNode.model";
+import {Store} from '@ngrx/store';
+import {asyncScheduler, map, Observable, scheduled, tap} from 'rxjs';
+import {ControlsConfigModel} from '../../models/controlsConfig.model';
+import {getError, getParameterFormConfigsMap, getResult} from '../../store/selectors/table.selector';
+import {AppState} from '../../store/state/app.state';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {addParameter, loadResult, removeParameter} from '../../store/actions/table.actions';
+import {CalculateRequestModel} from '../../models/calculateRequest.model';
+import {ErrorModel} from '../../models/Error.model';
+import {DimensionModel} from '../../models/dimension.model';
+import {TreeNodeModel} from '../../models/TreeNode.model';
 
 @Component({
   selector: 'app-table-core',
   templateUrl: './table-core.component.html',
-  styleUrls: ['./table-core.component.css']
+  styleUrls: ['./table-core.component.css'],
 })
 export class TableCoreComponent implements OnInit
 {
   configs$: Observable<Map<string, FormGroup>> = scheduled([], asyncScheduler);
-  errors$: Observable<ErrorModel | undefined> = scheduled([], asyncScheduler);
+  error$: Observable<ErrorModel | undefined> = scheduled([], asyncScheduler);
   result$: Observable<TreeNodeModel | null | undefined> = scheduled([], asyncScheduler);
 
   constructor(
     private store: Store<AppState>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   )
   {
   }
@@ -41,27 +41,27 @@ export class TableCoreComponent implements OnInit
             newMap.set(entry[0], group);
           }
           return newMap;
-        }
+        },
       ),
       tap((a) => console.log(a)),
     );
-    this.errors$ = this.store.select(getError);
+    this.error$ = this.store.select(getError);
     this.result$ = this.store.select(getResult).pipe(
       map((dimension: DimensionModel | undefined) =>
       {
-        console.log(dimension)
-        let children: TreeNodeModel[] = []
+        console.log(dimension);
+        let children: TreeNodeModel[] = [];
         if (!!dimension)
         {
           for (let key in dimension!.dimensions)
           {
-            children.push(this.createNode(dimension!.dimensions[key]!, key as unknown as number, dimension!.parameterName!))
+            children.push(this.createNode(dimension!.dimensions[key]!, key as unknown as number, dimension!.parameterName!));
           }
         }
 
-        console.log(children)
-        return {name: 'result', children: children}
-      })
+        console.log(children);
+        return {name: 'result', children: children};
+      }),
     );
   }
 

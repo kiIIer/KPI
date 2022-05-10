@@ -1,11 +1,11 @@
-import {createSelector} from "@ngrx/store";
-import {getTableState} from "./app.selector";
-import {TableState} from "../state/table.state";
-import {FormGroup, Validators} from "@angular/forms";
-import {Dictionary, EntityState} from "@ngrx/entity";
-import {ParameterModel} from "../../models/parameter.model";
-import {state} from "@angular/animations";
-import {ControlsConfigModel} from "../../models/controlsConfig.model";
+import {createSelector} from '@ngrx/store';
+import {getTableState} from './app.selector';
+import {TableState} from '../state/table.state';
+import {FormGroup, Validators} from '@angular/forms';
+import {Dictionary, EntityState} from '@ngrx/entity';
+import {ParameterModel} from '../../models/parameter.model';
+import {state} from '@angular/animations';
+import {ControlsConfigModel} from '../../models/controlsConfig.model';
 
 
 export const getEntityState = createSelector(
@@ -14,12 +14,12 @@ export const getEntityState = createSelector(
   {
     console.log({state});
     return state.parameters;
-  }
+  },
 );
 
 export const getParameterMap = createSelector(
   getEntityState,
-  (state: EntityState<ParameterModel>) => state.entities
+  (state: EntityState<ParameterModel>) => state.entities,
 );
 
 export const getParameterFormConfigsMap = createSelector(
@@ -36,17 +36,17 @@ export const getParameterFormConfigsMap = createSelector(
         ...configs,
         [name]: {
           ['name']: [name, [Validators.required]],
-          ['lowBound']: [parameter.lowBound, [Validators.required, Validators.pattern("^[0-9]+\\.?[0-9]*$")]],
-          ['highBound']: [parameter.highBound, [Validators.required, Validators.pattern("^[0-9]+\\.?[0-9]*$")]],
-          ['step']: [parameter.step, [Validators.required, Validators.pattern("^[0-9]+\\.?[0-9]*$")]]
-        }
-      }
+          ['lowBound']: [parameter.lowBound, [Validators.required, Validators.pattern('^[0-9]+\\.?[0-9]*$')]],
+          ['highBound']: [parameter.highBound, [Validators.required, Validators.pattern('^[0-9]+\\.?[0-9]*$')]],
+          ['step']: [parameter.step, [Validators.required, Validators.pattern('^[0-9]+\\.?[0-9]*$')]],
+        },
+      };
     }
-    console.log(configs)
+    console.log(configs);
     return configs;
-  }
+  },
 );
 
 
 export const getError = createSelector(getTableState, (state: TableState) => state.errors);
-export const getResult = createSelector(getTableState, (state: TableState) => state.result)
+export const getResult = createSelector(getTableState, (state: TableState) => state.result);

@@ -1,6 +1,6 @@
 <app-table
   [paramGroups]="(configs$ | async)"
-  [errors]="errors$ | async"
+  [error]="error$ | async"
   [result]="result$ | async"
   (loadResultEvent)="onLoadResult($event)"
   (addParameterEvent)="onAddParameter($event)"

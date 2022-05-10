@@ -1,25 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TableCoreComponent } from './table-core.component';
+import {TableCoreComponent} from './table-core.component';
 
-describe('TableCoreComponent', () => {
+describe('TableCoreComponent', () =>
+{
   let component: TableCoreComponent;
   let fixture: ComponentFixture<TableCoreComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async () =>
+  {
     await TestBed.configureTestingModule({
-      declarations: [ TableCoreComponent ]
+      declarations: [TableCoreComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
-  beforeEach(() => {
+  beforeEach(() =>
+  {
     fixture = TestBed.createComponent(TableCoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', () =>
+  {
     expect(component).toBeTruthy();
   });
 });

@@ -1,4 +1,5 @@
-export interface ErrorModel{
-  message: string
-  subErrors: ErrorModel[]
+export interface ErrorModel
+{
+  message: string;
+  subErrors: ErrorModel[];
 }

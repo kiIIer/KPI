@@ -1,7 +1,7 @@
-import {EntityState} from "@ngrx/entity";
-import {ParameterModel} from "../../models/parameter.model";
-import {DimensionModel} from "../../models/dimension.model";
-import {ErrorModel} from "../../models/Error.model";
+import {EntityState} from '@ngrx/entity';
+import {ParameterModel} from '../../models/parameter.model';
+import {DimensionModel} from '../../models/dimension.model';
+import {ErrorModel} from '../../models/Error.model';
 
 export interface TableState
 {
@@ -20,10 +20,10 @@ export const tableInitialState: TableState = {
         name: 'a',
         lowBound: 0,
         highBound: 10,
-        step: 1
-      }
-    }
+        step: 1,
+      },
+    },
   },
   result: undefined,
-  errors: undefined
-}
+  errors: undefined,
+};
