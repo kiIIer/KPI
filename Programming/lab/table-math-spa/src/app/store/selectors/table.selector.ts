@@ -36,9 +36,9 @@ export const getParameterFormConfigsMap = createSelector(
         ...configs,
         [name]: {
           ['name']: [name, [Validators.required]],
-          ['lowBound']: [parameter.lowBound, [Validators.required, Validators.pattern("^[0-9]*$")]],
-          ['highBound']: [parameter.highBound, [Validators.required, Validators.pattern("^[0-9]*$")]],
-          ['step']: [parameter.step, [Validators.required, Validators.pattern("^[0-9]*$")]]
+          ['lowBound']: [parameter.lowBound, [Validators.required, Validators.pattern("^[0-9]+\\.?[0-9]*$")]],
+          ['highBound']: [parameter.highBound, [Validators.required, Validators.pattern("^[0-9]+\\.?[0-9]*$")]],
+          ['step']: [parameter.step, [Validators.required, Validators.pattern("^[0-9]+\\.?[0-9]*$")]]
         }
       }
     }
