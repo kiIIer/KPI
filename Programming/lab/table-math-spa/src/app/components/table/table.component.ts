@@ -11,6 +11,7 @@ import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource} from '
 import {TreeNodeModel} from '../../models/TreeNode.model';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ErrorDialogComponent} from '../error-dialog/error-dialog.component';
+import {EventTransferModel} from '../../models/EventTransfer.model';
 
 interface ResultFlatNode
 {
@@ -27,8 +28,8 @@ interface ResultFlatNode
 export class TableComponent implements OnInit
 {
   @Output() loadResultEvent: EventEmitter<CalculateRequestModel> = new EventEmitter<CalculateRequestModel>();
-  @Output() addParameterEvent: EventEmitter<string> = new EventEmitter<string>();
-  @Output() deleteParameterEvent: EventEmitter<string> = new EventEmitter<string>();
+  @Output() addParameterEvent: EventEmitter<EventTransferModel> = new EventEmitter<EventTransferModel>();
+  @Output() deleteParameterEvent: EventEmitter<EventTransferModel> = new EventEmitter<EventTransferModel>();
 
   @Input() paramGroups: Map<string, FormGroup> | null = new Map<string, FormGroup>();
 
@@ -98,18 +99,36 @@ export class TableComponent implements OnInit
 
   addParameter()
   {
+
+
     if (!this.addParameterFormGroup.valid)
     {
       return;
     }
 
+    let params: ParameterModel[] = [];
+    this.paramGroups?.forEach((group: FormGroup) =>
+    {
+      let parameter: ParameterModel;
+      parameter = group.value;
+      params = [...params, parameter];
+    });
+
     let {param} = this.addParameterFormGroup.value;
-    this.addParameterEvent.emit(param);
+    this.addParameterEvent.emit({id: param, params: params});
   }
 
   deleteParameter(id: string)
   {
-    this.deleteParameterEvent.emit(id);
+    let params: ParameterModel[] = [];
+    this.paramGroups?.forEach((group: FormGroup) =>
+    {
+      let parameter: ParameterModel;
+      parameter = group.value;
+      params = [...params, parameter];
+    });
+
+    this.deleteParameterEvent.emit({id: id, params: params});
   }
 
   calculate()

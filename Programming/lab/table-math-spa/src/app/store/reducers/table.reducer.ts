@@ -1,10 +1,11 @@
 import {createReducer, on} from '@ngrx/store';
 import {tableInitialState, TableState} from '../state/table.state';
 import {addParameter, loadResultFail, loadResultSuccesses, removeParameter} from '../actions/table.actions';
+import {ParameterModel} from '../../models/parameter.model';
 
 export const tableReducer = createReducer(
   tableInitialState,
-  on(addParameter, (state: TableState, {paramName}) =>
+  on(addParameter, (state: TableState, {paramName, params}) =>
     ({
       ...state,
       parameters: {
@@ -13,18 +14,13 @@ export const tableReducer = createReducer(
           ...(state.parameters.ids as string[]),
           paramName,
         ],
-        entities: Object.assign({...state.parameters.entities}, {
-          [paramName]: {
-            name: paramName,
-            lowBound: 0,
-            highBound: 1,
-            step: 1,
-          },
-        }),
+        entities: Object.assign(Object.assign({}, ...params.map(
+          (param: ParameterModel) => ({[param.name]: param}),
+        )), {[paramName]: {}}),
       },
     }),
   ),
-  on(removeParameter, (state: TableState, {paramName}) =>
+  on(removeParameter, (state: TableState, {paramName, params}) =>
     ({
       ...state,
       parameters: {
@@ -32,10 +28,10 @@ export const tableReducer = createReducer(
         ids: (state.parameters.ids as string[]).filter((existingParamNames: string) => existingParamNames != paramName),
         entities: Object.assign(
           {},
-          ...Object.entries(state.parameters.entities)
-            .filter(([key, value]) => key != paramName)
-            .map(([key, value]) => ({
-              [key]: value,
+          ...params
+            .filter((param: ParameterModel) => param.name != paramName)
+            .map((param: ParameterModel) => ({
+              [param.name]: {...param},
             })),
         ),
       },

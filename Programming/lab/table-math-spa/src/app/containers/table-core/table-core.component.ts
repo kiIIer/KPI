@@ -10,6 +10,7 @@ import {CalculateRequestModel} from '../../models/calculateRequest.model';
 import {ErrorModel} from '../../models/Error.model';
 import {DimensionModel} from '../../models/dimension.model';
 import {TreeNodeModel} from '../../models/TreeNode.model';
+import {EventTransferModel} from '../../models/EventTransfer.model';
 
 @Component({
   selector: 'app-table-core',
@@ -84,14 +85,14 @@ export class TableCoreComponent implements OnInit
     };
   }
 
-  onAddParameter(paramName: string)
+  onAddParameter(event: EventTransferModel)
   {
-    this.store.dispatch(addParameter({paramName}));
+    this.store.dispatch(addParameter({paramName: event.id, params: event.params}));
   }
 
-  onDeleteParameter(paramName: string)
+  onDeleteParameter(event: EventTransferModel)
   {
-    this.store.dispatch(removeParameter({paramName}));
+    this.store.dispatch(removeParameter({paramName: event.id, params: event.params}));
   }
 
   onLoadResult(request: CalculateRequestModel)
