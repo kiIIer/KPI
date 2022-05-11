@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.promova</groupId>
-    <artifactId>multi-cube</artifactId>
+    <artifactId>fork-join-cube</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>multi-cube</name>
-    <description>multi-cube</description>
+    <name>fork-join-cube</name>
+    <description>fork-join-cube</description>
     <properties>
         <java.version>18</java.version>
     </properties>
@@ -20,11 +20,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.hateoas</groupId>
-            <artifactId>spring-hateoas</artifactId>
         </dependency>
 
         <dependency>
