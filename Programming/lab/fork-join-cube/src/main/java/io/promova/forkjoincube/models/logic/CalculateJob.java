@@ -1,9 +1,8 @@
 package io.promova.forkjoincube.models.logic;
 
-import io.promova.forkjoincube.util.MutableDouble;
-
 import java.util.Map;
+import java.util.function.DoubleConsumer;
 
-public record CalculateJob(Map<String, Double> parameters, MutableDouble resultLink, Formula formula)
+public record CalculateJob(Map<String, Double> parameters, DoubleConsumer resultLink, Formula formula)
 {
 }

@@ -25,9 +25,11 @@ public class RecursiveFormer extends RecursiveAction
     @Override
     protected void compute()
     {
-        if (workload.size() > THRESHOLD) {
+        if (workload.size() > THRESHOLD)
+        {
             ForkJoinTask.invokeAll(createSubtasks());
-        } else {
+        } else
+        {
             processing(workload);
         }
     }
@@ -49,7 +51,7 @@ public class RecursiveFormer extends RecursiveAction
     {
         for (CalculateJob job : work)
         {
-            job.resultLink().setValue(formulaCrawler.compute(job.formula(), job.parameters()));
+            job.resultLink().accept(formulaCrawler.compute(job.formula(), job.parameters()));
         }
     }
 }

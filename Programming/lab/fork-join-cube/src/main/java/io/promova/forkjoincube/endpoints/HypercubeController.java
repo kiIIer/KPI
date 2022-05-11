@@ -1,6 +1,7 @@
 package io.promova.forkjoincube.endpoints;
 
 import io.promova.forkjoincube.models.logic.CalculateJob;
+import io.promova.forkjoincube.models.logic.Dimension;
 import io.promova.forkjoincube.models.logic.Formula;
 import io.promova.forkjoincube.models.request.HypercubeRequest;
 import io.promova.forkjoincube.porcessors.cube.IRecursiveFormerFactory;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ForkJoinPool;
 
 @RestController
@@ -29,15 +32,17 @@ public class HypercubeController
     }
 
     @PostMapping("/hypercube")
-    public void create(
+    public Dimension create(
             @RequestBody HypercubeRequest request
     )
     {
         Formula formula = translator.translate(request.polish());
-        List<CalculateJob> jobs = jobCreator.create(request.parameters(), formula);
+        Dimension dimension = new Dimension();
+        List<CalculateJob> jobs = jobCreator.create(request.parameters(), formula, dimension);
         ForkJoinPool commonPool = ForkJoinPool.commonPool();
         RecursiveFormer recursiveFormer = recursiveFormerFactory.create(jobs);
         Object result = commonPool.invoke(recursiveFormer);
 
+        return dimension;
     }
 }
