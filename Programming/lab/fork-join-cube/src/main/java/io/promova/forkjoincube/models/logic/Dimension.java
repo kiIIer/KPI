@@ -29,7 +29,6 @@ public class Dimension
 
     public void setValue(Double value)
     {
-        System.out.println(value);
         this.value = value;
     }
 
