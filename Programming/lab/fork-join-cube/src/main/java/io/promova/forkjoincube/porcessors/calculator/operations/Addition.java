@@ -1,0 +1,18 @@
+package io.promova.forkjoincube.porcessors.calculator.operations;
+
+public class Addition implements IOperation
+{
+    public static final String symbol = "+";
+
+    @Override
+    public double calculate(double[] operands)
+    {
+        return operands[0] + operands[1];
+    }
+
+    @Override
+    public int getNumberOfParams()
+    {
+        return 2;
+    }
+}

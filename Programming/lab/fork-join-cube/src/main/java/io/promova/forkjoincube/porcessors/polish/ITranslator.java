@@ -1,8 +1,9 @@
 package io.promova.forkjoincube.porcessors.polish;
 
-import io.promova.forkjoincube.porcessors.calculator.IFormula;
+
+import io.promova.forkjoincube.models.logic.Formula;
 
 public interface ITranslator
 {
-    IFormula translate(String polish);
+    Formula translate(String polish);
 }

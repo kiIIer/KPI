@@ -32,12 +32,7 @@ public class JobCreator implements IJobCreator
         }
 
         Parameter currentParameter = parameters.get(paramStatuses.size());
-//        for (int i = 0; i < currentParameter.iterations(); i++)
-//        {
-//            paramStatuses.push(new ParamStatus(i, currentParameter));
-//            compute(parameters, paramStatuses, jobs);
-//            paramStatuses.pop();
-//        }
+
         for (Double value : currentParameter.values())
         {
             paramStatuses.push(new ParamStatus(value, currentParameter.name()));
