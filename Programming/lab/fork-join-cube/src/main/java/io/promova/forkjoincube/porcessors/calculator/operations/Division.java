@@ -1,13 +1,13 @@
 package io.promova.forkjoincube.porcessors.calculator.operations;
 
-public class Addition implements IOperation
+public class Division implements IOperation
 {
-    public static final String SYMBOL = "+";
+    public static final String SYMBOL = "/";
 
     @Override
     public double calculate(double[] operands)
     {
-        return operands[0] + operands[1];
+        return operands[0] / operands[1];
     }
 
     @Override

@@ -39,7 +39,7 @@ public class RecursiveFormer extends RecursiveAction
         List<RecursiveFormer> subtasks = new ArrayList<>();
 
         List<CalculateJob> partOne = workload.subList(0, workload.size() / 2);
-        List<CalculateJob> partTwo = workload.subList(workload.size() / 2, workload.size() - 1);
+        List<CalculateJob> partTwo = workload.subList(workload.size() / 2, workload.size());
 
         subtasks.add(factory.create(partOne));
         subtasks.add(factory.create(partTwo));

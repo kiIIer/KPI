@@ -1,18 +1,18 @@
 package io.promova.forkjoincube.porcessors.calculator.operations;
 
-public class Addition implements IOperation
+public class Sine implements IOperation
 {
-    public static final String SYMBOL = "+";
+    public static final String SYMBOL = "sin";
 
     @Override
     public double calculate(double[] operands)
     {
-        return operands[0] + operands[1];
+        return Math.sin(operands[0]);
     }
 
     @Override
     public int getNumberOfParams()
     {
-        return 2;
+        return 1;
     }
 }
