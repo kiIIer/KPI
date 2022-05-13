@@ -53,7 +53,7 @@ public class HypercubeController
         List<CalculateJob> jobs = jobCreator.create(request.parameters(), formula, dimension);
         ForkJoinPool commonPool = ForkJoinPool.commonPool();
         RecursiveFormer recursiveFormer = recursiveFormerFactory.create(jobs);
-        Object result = commonPool.invoke(recursiveFormer);
+        commonPool.invoke(recursiveFormer);
 
         return new ResponseEntity<>(dimension, HttpStatus.OK);
     }

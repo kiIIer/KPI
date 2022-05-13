@@ -1,7 +1,6 @@
 package io.promova.forkjoincube.validators.polish;
 
 import io.promova.forkjoincube.util.APISubError;
-import io.promova.forkjoincube.validators.IValidator;
 import io.promova.forkjoincube.validators.util.INotNullValidator;
 
 import java.util.ArrayList;

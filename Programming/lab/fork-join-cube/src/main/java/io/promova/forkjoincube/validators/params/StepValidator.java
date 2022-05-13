@@ -1,7 +1,6 @@
 package io.promova.forkjoincube.validators.params;
 
 import io.promova.forkjoincube.util.APISubError;
-import io.promova.forkjoincube.validators.IValidator;
 import io.promova.forkjoincube.validators.util.INotNullValidator;
 import io.promova.forkjoincube.validators.util.IPositiveValidator;
 

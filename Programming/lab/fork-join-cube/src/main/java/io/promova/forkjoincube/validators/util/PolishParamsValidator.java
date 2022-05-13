@@ -3,11 +3,8 @@ package io.promova.forkjoincube.validators.util;
 import io.promova.forkjoincube.models.logic.Parameter;
 import io.promova.forkjoincube.porcessors.calculator.operations.IOperation;
 import io.promova.forkjoincube.porcessors.calculator.operations.IOperationsMap;
-import io.promova.forkjoincube.porcessors.calculator.operations.OperationsMap;
 import io.promova.forkjoincube.util.APISubError;
 import io.promova.forkjoincube.util.Tuple;
-import io.promova.forkjoincube.validators.IValidator;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,7 +50,7 @@ public class PolishParamsValidator implements IPolishParamsValidator
             }
             try
             {
-                Double constant = Double.parseDouble(element);
+                Double.parseDouble(element);
                 willProvide.addAndGet(1);
             } catch (NumberFormatException e)
             {
