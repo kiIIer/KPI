@@ -1,10 +1,11 @@
-package io.promova.forkjoincube.validators;
+package io.promova.forkjoincube.validators.util;
 
 import io.promova.forkjoincube.util.APISubError;
+import io.promova.forkjoincube.validators.IValidator;
 
 import java.util.List;
 
-public class NotNullValidator implements IValidator
+public class NotNullValidator implements INotNullValidator
 {
     @Override
     public List<APISubError> validate(Object object)
