@@ -23,6 +23,7 @@ import {MatInputModule} from "@angular/material/input";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ToolbarCoreComponent } from './container/toolbar-core/toolbar-core.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { SearchCoreComponent } from './container/search-core/search-core.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     NotFoundComponent,
     ToolbarCoreComponent,
     ToolbarComponent,
+    SearchCoreComponent,
   ],
   exports: [DashboardCoreComponent, ToolbarCoreComponent, ToolbarComponent],
   imports: [

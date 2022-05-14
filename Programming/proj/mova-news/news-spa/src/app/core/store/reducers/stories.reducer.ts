@@ -11,15 +11,55 @@ import {
   saveStorySuccesses,
   deleteStory,
   deleteStorySuccesses,
+  loadSearchStories,
+  loadSearchStoriesSuccesses,
+  clearSearch,
 } from '../actions';
 import { StoryEntity } from '../../models/story.entity';
 
 export const storiesReducer = createReducer(
   initialStoriesState,
-  on(loadStories, (state: StoriesState) => ({
+  on(loadStories, loadSearchStories, (state: StoriesState) => ({
     ...state,
     loading: true,
     loaded: false,
+  })),
+  on(clearSearch, (state: StoriesState) => ({
+    ...state,
+    searchState: {
+      ...state.searchState,
+      nextPage: undefined,
+      ids: [],
+    },
+  })),
+  on(loadSearchStoriesSuccesses, (state: StoriesState, { page }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    searchState: {
+      ...state.searchState,
+      nextPage:
+        typeof page._links === 'undefined'
+          ? undefined
+          : page._links.nextPage.href,
+      ids: [
+        ...(state.searchState.ids as string[]),
+        ...page.entityModels.map((entity: StoryEntity) => entity.id),
+      ],
+    },
+    news: {
+      ...state.news,
+      ids: [
+        ...(state.news.ids as string[]),
+        ...page.entityModels.map((entity: StoryEntity) => entity.id),
+      ],
+      entities: Object.assign(
+        { ...state.news.entities },
+        ...page.entityModels.map((entity: StoryEntity) => ({
+          [entity.id]: entity,
+        }))
+      ),
+    },
   })),
   on(loadStoriesSuccesses, (state: StoriesState, { page }) => ({
     ...state,

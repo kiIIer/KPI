@@ -20,7 +20,7 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
-      ['q']: [null, null],
+      ['q']: [null, Validators.required],
     });
   }
 
@@ -40,6 +40,8 @@ export class ToolbarComponent implements OnInit {
     if (!this.searchForm.valid) {
       return;
     }
-    this.searchEvent.emit(this.searchForm.value as string);
+    let { q } = this.searchForm.value;
+    console.log(q);
+    this.searchEvent.emit(q as string);
   }
 }

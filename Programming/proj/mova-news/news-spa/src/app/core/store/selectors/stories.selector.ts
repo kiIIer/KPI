@@ -32,9 +32,29 @@ export const selectStoriesEntityDic = createSelector(
   selectStoriesEntityState,
   (state: EntityState<StoryEntity>) => state.entities
 );
-export const selectSortedStoryEntities = createSelector(
+export const selectSortedDashboardStoryEntities = createSelector(
   selectStoriesEntityDic,
   selectDashboardIds,
+  (state: Dictionary<StoryEntity>, ids: string[]) =>
+    Object.values(state)
+      .filter((a: StoryEntity | undefined) => {
+        let pass: boolean = false;
+        ids.forEach((id: string) => (pass = pass || id == a?.id));
+        return pass;
+      })
+      .sort((a: StoryEntity | undefined, b: StoryEntity | undefined) => {
+        if (a?.dateCreated! > b?.dateCreated!) {
+          return -1;
+        } else if (a?.dateCreated! < b?.dateCreated!) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+);
+export const selectSortedSearchStoryEntities = createSelector(
+  selectStoriesEntityDic,
+  selectSearchIds,
   (state: Dictionary<StoryEntity>, ids: string[]) =>
     Object.values(state)
       .filter((a: StoryEntity | undefined) => {
@@ -81,5 +101,10 @@ export const selectLoaded = createSelector(
 
 export const selectNextPage = createSelector(
   selectDashboardState,
+  (state: ViewState) => state.nextPage
+);
+
+export const selectNextSearchPage = createSelector(
+  selectSearchState,
   (state: ViewState) => state.nextPage
 );

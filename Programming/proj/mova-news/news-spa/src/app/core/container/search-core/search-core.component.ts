@@ -1,24 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { asyncScheduler, Observable, scheduled } from 'rxjs';
+import { StoryEntity } from '../../models/story.entity';
 import { Store } from '@ngrx/store';
-import { deleteStory, loadStories } from '../../store';
-import { asyncScheduler, Observable, of, scheduled } from 'rxjs';
+import { AppState } from '../../store/state/app.state';
+import { Router } from '@angular/router';
 import {
   selectLoading,
-  selectSortedDashboardStoryEntities,
   selectNextPage,
+  selectNextSearchPage,
+  selectSortedDashboardStoryEntities,
+  selectSortedSearchStoryEntities,
 } from '../../store/selectors/stories.selector';
-import { AppState } from '../../store/state/app.state';
-import { StoryEntity } from '../../models/story.entity';
 import { selectIsAdmin } from '../../store/selectors/user.selector';
-import { Router } from '@angular/router';
+import { deleteStory, loadStories } from '../../store';
 import { go } from '../../store/actions/router.actions';
 
 @Component({
-  selector: 'app-dashboard-core',
-  templateUrl: './dashboard-core.component.html',
-  styleUrls: ['./dashboard-core.component.css'],
+  selector: 'app-search-core',
+  templateUrl: './search-core.component.html',
+  styleUrls: ['./search-core.component.css'],
 })
-export class DashboardCoreComponent implements OnInit {
+export class SearchCoreComponent implements OnInit {
   news$: Observable<(StoryEntity | undefined)[]> = scheduled(
     [],
     asyncScheduler
@@ -31,8 +33,8 @@ export class DashboardCoreComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading$ = this.store.select(selectLoading);
-    this.news$ = this.store.select(selectSortedDashboardStoryEntities);
-    this.nextPage$ = this.store.select(selectNextPage);
+    this.news$ = this.store.select(selectSortedSearchStoryEntities);
+    this.nextPage$ = this.store.select(selectNextSearchPage);
     this.idAdmin$ = this.store.select(selectIsAdmin);
   }
 

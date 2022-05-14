@@ -23,6 +23,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthGuard } from './core/guards/auth.guard';
+import { SearchCoreComponent } from './core/container/search-core/search-core.component';
+import {SearchGuard} from './core/guards/search.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +41,11 @@ import { AuthGuard } from './core/guards/auth.guard';
         path: 'dashboard',
         component: DashboardCoreComponent,
         canActivate: [StoriesGuard],
+      },
+      {
+        path: 'search',
+        component: SearchCoreComponent,
+        canActivate: [SearchGuard],
       },
       {
         path: 'details/:id',

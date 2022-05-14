@@ -1,0 +1,11 @@
+<app-dashboard
+  [loading]="loading$ | async"
+  [stories]="news$ | async"
+  [nextPage]="nextPage$ | async"
+  [isAdmin]="idAdmin$ | async"
+  (loadMoreEvent)="onLoadMore()"
+  (openDetailsEvent)="onOpenDetails($event)"
+  (openEditorEvent)="onOpenEditor($event)"
+  (deleteStoryEvent)="onDeleteStory($event)"
+  (newStoryEvent)="onNewStory()"
+></app-dashboard>

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '../../store/state/app.state';
 import { Store } from '@ngrx/store';
-import { asyncScheduler, Observable, scheduled } from 'rxjs';
+import { asyncScheduler, Observable, scheduled, tap } from 'rxjs';
 import {
   selectIsLogined,
   selectUserName,
 } from '../../store/selectors/user.selector';
-import { go } from '../../store/actions/router.actions';
+import { go, goWithExtras } from '../../store/actions/router.actions';
 import { logIn, logOut } from '../../store/actions/user.actions';
+import { clearSearch, loadSearchStories, trySearch } from '../../store';
+import { selectCurrentRoute } from '../../store/selectors/router.selector';
 
 @Component({
   selector: 'app-toolbar-core',
@@ -38,6 +40,7 @@ export class ToolbarCoreComponent implements OnInit {
   }
 
   onSearch(q: string) {
-    console.log(q);
+    this.store.dispatch(clearSearch());
+    this.store.dispatch(trySearch({ q }));
   }
 }
