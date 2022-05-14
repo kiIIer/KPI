@@ -19,6 +19,7 @@ import {
 import { AppState } from '../store/state/app.state';
 import { Store } from '@ngrx/store';
 import {
+  selectDashboardIds,
   selectLoaded,
   selectStoryEntityIds,
 } from '../store/selectors/stories.selector';
@@ -43,7 +44,7 @@ export class StoriesGuard implements CanActivate {
   }
 
   checkStore(): Observable<boolean> {
-    return this.store.select(selectStoryEntityIds).pipe(
+    return this.store.select(selectDashboardIds).pipe(
       tap((ids: string[] | number[]) => {
         if (ids.length == 0) {
           this.store.dispatch(loadStories());

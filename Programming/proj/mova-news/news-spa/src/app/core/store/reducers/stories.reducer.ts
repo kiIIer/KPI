@@ -25,10 +25,17 @@ export const storiesReducer = createReducer(
     ...state,
     loading: false,
     loaded: true,
-    nextPage:
-      typeof page._links === 'undefined'
-        ? undefined
-        : page._links.nextPage.href,
+    dashboardState: {
+      ...state.dashboardState,
+      nextPage:
+        typeof page._links === 'undefined'
+          ? undefined
+          : page._links.nextPage.href,
+      ids: [
+        ...(state.news.ids as string[]),
+        ...page.entityModels.map((entity: StoryEntity) => entity.id),
+      ],
+    },
     news: {
       ...state.news,
       ids: [
@@ -57,6 +64,10 @@ export const storiesReducer = createReducer(
     ...state,
     loading: false,
     loaded: true,
+    dashboardState: {
+      ...state.dashboardState,
+      ids: [...(state.news.ids as string[]), story.id],
+    },
     news: {
       ...state.news,
       ids: [...(state.news.ids as string[]), story.id],
@@ -88,6 +99,10 @@ export const storiesReducer = createReducer(
   })),
   on(saveStorySuccesses, (state: StoriesState, { story }) => ({
     ...state,
+    dashboardState: {
+      ...state.dashboardState,
+      ids: [...(state.news.ids as string[]), story.id],
+    },
     news: {
       ...state.news,
       ids: [...(state.news.ids as string[]), story.id],
@@ -102,6 +117,10 @@ export const storiesReducer = createReducer(
   })),
   on(deleteStorySuccesses, (state: StoriesState, { id }) => ({
     ...state,
+    dashboardState: {
+      ...state.dashboardState,
+      ids: (state.news.ids as string[]).filter((idd) => idd != id),
+    },
     news: {
       ...state.news,
       ids: (state.news.ids as string[]).filter((idd) => idd != id),
