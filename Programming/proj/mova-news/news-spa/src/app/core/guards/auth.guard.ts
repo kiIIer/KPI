@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { AppState } from '../store/state/app.state';
 import { Store } from '@ngrx/store';
-import { selectIsAdmin } from '../store/selectors/user.selector';
+import { selectIsAdmin } from '../store/selectors/authentication.selector';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {

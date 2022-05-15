@@ -1,6 +1,6 @@
 <app-toolbar
-  [isLogined]="isLogined$ | async"
-  [userName]="userName$ | async"
+  [loggedIn]="loggedIn$ | async"
+  [profile]="profile$ | async"
   (goHomeEvent)="onGoHome()"
   (logInEvent)="onLogIn()"
   (logOutEvent)="onLogOut()"

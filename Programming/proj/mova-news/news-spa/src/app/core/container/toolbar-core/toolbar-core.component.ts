@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '../../store/state/app.state';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { asyncScheduler, Observable, scheduled, tap } from 'rxjs';
 import {
-  selectIsLogined,
-  selectUserName,
-} from '../../store/selectors/user.selector';
+  selectCurrentUserProfile,
+  selectIsLoggedIn,
+} from '../../store/selectors/authentication.selector';
 import { go, goWithExtras } from '../../store/actions/router.actions';
-import { logIn, logOut } from '../../store/actions/user.actions';
 import { clearSearch, loadSearchStories, trySearch } from '../../store';
 import { selectCurrentRoute } from '../../store/selectors/router.selector';
+import { AuthService } from '@auth0/auth0-angular';
+import { checkAuth, login, logout } from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-toolbar-core',
@@ -18,13 +19,15 @@ import { selectCurrentRoute } from '../../store/selectors/router.selector';
 })
 export class ToolbarCoreComponent implements OnInit {
   userName$: Observable<string | undefined> = scheduled([], asyncScheduler);
-  isLogined$: Observable<boolean> = scheduled([], asyncScheduler);
+  loggedIn$: Observable<boolean> = scheduled([], asyncScheduler);
+  profile$: Observable<any> = scheduled([], asyncScheduler);
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.userName$ = this.store.select(selectUserName);
-    this.isLogined$ = this.store.select(selectIsLogined);
+    this.loggedIn$ = this.store.select(selectIsLoggedIn);
+    this.profile$ = this.store.select(selectCurrentUserProfile);
+
   }
 
   onGoHome() {
@@ -32,11 +35,11 @@ export class ToolbarCoreComponent implements OnInit {
   }
 
   onLogIn() {
-    this.store.dispatch(logIn());
+    this.store.dispatch(login());
   }
 
   onLogOut() {
-    this.store.dispatch(logOut());
+    this.store.dispatch(logout());
   }
 
   onSearch(q: string) {

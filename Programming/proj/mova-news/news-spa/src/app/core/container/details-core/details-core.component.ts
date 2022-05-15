@@ -4,9 +4,9 @@ import { StoryEntity } from '../../models/story.entity';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/state/app.state';
 import { selectSelectedStory } from '../../store/selectors/stories.selector';
-import { selectIsAdmin } from '../../store/selectors/user.selector';
 import { deleteStory } from '../../store';
 import { go } from '../../store/actions/router.actions';
+import { selectIsAdmin } from '../../store/selectors/authentication.selector';
 
 @Component({
   selector: 'app-details-core',

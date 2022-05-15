@@ -9,9 +9,9 @@ import {
 } from '../../store/selectors/stories.selector';
 import { AppState } from '../../store/state/app.state';
 import { StoryEntity } from '../../models/story.entity';
-import { selectIsAdmin } from '../../store/selectors/user.selector';
 import { Router } from '@angular/router';
 import { go } from '../../store/actions/router.actions';
+import { selectIsAdmin } from '../../store/selectors/authentication.selector';
 
 @Component({
   selector: 'app-dashboard-core',

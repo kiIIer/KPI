@@ -11,7 +11,7 @@ import { CoreModule } from './core/core.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoriesEffects } from './core/store/effects/stories.effects';
 import { DashboardCoreComponent } from './core/container/dashboard-core/dashboard-core.component';
-import { userReducer } from './core/store/reducers/user.reducer';
+import { authenticationReducer } from './core/store/reducers/authentication.reducer';
 import { RouterEffects } from './core/store/effects/router.effects';
 import { DetailsCoreComponent } from './core/container/details-core/details-core.component';
 import { StoriesGuard } from './core/guards/stories.guard';
@@ -24,7 +24,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthGuard } from './core/guards/auth.guard';
 import { SearchCoreComponent } from './core/container/search-core/search-core.component';
-import {SearchGuard} from './core/guards/search.guard';
+import { SearchGuard } from './core/guards/search.guard';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +35,7 @@ import {SearchGuard} from './core/guards/search.guard';
     StoreModule.forRoot({
       stories: storiesReducer,
       router: routerReducer,
-      user: userReducer,
+      authentication: authenticationReducer,
     }),
     RouterModule.forRoot([
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -64,6 +66,41 @@ import {SearchGuard} from './core/guards/search.guard';
       },
       { path: 'not-found', component: NotFoundComponent },
     ]),
+    AuthModule.forRoot({
+      domain: 'k1ller.eu.auth0.com',
+      clientId: 'NLsuYFOc1TxdzMasdlrygctbKkdtrLfG',
+      redirectUri: window.location.origin,
+      audience: 'http://localhost:8080/',
+      scope: 'modify:stories',
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri: 'http://localhost:8080/*',
+            httpMethod: 'POST',
+            tokenOptions: {
+              audience: 'http://localhost:8080/',
+              scope: 'modify:stories',
+            },
+          },
+          {
+            uri: 'http://localhost:8080/*',
+            httpMethod: 'PATCH',
+            tokenOptions: {
+              audience: 'http://localhost:8080/',
+              scope: 'modify:stories',
+            },
+          },
+          {
+            uri: 'http://localhost:8080/*',
+            httpMethod: 'DELETE',
+            tokenOptions: {
+              audience: 'http://localhost:8080/',
+              scope: 'modify:stories',
+            },
+          },
+        ],
+      },
+    }),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument(),
@@ -72,7 +109,10 @@ import {SearchGuard} from './core/guards/search.guard';
     MatIconModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    AuthHttpInterceptor,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   exports: [],
   bootstrap: [AppComponent],
 })

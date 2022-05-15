@@ -11,9 +11,9 @@ import {
   selectSortedDashboardStoryEntities,
   selectSortedSearchStoryEntities,
 } from '../../store/selectors/stories.selector';
-import { selectIsAdmin } from '../../store/selectors/user.selector';
 import { deleteStory, loadStories } from '../../store';
 import { go } from '../../store/actions/router.actions';
+import { selectIsAdmin } from '../../store/selectors/authentication.selector';
 
 @Component({
   selector: 'app-search-core',

@@ -16,13 +16,13 @@
   </form>
   <button mat-icon-button
           class="loginButton"
-          *ngIf="isLogined == false"
+          *ngIf="loggedIn == false"
           (click)="logIn()">
     <mat-icon>login</mat-icon>
   </button>
   <button mat-icon-button
           class="account-button"
-          *ngIf="isLogined == true"
+          *ngIf="loggedIn == true"
           [matMenuTriggerFor]="menu">
     <mat-icon>account_circle</mat-icon>
   </button>
@@ -30,6 +30,7 @@
     <button mat-menu-item
             (click)="logOut()">
       <mat-icon>logout</mat-icon>
+      Logout
     </button>
   </mat-menu>
 </mat-toolbar>
