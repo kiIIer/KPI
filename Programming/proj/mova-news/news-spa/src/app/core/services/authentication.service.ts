@@ -7,6 +7,7 @@ import {
   Observable,
   pluck,
   scheduled,
+  switchMap,
   tap,
 } from 'rxjs';
 import jwt_decode from 'jwt-decode';
@@ -26,11 +27,16 @@ export class AuthenticationService {
   }
 
   getIsAdmin$(): Observable<boolean> {
-    return this.authService.getAccessTokenSilently().pipe(
-      tap((tocken) => console.log(tocken)),
-      map(
-        (token: string) =>
-          (jwt_decode(token) as any).permissions[0] == 'manage:stories'
+    return this.authService.isAuthenticated$.pipe(
+      switchMap((isAuthed: boolean) =>
+        isAuthed
+          ? this.authService.getAccessTokenSilently().pipe(
+              tap((tocken) => console.log(tocken)),
+              map((token: string) =>
+                (jwt_decode(token) as any).permissions.includes('admin')
+              )
+            )
+          : scheduled([false], asyncScheduler)
       )
     );
   }

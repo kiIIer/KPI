@@ -16,6 +16,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,6 +65,7 @@ public class ArticlesController
                 HttpStatus.OK
         );
     }
+
 
     @PostMapping(value = "/titles/{id}/article", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<ArticleEntity>> postOne(
