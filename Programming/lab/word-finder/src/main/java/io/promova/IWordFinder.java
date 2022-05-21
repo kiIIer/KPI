@@ -3,7 +3,7 @@ package io.promova;
 import java.io.File;
 import java.io.IOException;
 
-public interface IFordFinder
+public interface IWordFinder
 {
     String find(File file) throws IOException;
 }

@@ -5,10 +5,10 @@ import java.io.File;
 
 public class Program implements IProgram
 {
-    private final IFordFinder fordFinder;
+    private final IWordFinder fordFinder;
 
     @Inject
-    public Program(IFordFinder fordFinder)
+    public Program(IWordFinder fordFinder)
     {
         this.fordFinder = fordFinder;
     }

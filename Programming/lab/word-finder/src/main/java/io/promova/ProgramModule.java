@@ -8,6 +8,6 @@ public class ProgramModule extends AbstractModule
     public void configure()
     {
         bind(IProgram.class).to(Program.class);
-        bind(IFordFinder.class).to(FordFinder.class);
+        bind(IWordFinder.class).to(WordFinder.class);
     }
 }

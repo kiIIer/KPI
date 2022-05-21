@@ -30,6 +30,13 @@ public class Statistic
 
     public List<StatisticUnit> getList()
     {
-        return filesStatistics;
+        lock.lock();
+        try
+        {
+            return this.filesStatistics;
+        } finally
+        {
+            lock.unlock();
+        }
     }
 }

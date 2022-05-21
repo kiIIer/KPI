@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class FordFinder implements IFordFinder
+public class WordFinder implements IWordFinder
 {
     @Override
     public String find(File file) throws IOException
