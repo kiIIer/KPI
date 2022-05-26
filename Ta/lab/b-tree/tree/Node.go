@@ -200,24 +200,22 @@ func (node *Node[K, V]) fill(index int) {
 func (node *Node[K, V]) insertUtil(element *Element[K, V]) {
 	i := node.n - 1
 
+	for j := 0; j < node.n; j++ {
+		if node.elements[j].key == element.key {
+			node.elements[j] = element
+			return
+		}
+	}
+
 	if node.isLeaf {
 
-		changed := false
-		for j := 0; j < node.n; j++ {
-			if node.elements[j].key == element.key {
-				node.elements[j] = element
-				changed = true
-			}
+		for ; i > -1 && node.elements[i].key > element.key; i-- {
+			node.elements[i+1] = node.elements[i]
 		}
-		if !changed {
-			for ; i > -1 && node.elements[i].key > element.key; i-- {
-				node.elements[i+1] = node.elements[i]
-			}
 
-			node.elements[i+1] = element
+		node.elements[i+1] = element
 
-			node.n++
-		}
+		node.n++
 
 	} else {
 		for ; i > -1 && node.elements[i].key > element.key; i-- {
@@ -251,7 +249,7 @@ func (node *Node[K, V]) split(i int, child *Node[K, V]) {
 
 	child.n = node.t - 1
 
-	for j := 0; j > i; j-- {
+	for j := node.n; j >= i+1; j-- {
 		node.nodes[j+1] = node.nodes[j]
 	}
 
