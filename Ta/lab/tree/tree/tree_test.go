@@ -204,3 +204,143 @@ func BenchmarkGo_Map(b *testing.B) {
 		_ = gomap[-1]
 	}
 }
+
+func BenchmarkTree_Insert_1000(b *testing.B) {
+	n := 1000
+	forest := make([]*Tree[int, int], b.N)
+	for i := 0; i < b.N; i++ {
+		forest[i] = NewTree[int, int]()
+	}
+	rand.Seed(100)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Insert(rand.Intn(n), j)
+		}
+	}
+}
+
+func BenchmarkTree_Insert_10000(b *testing.B) {
+	n := 10000
+	forest := make([]*Tree[int, int], b.N)
+	for i := 0; i < b.N; i++ {
+		forest[i] = NewTree[int, int]()
+	}
+	rand.Seed(100)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Insert(rand.Intn(n), j)
+		}
+	}
+}
+
+func BenchmarkTree_Insert_100000(b *testing.B) {
+	n := 100000
+	forest := make([]*Tree[int, int], b.N)
+	for i := 0; i < b.N; i++ {
+		forest[i] = NewTree[int, int]()
+	}
+	rand.Seed(100)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Insert(rand.Intn(n), j)
+		}
+	}
+}
+
+func BenchmarkTree_Insert_200000(b *testing.B) {
+	n := 200000
+	forest := make([]*Tree[int, int], b.N)
+	for i := 0; i < b.N; i++ {
+		forest[i] = NewTree[int, int]()
+	}
+	rand.Seed(100)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Insert(rand.Intn(n), j)
+		}
+	}
+}
+
+func BenchmarkTree_Get_1000(b *testing.B) {
+	n := 1000
+	forest := make([]*Tree[int, int], b.N)
+	for i := 0; i < b.N; i++ {
+		forest[i] = NewTree[int, int]()
+	}
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Insert(rand.Intn(n), j)
+		}
+		forest[i].Balance()
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Get(j)
+		}
+	}
+}
+
+func BenchmarkTree_Get_10000(b *testing.B) {
+	n := 10000
+	forest := make([]*Tree[int, int], b.N)
+	for i := 0; i < b.N; i++ {
+		forest[i] = NewTree[int, int]()
+	}
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Insert(rand.Intn(n), j)
+		}
+		forest[i].Balance()
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Get(j)
+		}
+	}
+}
+
+func BenchmarkTree_Get_100000(b *testing.B) {
+	n := 100000
+	forest := make([]*Tree[int, int], b.N)
+	for i := 0; i < b.N; i++ {
+		forest[i] = NewTree[int, int]()
+	}
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Insert(rand.Intn(n), j)
+		}
+		forest[i].Balance()
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Get(j)
+		}
+	}
+}
+
+func BenchmarkTree_Get_200000(b *testing.B) {
+	n := 200000
+	forest := make([]*Tree[int, int], b.N)
+	for i := 0; i < b.N; i++ {
+		forest[i] = NewTree[int, int]()
+	}
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Insert(rand.Intn(n), j)
+		}
+		forest[i].Balance()
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < n; j++ {
+			forest[i].Get(j)
+		}
+	}
+}

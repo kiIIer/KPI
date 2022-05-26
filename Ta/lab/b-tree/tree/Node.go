@@ -269,7 +269,7 @@ func (node *Node[K, V]) search(key K) *Element[K, V] {
 	for ; i < node.n && key > node.elements[i].key; i++ {
 	}
 
-	if node.elements[i] != nil && node.elements[i].key == key {
+	if i < node.n && node.elements[i] != nil && node.elements[i].key == key {
 		return node.elements[i]
 	}
 
