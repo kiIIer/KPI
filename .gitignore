@@ -1,2 +1,5 @@
 **/.DS_Store
-**/.angular
+**/.angular/**
+**/.idea/**
+**/node_modules/**
+**/target/**
