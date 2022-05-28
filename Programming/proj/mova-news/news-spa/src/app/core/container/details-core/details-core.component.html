@@ -1,0 +1,6 @@
+<app-details
+  [story]="story$ | async"
+  [isAdmin]="isAdmin$ | async"
+  (deleteStoryEvent)="onDeleteStory($event)"
+  (openEditorEvent)="onOpenEditor($event)"
+></app-details>

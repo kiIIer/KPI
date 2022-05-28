@@ -1,0 +1,24 @@
+<div class="creator-main-div">
+  <mat-card class="creator-card">
+    <form [formGroup]="creatorForm" (submit)="submit()">
+      <mat-form-field class="creator-form-field">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required>
+        <mat-error *ngIf="creatorForm.controls['title'].touched && creatorForm.controls['title'].invalid">
+          <span *ngIf="creatorForm.controls['title'].errors!['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="creator-form-field">
+        <mat-label>Article</mat-label>
+        <textarea matInput cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1" formControlName="article" required class="textarea"></textarea>
+        <mat-error *ngIf="creatorForm.controls['article'].touched && creatorForm.controls['article'].invalid">
+          <span *ngIf="creatorForm.controls['article'].errors!['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Publish</button>
+    </form>
+    <a mat-raised-button routerLink="/details/{{(this.response | async)?.id}}" *ngIf="response" color="accent" class="redirect-button">View created article</a>
+  </mat-card>
+</div>

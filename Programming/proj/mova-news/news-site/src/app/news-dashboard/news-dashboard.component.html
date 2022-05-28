@@ -1,0 +1,10 @@
+<div class="main-div">
+  <mat-card class="dashboard-card">
+    <a mat-button *ngFor="let model of entityModels" class="dashboard-link"
+       routerLink="/details/{{model.id}}/">{{model.title}}</a>
+    <button mat-raised-button color="accent" class="dashboard-button"
+            *ngIf="links"
+            (click)="loadMore()">Load more
+    </button>
+  </mat-card>
+</div>

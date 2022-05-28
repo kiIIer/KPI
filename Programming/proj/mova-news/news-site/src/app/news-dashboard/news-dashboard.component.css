@@ -1,0 +1,26 @@
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-card {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.dashboard-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+}

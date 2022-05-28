@@ -1,0 +1,15 @@
+.form-field {
+  width: 100%;
+}
+
+.header{
+  display: inline;
+}
+
+.actions {
+  text-align: center;
+}
+
+.my-card{
+  margin:10px
+}

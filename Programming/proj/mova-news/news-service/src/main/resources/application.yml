@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:26257/postgres
+    username: root
+    password: root
+    hikari:
+      connection-test-query: SELECT 1
+      schema: stories
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://k1ller.eu.auth0.com/
+auth0:
+  audience: http://localhost:8080/

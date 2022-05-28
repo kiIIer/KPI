@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  roachdb:
+    image: cockroachdb/cockroach:v21.1.15
+    restart: on-failure
+    ports:
+      - "26257:26257"
+      - "8081:8080"
+    volumes:
+      - "/Users/killer/.mova-news:/cockroach/cockroach-data"
+    command:
+      - start-single-node
+      - --insecure
+
+  service:
+    build:
+      context: news-service
+      dockerfile: Dockerfile
+    depends_on:
+      - roachdb
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://roachdb:26257/postgres
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SERVER_PORT: 8080
+
+  spa:
+    build:
+      context: news-spa
+      dockerfile: Dockerfile
+    depends_on:
+      - service
+    ports:
+      - "4200:80"

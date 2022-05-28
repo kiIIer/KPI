@@ -1,0 +1,13 @@
+.details-main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.details-card {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}

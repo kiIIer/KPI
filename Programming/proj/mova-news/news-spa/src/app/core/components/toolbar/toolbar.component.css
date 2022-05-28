@@ -1,0 +1,31 @@
+.my-toolbar {
+  margin-bottom: 20px;
+  /*position: fixed;*/
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  /*height: 17%;*/
+}
+
+.my-form {
+  /*margin-top: 20px;*/
+  margin-left: 10px;
+  /*width: 50%;*/
+  font-size: small;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.loginButton {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}
+
+.account-button {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}

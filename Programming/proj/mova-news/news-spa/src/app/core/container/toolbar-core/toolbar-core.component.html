@@ -1,0 +1,8 @@
+<app-toolbar
+  [loggedIn]="loggedIn$ | async"
+  [profile]="profile$ | async"
+  (goHomeEvent)="onGoHome()"
+  (logInEvent)="onLogIn()"
+  (logOutEvent)="onLogOut()"
+  (searchEvent)="onSearch($event)"
+></app-toolbar>

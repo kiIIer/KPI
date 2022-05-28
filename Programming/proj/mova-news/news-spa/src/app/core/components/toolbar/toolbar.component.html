@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" class="my-toolbar">
+  <a mat-button (click)="goHome()">Mova news</a>
+  <form class="my-form"
+        (submit)="search()"
+        [formGroup]="searchForm">
+    <mat-form-field class="full-width">
+      <mat-label>Search</mat-label>
+      <input matInput
+             formControlName="q"
+             placeholder="Something interesting">
+    </mat-form-field>
+    <button mat-icon-button
+            type="submit">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+  <button mat-icon-button
+          class="loginButton"
+          *ngIf="loggedIn == false"
+          (click)="logIn()">
+    <mat-icon>login</mat-icon>
+  </button>
+  <button mat-icon-button
+          class="account-button"
+          *ngIf="loggedIn == true"
+          [matMenuTriggerFor]="menu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item
+            (click)="logOut()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>

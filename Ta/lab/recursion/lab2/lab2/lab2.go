@@ -1,6 +1,5 @@
 package main
 
-
 func reverseR(input []rune, start int, end int) string {
 	if start < end {
 		return string(input[end]) + reverseR(input, start+1, end-1) + string(input[start])
@@ -30,7 +29,6 @@ func main() {
 	var input []rune
 
 	input = []rune{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
-
 
 	println(reverseR(input, 0, len(input)-1))
 	println(reverseI(input))
