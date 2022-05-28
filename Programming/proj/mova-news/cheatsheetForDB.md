@@ -1,7 +1,9 @@
+CREATE SCHEMA news;
+
 CREATE TABLE news.titles (
 	id STRING NOT NULL,
 	title STRING NOT NULL,
-	datecreated INT8 NOT NULL,
+	date_created INT8 NOT NULL,
 	rowid INT8 NOT VISIBLE NOT NULL DEFAULT unique_rowid(),
 	CONSTRAINT "primary" PRIMARY KEY (rowid ASC),
 	UNIQUE INDEX titles_id_idx (id ASC),
