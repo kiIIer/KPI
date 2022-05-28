@@ -7,8 +7,6 @@ func reverseR(input []rune, start int, end int) string {
 		return ""
 	} else {
 		return string(input[end])
-	}
-
 }
 
 func reverseI(input []rune) string {
