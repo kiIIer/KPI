@@ -5,6 +5,7 @@ import (
 	"dynamic-greeder/combowombo"
 	"dynamic-greeder/factorial"
 	"dynamic-greeder/fibonacci"
+	"dynamic-greeder/greeder"
 	"os"
 	"strconv"
 )
@@ -71,6 +72,23 @@ func comb() {
 	}
 }
 
+func greed() {
+	greedy := greeder.NewGreeder()
+	tasks := make([]*greeder.Task, 5)
+	tasks[4] = greeder.NewTask(2, 1)
+	tasks[1] = greeder.NewTask(2, 1)
+	tasks[2] = greeder.NewTask(3, 1)
+	tasks[3] = greeder.NewTask(1, 10)
+	tasks[0] = greeder.NewTask(2, 100)
+	solution := greedy.Solve(tasks)
+	profit := 0
+	for _, task := range solution {
+		profit += task.Cost
+		println(task.Deadline, task.Cost)
+	}
+	println(profit)
+}
+
 func main() {
-	comb()
+	greed()
 }
