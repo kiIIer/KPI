@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+class Article {
+    id 
+    article
+}
+
+class Title {
+    id
+    title
+    date_created
+}
+
+Title::id --> Article::id : foreigh key
+@enduml

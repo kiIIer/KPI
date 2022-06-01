@@ -1,0 +1,31 @@
+@startuml
+interface AppState{
+    StoriesState
+    AuthenticationState
+    RouterState
+}
+
+interface StoriesState{
+    News
+    DashboardState
+    SearchState
+    loading
+    loaded
+}
+
+interface ViewState{
+    ids
+    nextlink
+}
+
+interface AuthenticationState{
+    isLoggedIn
+    isAdmin
+    userProfile
+}
+
+AppState::StoriesState *-- StoriesState : contains
+AppState::AuthenticationState *-- AuthenticationState : contains
+StoriesState::DashboardState *-- ViewState : contains
+StoriesState::SearchState *-- ViewState : contains
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+node docker
+artifact service
+artifact site
+database db
+
+docker -- service
+docker -- site
+docker -- db
+@enduml

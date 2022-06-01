@@ -1,0 +1,21 @@
+@startuml "use"
+left to right direction
+skinparam actorStyle awesome
+actor User as u
+actor Administrator as a
+package Site {
+   usecase "Read, search stories" as uc1
+   usecase "Manage stories" as uc2
+}
+
+package Service {
+   usecase "Read, search stories" as ucs1
+   usecase "Manage stories" as ucs2
+}
+
+u-->uc1
+u -->ucs1
+a-->uc2
+a-->ucs2
+
+@enduml
