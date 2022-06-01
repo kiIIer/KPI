@@ -1,0 +1,173 @@
+- Титулка!
+- Зміст та посилання на сторінки
+- Вступ!
+  - Ціль проекту!
+  - Які проблеми ця програма вирішила б!
+  - Функціонал та як саме працює!
+  - Як покращити та що робити далі!
+- Основна частина
+  - Що саме тут буде розписано!
+  - Теоретичний розпис структури!
+    - Те що сам спрінг, спа, докер, аутентіфікація, база данних!
+    - Малюночок який показує як саме все працює та пояснення запитів та як саме все під час них відбувається
+  - База данних!
+    - Яка саме база данних!
+      - (Релялиційна)!
+    - Чому обрана саме така база данних!
+    - Структура данних !
+      - Що таке тайтл що таке артікл!
+    - Як база данних запускається та як до неї можна отримати доступ!
+    - Що я використовував для перевірки роботи!
+    - Як пов'язана з усім іншим!
+    - Як покращити
+  - Аутентифікація
+    - Що це таке
+    - Яка саме в мене аутентифікація
+    - Щому саме така
+    - Що таке jwt
+    - Як саме його використовують
+    - Хто такі адміни
+    - Що таке тенант
+    - Які в нього налаштування
+    - Як покращити
+  - Сервіс
+    - Що саме робить сервіс
+    - Що таке рест
+      - Надати посилання на гайдлайни
+    - Що таке спрінг
+    - Чому я обрав саме спрінг
+    - Як пов'язан з усім іншим
+    - Як працює всередині
+      - Секуріті
+      - Контроллери
+        - Валідація
+        - Адвайси
+        - Як саме оброблюється запит
+        - Навіщо додавати лінки та як їх відключити
+    - Структури данних
+    - Як ідуть запити до бази данних
+      - Особливо пошук
+    - Як пакуються відповіді
+    - Як покращити(http2)
+  - СПА
+    - Що таке спа та навіщо вона потрібна
+    - Як працює сайт та як пов'язан з усім іншим
+    - Що таке ангулар та чому я його обрав
+    - Що таке паттерн REDUX
+      - Як він мені допомагає
+      - Чому саме редакс
+      - В чому суть
+      - Який в мене сейт
+      - Що таке рерюсери селектори та акшни
+    - Що таку паттерн контейнер та презентейшн компоненти
+      - Яку проблему вирішує
+      - Як саме іде передача данних
+    - Як іде перевірка користувача
+    - Які в мене контейнер компоненти
+    - Як працюють обсервабли
+    - Які екшни
+    - Які редюсери
+    - Які селектори
+    - Як данні отримуються
+    - Які данні йдуть до презентейшн
+    - Які презентейшн компоненти
+    - Як працює та що таке матіріал
+    - Як покращити
+  - Докер
+    - Що таке докер
+    - Як працює докер
+    - Навіщо він мені та які проблеми вирішує
+    - Як саме в мене там все працює
+    - Як покращити та потенційно запускати пайплайни
+- Висновок
+  - Як можна покращити та що можна доробити вцілому
+  - Підсумувати результат виконання роботи
+- Додатки
+  - Посилання на джерела
+    - json https://www.json.org/json-en.html
+    - Microsoft REST API Guidelines https://github.com/microsoft/api-guidelines
+    - JWT https://en.wikipedia.org/wiki/JSON_Web_Token
+    - Auth0 https://auth0.com/
+    - Swagger https://swagger.io/tools/swagger-ui/
+    - localhost https://en.wikipedia.org/wiki/Localhost
+    - grpc https://grpc.io/
+    - Protobuf https://en.wikipedia.org/wiki/Protocol_Buffers
+    - Java https://www.java.com/en/
+    - Golang https://go.dev/
+    - Css https://en.wikipedia.org/wiki/CSS
+    - docker https://www.docker.com/
+    - cockroach https://www.cockroachlabs.com/
+    - spring https://spring.io/
+    - REST https://en.wikipedia.org/wiki/Representational_state_transfer
+    - Angular https://angular.io/
+    - NX https://nx.dev/
+    - Redux https://redux.js.org/
+    - Cont Pres https://blog.angular-university.io/angular-component-design-how-to-avoid-custom-event-bubbling-and-extraneous-properties-in-the-local-component-tree/
+    - Windows https://www.microsoft.com/en-us/windows?wa=wsignin1.0
+    - MacOs https://en.wikipedia.org/wiki/MacOS
+    - LinuxAlpine https://www.alpinelinux.org/
+    - Dockerfile https://docs.docker.com/engine/reference/builder/
+    - JVM https://en.wikipedia.org/wiki/Java_virtual_machine
+    - maven https://maven.apache.org/
+    - multi stage build https://docs.docker.com/develop/develop-images/multistage-build/
+    - AngularCLI https://angular.io/cli
+    - NGINX https://www.nginx.com/
+    - Docker-compose https://docs.docker.com/compose/
+    - Yaml  https://yaml.org/
+    - Relation db https://en.wikipedia.org/wiki/Relational_database
+    - foreign key https://en.wikipedia.org/wiki/Foreign_key
+    - pagination https://en.wikipedia.org/wiki/Pagination
+    - dBeaver https://dbeaver.io/
+    - Access tocketn https://auth0.com/docs/secure/tokens/access-tokens
+    - Google acc https://www.google.com/account/about/
+    - auth exp https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+    - identity provider https://en.wikipedia.org/wiki/Identity_provider
+    - API https://en.wikipedia.org/wiki/API
+    - OAuth20 https://oauth.net/2/
+    - DI https://en.wikipedia.org/wiki/Dependency_injection#:~:text=In%20software%20engineering%2C%20dependency%20injection,leading%20to%20loosely%20coupled%20programs.
+    - Postman https://www.postman.com/
+    - HATEOAS https://en.wikipedia.org/wiki/HATEOAS#:~:text=Hypermedia%20as%20the%20Engine%20of,provide%20information%20dynamically%20through%20hypermedia.
+    - cors https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+    - js https://en.wikipedia.org/wiki/JavaScript
+    - spa https://en.wikipedia.org/wiki/Single-page_application
+    - ts https://www.typescriptlang.org/
+    - ngrx https://ngrx.io/
+    - reactive forms https://angular.io/guide/reactive-forms
+  - ksdjf
+    - docker стейдж
+    - спа
+    - хостити
+    - ендпоінт
+    - паттерн
+    - рут
+    - логін
+    - логаут
+    - хедер
+    - тенант
+    - деплоїти
+    - депенденсі
+    - софт
+    - docker імедж
+    - пайплайн
+    - білд
+    - нодами
+    - валідний
+    - хедер
+    - боді
+    - рантайм
+    - дженерік
+    - імплементувати
+    - енвайромент
+    - пекедж
+    - кидати ексепшн
+    - інджект
+    - маппінг
+    - ексепшн
+    - репозиторій
+  - Додаток А
+    - зображення роботи сайту
+    - ендпоінти
+  - Додаток Б
+    - Білд у докері
+    - Імеджи у докері
+    - Redux
