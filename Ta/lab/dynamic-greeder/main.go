@@ -54,7 +54,7 @@ func comb() {
 		if err != nil {
 			continue
 		}
-		top, err := strconv.Atoi(string(line))
+		ones, err := strconv.Atoi(string(line))
 		if err != nil {
 			continue
 		}
@@ -63,12 +63,12 @@ func comb() {
 		if err != nil {
 			continue
 		}
-		bot, err := strconv.Atoi(string(line))
+		zeros, err := strconv.Atoi(string(line))
 		if err != nil {
 			continue
 		}
 
-		println("Combo: ", comb.Calc(top, bot))
+		println("Combo: ", comb.Calc(zeros, ones+1))
 	}
 }
 
