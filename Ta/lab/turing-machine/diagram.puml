@@ -1,56 +1,98 @@
 @startuml name TuringMachine
-state chooseF <<choice>>
 
 [*] --> PrepareInput
 
 state PrepareInput {
-    [*] --> SplitInput
-    SplitInput --> Normalize
+    [*] --> MoveX
+
+    state MoveX {
+        [*] --> CopyT0ToT1
+        CopyT0ToT1 --> CopyT0ToT1
+        CopyT0ToT1 --> DeleteSeparator : if found
+        DeleteSeparator --> [*]
+    }
+
+    MoveX --> MoveY
+
+    state MoveY {
+        [*] --> CopyT0ToT2
+        CopyT0ToT2 --> CopyT0ToT2
+        CopyT0ToT2 --> [*] : if end
+    }
+
+    MoveY --> Normalize
+
+    state Normalize {
+        [*] --> AddZerosToT1T2
+        AddZerosToT1T2 --> AddZerosToT1T2RL
+        AddZerosToT1T2RL --> [*] : if both blank
+    }
+
     Normalize --> [*]
+
 }
 
 PrepareInput --> ChooseFormula
 
 state ChooseFormula {
-    [*]-->IterateLR
-    IterateLR --> Formula1 : T1 > T2
-    IterateLR --> Formula2 : T2 > T1
-    IterateLR --> Formula2 : T1 || T2 == Blank
-    IterateLR --> IterateLR
-    Formula1 --> [*] : F1 chosen
-    Formula2 --> [*] : F2 chosen
+    [*] --> IterateT1T2LR
+    IterateT1T2LR --> IterateT1T2LR
+    IterateT1T2LR --> F1 : T1>T2
+    IterateT1T2LR --> F2 : T2>T1
+    IterateT1T2LR --> F2 : T1 blank
+
+    F1 --> [*] : F1 chosen
+    F2 --> [*] : F2 chosen
 }
 
-ChooseFormula --> chooseF
+ChooseFormula --> Formula1 : if F1
 
-chooseF --> CalculateFormula1 : x > y
+state Formula1 {
+    [*] --> PositionToROfT1T2
+    PositionToROfT1T2 --> AddToT3
+    
+    AddToT3 --> PositionToROfT3
 
-state CalculateFormula1 {
-    [*] --> PositionF1
-    PositionF1 --> AddF1
+    PositionToROfT3 --> MultiplyBy2T3
 
-    AddF1 --> PositionToMultiplyF1
+    MultiplyBy2T3 --> PrintResultFromT3
 
-    PositionToMultiplyF1 --> MultiplyF1
-
-    MultiplyF1 --> WriteResultF1
-
-    WriteResultF1 --> [*]
+    PrintResultFromT3 --> [*]
 }
 
-CalculateFormula1 --> [*]
+ChooseFormula --> Formula2 : if F2
 
-chooseF --> CalculateFormula2 : x <= y
+state Formula2 {
+    [*] --> PositionAllToR
 
-state CalculateFormula2 {
-    [*] --> PositionF2
-    PositionF2 --> RaiseYF2
-    RaiseYF2 --> PositionToAddF2
-    PositionToAddF2 --> AddF2
-    AddF2 --> WriteResultF2
-    WriteResultF2 --> [*]
+    PositionAllToR --> CopyT2ToT3
+
+    CopyT2ToT3 --> MoveBack
+
+    MoveBack --> MultiplyT2AndT3
+
+    state MultiplyT2AndT3 {
+        [*] --> CheckT2
+
+        CheckT2 --> MultiplyT3By2 : if T2==zero
+        CheckT2 --> AddT3AndT4InT5 : if T2==one
+        AddT3AndT4InT5 --> CopyT5ToT4 
+        CopyT5ToT4 --> MultiplyT3By2
+
+        MultiplyT3By2 --> CheckT2
+
+        CheckT2 --> [*] : if T2==blank
+    }
+
+    MultiplyT2AndT3 --> AddT1ToT4
+
+    AddT1ToT4 --> PrintResultFromT4
+
+    PrintResultFromT4 --> [*]
 }
 
-CalculateFormula2 --> [*]
+Formula1 --> [*]
+Formula2 --> [*]
+
 
 @enduml
