@@ -1,0 +1,56 @@
+@startuml name TuringMachine
+state chooseF <<choice>>
+
+[*] --> PrepareInput
+
+state PrepareInput {
+    [*] --> SplitInput
+    SplitInput --> Normalize
+    Normalize --> [*]
+}
+
+PrepareInput --> ChooseFormula
+
+state ChooseFormula {
+    [*]-->IterateLR
+    IterateLR --> Formula1 : T1 > T2
+    IterateLR --> Formula2 : T2 > T1
+    IterateLR --> Formula2 : T1 || T2 == Blank
+    IterateLR --> IterateLR
+    Formula1 --> [*] : F1 chosen
+    Formula2 --> [*] : F2 chosen
+}
+
+ChooseFormula --> chooseF
+
+chooseF --> CalculateFormula1 : x > y
+
+state CalculateFormula1 {
+    [*] --> PositionF1
+    PositionF1 --> AddF1
+
+    AddF1 --> PositionToMultiplyF1
+
+    PositionToMultiplyF1 --> MultiplyF1
+
+    MultiplyF1 --> WriteResultF1
+
+    WriteResultF1 --> [*]
+}
+
+CalculateFormula1 --> [*]
+
+chooseF --> CalculateFormula2 : x <= y
+
+state CalculateFormula2 {
+    [*] --> PositionF2
+    PositionF2 --> RaiseYF2
+    RaiseYF2 --> PositionToAddF2
+    PositionToAddF2 --> AddF2
+    AddF2 --> WriteResultF2
+    WriteResultF2 --> [*]
+}
+
+CalculateFormula2 --> [*]
+
+@enduml
